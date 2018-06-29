@@ -1,0 +1,21 @@
+default_password: password1
+version: latest
+ROS_version: 1.0.3
+master:
+  cpus: 1
+  memory: 1024
+server:
+  cpus: 1
+  memory: 1500
+node:
+  count: 3
+  cpus: 1
+  memory: 1500
+ip:
+  master: 172.22.101.100
+  server: 172.22.101.101
+  node:   172.22.101.111
+linked_clones: true
+net:
+  private_nic_type: 82545EM
+  network_type: private_network

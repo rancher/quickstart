@@ -1,0 +1,39 @@
+#!/bin/bash -x
+apt update
+apt -y install curl vim jq
+curl https://releases.rancher.com/install-docker/${docker_version_server}.sh | sh
+
+until docker inspect rancher/rancher:${rancher_version} > /dev/null 2>&1; do
+  docker pull rancher/rancher:${rancher_version}
+  sleep 2
+done
+
+docker run -d -p 80:80 -p 443:443 -v /root/rancher:/var/lib/rancher rancher/rancher:${rancher_version}
+
+while ! curl -k https://localhost/ping; do sleep 3; done
+
+# Login
+LOGINRESPONSE=`curl -s 'https://127.0.0.1/v3-public/localProviders/local?action=login' -H 'content-type: application/json' --data-binary '{"username":"admin","password":"admin"}' --insecure`
+LOGINTOKEN=`echo $LOGINRESPONSE | jq -r .token`
+
+# Change password
+curl -s 'https://127.0.0.1/v3/users?action=changepassword' -H 'content-type: application/json' -H "Authorization: Bearer $LOGINTOKEN" --data-binary '{"currentPassword":"admin","newPassword":"${admin_password}"}' --insecure
+
+# Create API key
+APIRESPONSE=`curl -s 'https://127.0.0.1/v3/token' -H 'content-type: application/json' -H "Authorization: Bearer $LOGINTOKEN" --data-binary '{"type":"token","description":"automation"}' --insecure`
+
+# Extract and store token
+APITOKEN=`echo $APIRESPONSE | jq -r .token`
+
+# Configure server-url
+RANCHER_SERVER="https://$(curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address)"
+curl -s 'https://127.0.0.1/v3/settings/server-url' -H 'content-type: application/json' -H "Authorization: Bearer $APITOKEN" -X PUT --data-binary '{"name":"server-url","value":"'$RANCHER_SERVER'"}' --insecure
+
+# Create cluster
+CLUSTERRESPONSE=`curl -s 'https://127.0.0.1/v3/cluster' -H 'content-type: application/json' -H "Authorization: Bearer $APITOKEN" --data-binary '{"type":"cluster","nodes":[],"rancherKubernetesEngineConfig":{"ignoreDockerVersion":true},"name":"${cluster_name}"}' --insecure`
+
+# Extract clusterid to use for generating the docker run command
+CLUSTERID=`echo $CLUSTERRESPONSE | jq -r .id`
+
+# Generate registrationtoken
+curl -s 'https://127.0.0.1/v3/clusterregistrationtoken' -H 'content-type: application/json' -H "Authorization: Bearer $APITOKEN" --data-binary '{"type":"clusterRegistrationToken","clusterId":"'$CLUSTERID'"}' --insecure
