@@ -36,7 +36,7 @@ variable "admin_password" {
 }
 
 variable "cluster_name" {
-  default = "custom"
+  default = "quickstart"
 }
 
 variable "region" {

@@ -1,9 +1,6 @@
-default_password: password1
+default_password: admin
 version: latest
 ROS_version: 1.0.3
-master:
-  cpus: 1
-  memory: 1024
 server:
   cpus: 1
   memory: 1500

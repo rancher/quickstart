@@ -27,7 +27,7 @@ while true; do
     $curlprefix/curl \
       -sLk \
       -H "Authorization: Bearer $LOGINTOKEN" \
-      "https://$rancher_server_ip/v3/clusterregistrationtoken?name=myfirstcluster" | jq -r '.data[].nodeCommand')
+      "https://$rancher_server_ip/v3/clusterregistrationtoken?name=quickstart" | jq -r '.data[].nodeCommand')
 
   if [[ "$ENV_STATE" != "null" ]]; then
     break
@@ -38,7 +38,7 @@ done
 
 CLUSTERRESPONSE=$(docker run --net host \
     --rm \
-    $curlprefix/curl -s "https://$rancher_server_ip/v3/clusters?name=myfirstcluster" -H 'content-type: application/json' -H "Authorization: Bearer $LOGINTOKEN" --insecure)
+    $curlprefix/curl -s "https://$rancher_server_ip/v3/clusters?name=quickstart" -H 'content-type: application/json' -H "Authorization: Bearer $LOGINTOKEN" --insecure)
 
 # Extract clusterid to use for generating the docker run command
 CLUSTERID=`echo $CLUSTERRESPONSE | jq -r .data[].id`
