@@ -45,7 +45,7 @@ The pre-requistes for this are [vagrant](https://www.vagrantup.com) and [virtual
 - Clone this repository and go into the vagrant subfolder
 - Run `vagrant up`
 
-When provisioning is finished the Rancher UI will become accessible on http://172.22.101.101 the default password is `password1`, but this can be updated in the config.yaml file.
+When provisioning is finished the Rancher UI will become accessible on http://172.22.101.101 the default password is `admin`, but this can be updated in the config.yaml file.
 
 ### How to Remove
 
