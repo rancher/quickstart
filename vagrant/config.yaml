@@ -1,11 +1,11 @@
 default_password: admin
 version: latest
-ROS_version: 1.0.3
+ROS_version: 1.4.0
 server:
   cpus: 1
   memory: 1500
 node:
-  count: 3
+  count: 1
   cpus: 1
   memory: 1500
 ip:
