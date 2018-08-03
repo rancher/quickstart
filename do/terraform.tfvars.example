@@ -5,11 +5,11 @@ admin_password = "admin"
 # Resources will be prefixed with this to avoid clashing names
 prefix = "myname"
 # rancher/rancher image tag to use
-rancher_version = "v2.0.4"
+rancher_version = "latest"
 # Region where resources should be created
 region = "lon1"
 # Count of agent nodes with role all
-count_agent_all_nodes = "3"
+count_agent_all_nodes = "1"
 # Count of agent nodes with role etcd
 count_agent_etcd_nodes = "0"
 # Count of agent nodes with role controlplane
