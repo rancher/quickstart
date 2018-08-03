@@ -12,7 +12,7 @@ variable "prefix" {
 }
 
 variable "rancher_version" {
-  default = "v2.0.4"
+  default = "latest"
 }
 
 variable "count_agent_all_nodes" {
