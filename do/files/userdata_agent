@@ -88,7 +88,7 @@ while true; do
     $curlimage \
       -sLk \
       -H "Authorization: Bearer $LOGINTOKEN" \
-      "https://$rancher_server_ip/v3/clusterregistrationtoken?id=$CLUSTERID" | docker run --rm -i $jqimage -r '.data[].nodeCommand' | head -1)
+      "https://$rancher_server_ip/v3/clusterregistrationtoken?clusterId=$CLUSTERID" | docker run --rm -i $jqimage -r '.data[].nodeCommand' | head -1)
 
   if [ -n "$AGENTCMD" ]; then
     break
