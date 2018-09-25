@@ -24,7 +24,7 @@ Vagrant.configure(2) do |config|
       end
       server.vm.network x.fetch('net').fetch('network_type'), ip: x.fetch('ip').fetch('server') , nic_type: $private_nic_type
       server.vm.hostname = "server-01"
-      server.vm.provision "shell", path: "scripts/configure_rancher_server.sh", args: [x.fetch('default_password'), x.fetch('version')]
+      server.vm.provision "shell", path: "scripts/configure_rancher_server.sh", args: [x.fetch('default_password'), x.fetch('version'), x.fetch('kubernetes_version')]
     
   end
 
