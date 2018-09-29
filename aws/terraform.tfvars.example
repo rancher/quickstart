@@ -12,6 +12,8 @@ prefix = "myname"
 admin_password = "admin"
 # rancher/rancher image tag to use
 rancher_version = "latest"
+# Kubernetes cluster name
+cluster_name = "quickstart"
 # Count of agent nodes with role all
 count_agent_all_nodes = "1"
 # Count of agent nodes with role etcd
