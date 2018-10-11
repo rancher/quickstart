@@ -25,4 +25,4 @@ docker_version_server = "17.03"
 # Docker version of host being added to a cluster (running `rancher/rancher-agent`)
 docker_version_agent = "17.03"
 # AWS Instance Type
-type = "t2.medium"
+type = "t3.medium"
