@@ -61,7 +61,7 @@ variable "region" {
 }
 
 variable "type" {
-  default     = "t2.medium"
+  default     = "t3.medium"
   description = "Amazon AWS Instance Type"
 }
 
