@@ -35,6 +35,22 @@ To remove the VM's that have been deployed run `terraform destroy --force`
 
 **Please be aware that you will be responsible for the usage charges with Digital Ocean**
 
+## Scaleway quick start
+
+The Scaleway folder contains terraform code to stand up a single Rancher server instance with a 3 node cluster attached to it.
+
+### How to Use
+
+The instructions are basically the same as [DO](#do-quick-start).
+
+The following are specific to Scaleway:
+
+- `scw_token` in the `terraform.tfvars` can be created in the `Account > Credentials > Tokens` section.
+- `scw_org` in the `terraform.tfvars` can be found in the `Account > ORGANIZATION ID` section.
+
+
+**Please be aware that you will be responsible for the usage charges with Digital Ocean**
+
 ## Vagrant quick start
 
 The vagrant folder contains a vagrant code to stand up a single Rancher server instance with a 3 node cluster attached to it.
