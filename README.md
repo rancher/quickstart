@@ -35,6 +35,40 @@ To remove the VM's that have been deployed run `terraform destroy --force`
 
 **Please be aware that you will be responsible for the usage charges with Digital Ocean**
 
+## vSphere quick start
+
+The vsphere folder contains terraform code to stand up a single Rancher server instance with a 3 node cluster attached to it.
+
+This terraform setup will:
+
+- Create a VM in vSphere running `rancher/rancher` version specified in `rancher_version`
+- Create a custom cluster called `qs-cluster`
+- Start `count_agent_all_nodes` amount of VMs in vSphere and add them to the custom cluster with all roles
+
+### How to use
+
+#### Create RancherOS template
+
+The terraform setup creates VMs by cloning a RancherOS template that must be made available in vCenter:
+
+1. Download the RancherOS OVA appliance from https://transfer.sh/FZfU3/rancheros-v1.4.0-vapp.ova
+2. Import the OVA file by right-clicking on a cluster or host in the inventory and selecting "Deploy OVF template...".
+3. Mark the resulting VM as template -> "Convert to template".
+4. Note the name/path of the template.
+
+#### Run the terraform code
+
+1. Clone this repository and go into the `vsphere` subfolder
+2. Move the file `terraform.tfvars.example` to `terraform.tfvars` and edit (see inline explanation)
+3. Run `terraform init`
+4. Run `terraform apply`
+
+When provisioning has finished you will be given the url to connect to the Rancher Server.
+
+### How to Remove
+
+To remove the VM's that have been deployed run `terraform destroy --force`
+
 ## Vagrant quick start
 
 The vagrant folder contains a vagrant code to stand up a single Rancher server instance with a 3 node cluster attached to it.

@@ -1,0 +1,23 @@
+vcenter_user = "username"
+vcenter_password = "password"
+vcenter_server = "vcenter.acme.com"
+vcenter_insecure = false
+
+rancher_admin_password = "changeme"
+rancher_version = "v2.0.8"
+rancher_num_cluster_nodes = 3
+
+node_num_cpus = 2
+node_memory_gb = 4
+node_docker_version = "17.03.1-ce"
+
+vsphere_datacenter = "HE-FMT"
+vsphere_host = "192.168.100.222"
+vsphere_datastore = "datastore-192-168-100-222"
+vsphere_network = "VM Network"
+vsphere_template = "vm-templates/rancheros-v1.4.0-golden"
+vsphere_folder = "rancher-qs"
+
+authorized_ssh_key = "ssh-rsa abcdef user@host",
+
+
