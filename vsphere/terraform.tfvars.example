@@ -1,0 +1,22 @@
+vcenter_user = "username"
+vcenter_password = "password"
+vcenter_server = "vcenter.acme.com"
+vcenter_insecure = false
+
+rancher_admin_password = "changeme"
+rancher_version = "v2.1.3"
+rancher_num_cluster_nodes = 3
+rancher_cluster_name = "quickstart"
+
+node_num_cpus = "2"
+node_memory_mb = "4096"
+node_docker_version = "17.03"
+
+vsphere_datacenter = "HE-FMT"
+vsphere_resource_pool = "pool-foo"
+vsphere_datastore = "datastore-shared"
+vsphere_network = "VM Network"
+vsphere_template = "vm-templates/ubuntu-16.04-server-cloudimg-amd64.ova"
+vsphere_folder = "rancher-qs"
+
+authorized_ssh_key = "ssh-rsa MIIEogIBAA... user@host"
