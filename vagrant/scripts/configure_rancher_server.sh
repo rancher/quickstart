@@ -14,7 +14,7 @@ ros engine switch docker-1.12.6
 system-docker restart docker
 sleep 5
 
-rancher_command="rancher/rancher:$rancher_server_version" 
+rancher_command="rancher/rancher:$rancher_server_version"
 
 echo Installing Rancher Server
 sudo docker run -d --restart=always \
@@ -27,8 +27,11 @@ $rancher_command
 
 # wait until rancher server is ready
 while true; do
-  wget -T 5 -c https://localhost/ping && break
-  sleep 5
+  docker run \
+      --net=host \
+      --rm \
+      $curl_prefix/curl -kLs https://localhost/ping && break
+  sleep 10
 done
 
 # Login
