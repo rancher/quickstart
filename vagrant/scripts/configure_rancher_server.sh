@@ -27,15 +27,18 @@ $rancher_command
 
 # wait until rancher server is ready
 while true; do
-  wget -T 5 -c https://localhost/ping && break
+  netstat -an | grep :::443 && break
   sleep 5
 done
 
 # Login
-LOGINRESPONSE=$(docker run --net=host \
-    --rm \
-    $curl_prefix/curl \
-    -s "https://127.0.0.1/v3-public/localProviders/local?action=login" -H 'content-type: application/json' --data-binary '{"username":"admin","password":"admin"}' --insecure)
+while [ -z "$LOGINRESPONSE" ]; do
+  LOGINRESPONSE=$(docker run --net=host \
+      --rm \
+      $curl_prefix/curl \
+      -s "https://127.0.0.1/v3-public/localProviders/local?action=login" -H 'content-type: application/json' --data-binary '{"username":"admin","password":"admin"}' --insecure)
+  sleep 5
+done
 
 LOGINTOKEN=$(echo $LOGINRESPONSE | jq -r .token)
 
