@@ -66,12 +66,12 @@ variable "type" {
 }
 
 variable "docker_version_server" {
-  default     = "17.03"
+  default     = "18.09"
   description = "Docker Version to run on Rancher Server"
 }
 
 variable "docker_version_agent" {
-  default     = "17.03"
+  default     = "18.09"
   description = "Docker Version to run on Kubernetes Nodes"
 }
 
@@ -86,7 +86,7 @@ data "aws_ami" "ubuntu" {
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"]
   }
 
   filter {

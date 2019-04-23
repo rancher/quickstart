@@ -1,47 +1,54 @@
 #!/bin/bash -x
 rancher_server_ip=${1:-172.22.101.101}
-default_password=${2:-password}
+admin_password=${2:-password}
+curlimage="appropriate/curl"
+jqimage="stedolan/jq"
 
 agent_ip=`ip addr show eth1 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1`
 
-curlprefix="appropriate"
-protocol="http"
+for image in $curlimage $jqimage; do
+  until docker inspect $image > /dev/null 2>&1; do
+    docker pull $image
+    sleep 2
+  done
+done
 
-ros engine switch docker-1.12.6
-ros config set rancher.docker.storage_driver overlay
-system-docker restart docker
-sleep 5
-
+while true; do
+  docker run --rm $curlimage -sLk https://$rancher_server_ip/ping && break
+  sleep 5
+done
 
 # Login
-LOGINRESPONSE=$(docker run \
-    --rm \
-    $curlprefix/curl \
-    -s "https://$rancher_server_ip/v3-public/localProviders/local?action=login" -H 'content-type: application/json' --data-binary '{"username":"admin","password":"'$default_password'"}' --insecure)
-LOGINTOKEN=$(echo $LOGINRESPONSE | jq -r .token)
+while true; do
+
+    LOGINRESPONSE=$(docker run \
+        --rm \
+        $curlimage \
+        -s "https://$rancher_server_ip/v3-public/localProviders/local?action=login" -H 'content-type: application/json' --data-binary '{"username":"admin","password":"'$admin_password'"}' --insecure)
+    LOGINTOKEN=$(echo $LOGINRESPONSE | docker run --rm -i $jqimage -r .token)
+
+    if [ "$LOGINTOKEN" != "null" ]; then
+        break
+    else
+        sleep 5
+    fi
+done
 
 # Test if cluster is created
 while true; do
-  ENV_STATE=$(docker run \
+  CLUSTERID=$(docker run \
     --rm \
-    $curlprefix/curl \
+    $curlimage \
       -sLk \
       -H "Authorization: Bearer $LOGINTOKEN" \
-      "https://$rancher_server_ip/v3/clusterregistrationtoken?name=quickstart" | jq -r '.data[].nodeCommand')
+      "https://$rancher_server_ip/v3/clusters?name=quickstart" | docker run --rm -i $jqimage -r '.data[].id')
 
-  if [[ "$ENV_STATE" != "null" ]]; then
+  if [ -n "$CLUSTERID" ]; then
     break
   else
     sleep 5
   fi
 done
-
-CLUSTERRESPONSE=$(docker run --net host \
-    --rm \
-    $curlprefix/curl -s "https://$rancher_server_ip/v3/clusters?name=quickstart" -H 'content-type: application/json' -H "Authorization: Bearer $LOGINTOKEN" --insecure)
-
-# Extract clusterid to use for generating the docker run command
-CLUSTERID=`echo $CLUSTERRESPONSE | jq -r .data[].id`
 
 if [ `hostname` == "node-01" ]; then
   ROLEFLAGS="--etcd --controlplane --worker"
@@ -51,9 +58,21 @@ else
 fi
 
 # Get token
-AGENTCMD=$(docker run --net host \
+# Test if cluster is created
+while true; do
+  AGENTCMD=$(docker run \
     --rm \
-    $curlprefix/curl -s "https://$rancher_server_ip/v3/clusterregistrationtoken?id=$CLUSTERID" -H 'content-type: application/json' -H "Authorization: Bearer $LOGINTOKEN" --insecure | jq -r .data[].nodeCommand  | head -1)
+    $curlimage \
+      -sLk \
+      -H "Authorization: Bearer $LOGINTOKEN" \
+      "https://$rancher_server_ip/v3/clusterregistrationtoken?clusterId=$CLUSTERID" | docker run --rm -i $jqimage -r '.data[].nodeCommand' | head -1)
+
+  if [ -n "$AGENTCMD" ]; then
+    break
+  else
+    sleep 5
+  fi
+done
 
 # Show the command
 COMPLETECMD="$AGENTCMD $ROLEFLAGS --internal-address $agent_ip --address $agent_ip "
