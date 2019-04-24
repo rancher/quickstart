@@ -14,6 +14,7 @@ Vagrant.configure(2) do |config|
     config.vm.define "server-01" do |server|
      c = x.fetch('server')
       server.vm.box= "chrisurwin/RancherOS"
+      server.vm.box_version = x.fetch('ROS_version')
       server.vm.guest = :linux
       server.vm.provider :virtualbox do |v|
         v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
@@ -24,7 +25,7 @@ Vagrant.configure(2) do |config|
       end
       server.vm.network x.fetch('net').fetch('network_type'), ip: x.fetch('ip').fetch('server') , nic_type: $private_nic_type
       server.vm.hostname = "server-01"
-      server.vm.provision "shell", path: "scripts/configure_rancher_server.sh", args: [x.fetch('default_password'), x.fetch('version'), x.fetch('kubernetes_version')]
+      server.vm.provision "shell", path: "scripts/configure_rancher_server.sh", args: [x.fetch('admin_password'), x.fetch('version'), x.fetch('k8s_version')]
     
   end
 
@@ -44,7 +45,7 @@ Vagrant.configure(2) do |config|
       end
       node.vm.network x.fetch('net').fetch('network_type'), ip: IPAddr.new(node_ip.to_i + i - 1, Socket::AF_INET).to_s, nic_type: $private_nic_type
       node.vm.hostname = hostname
-      node.vm.provision "shell", path: "scripts/configure_rancher_node.sh", args: [x.fetch('ip').fetch('server'), x.fetch('default_password')]
+      node.vm.provision "shell", path: "scripts/configure_rancher_node.sh", args: [x.fetch('ip').fetch('server'), x.fetch('admin_password')]
     end
   end
 

@@ -48,11 +48,11 @@ variable "size" {
 }
 
 variable "docker_version_server" {
-  default = "17.03"
+  default = "18.09"
 }
 
 variable "docker_version_agent" {
-  default = "17.03"
+  default = "18.09"
 }
 
 variable "ssh_keys" {
@@ -61,7 +61,7 @@ variable "ssh_keys" {
 
 resource "digitalocean_droplet" "rancherserver" {
   count     = "1"
-  image     = "ubuntu-16-04-x64"
+  image     = "ubuntu-18-04-x64"
   name      = "${var.prefix}-rancherserver"
   region    = "${var.region}"
   size      = "${var.size}"
@@ -71,7 +71,7 @@ resource "digitalocean_droplet" "rancherserver" {
 
 resource "digitalocean_droplet" "rancheragent-all" {
   count     = "${var.count_agent_all_nodes}"
-  image     = "ubuntu-16-04-x64"
+  image     = "ubuntu-18-04-x64"
   name      = "${var.prefix}-rancheragent-${count.index}-all"
   region    = "${var.region}"
   size      = "${var.size}"
@@ -81,7 +81,7 @@ resource "digitalocean_droplet" "rancheragent-all" {
 
 resource "digitalocean_droplet" "rancheragent-etcd" {
   count     = "${var.count_agent_etcd_nodes}"
-  image     = "ubuntu-16-04-x64"
+  image     = "ubuntu-18-04-x64"
   name      = "${var.prefix}-rancheragent-${count.index}-etcd"
   region    = "${var.region}"
   size      = "${var.size}"
@@ -91,7 +91,7 @@ resource "digitalocean_droplet" "rancheragent-etcd" {
 
 resource "digitalocean_droplet" "rancheragent-controlplane" {
   count     = "${var.count_agent_controlplane_nodes}"
-  image     = "ubuntu-16-04-x64"
+  image     = "ubuntu-18-04-x64"
   name      = "${var.prefix}-rancheragent-${count.index}-controlplane"
   region    = "${var.region}"
   size      = "${var.size}"
@@ -101,7 +101,7 @@ resource "digitalocean_droplet" "rancheragent-controlplane" {
 
 resource "digitalocean_droplet" "rancheragent-worker" {
   count     = "${var.count_agent_worker_nodes}"
-  image     = "ubuntu-16-04-x64"
+  image     = "ubuntu-18-04-x64"
   name      = "${var.prefix}-rancheragent-${count.index}-worker"
   region    = "${var.region}"
   size      = "${var.size}"
