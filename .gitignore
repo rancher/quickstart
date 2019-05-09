@@ -10,3 +10,6 @@ crash.log
 
 # terraform.tvars
 terraform.tfvars
+
+# vagrant files
+.vagrant/

@@ -73,6 +73,9 @@ module VagrantPlugins
                             comm.sudo("ros config set rancher.network.interfaces.#{iface}.dhcp #{dhcp}")
                         end
 
+                        # Configure the default NAT interface
+                        comm.sudo("ros config set rancher.network.interfaces.eth0.dhcp true")
+                        comm.sudo("ros config set rancher.network.interfaces.eth0.match eth0")
                         comm.sudo("system-docker restart network")
                     end
                 end
