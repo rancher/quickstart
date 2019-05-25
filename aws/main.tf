@@ -248,7 +248,7 @@ resource "aws_instance" "rancheragent-worker" {
 data "template_file" "userdata_server" {
   template = "${file("files/userdata_server")}"
 
-  vars {
+  vars = {
     admin_password        = "${var.admin_password}"
     cluster_name          = "${var.cluster_name}"
     docker_version_server = "${var.docker_version_server}"
@@ -260,7 +260,7 @@ data "template_file" "userdata_server" {
 data "template_file" "userdata_agent" {
   template = "${file("files/userdata_agent")}"
 
-  vars {
+  vars = {
     admin_password       = "${var.admin_password}"
     cluster_name         = "${var.cluster_name}"
     docker_version_agent = "${var.docker_version_agent}"
