@@ -132,7 +132,7 @@ resource "aws_instance" "rancherserver" {
   security_groups = ["${aws_security_group.rancher_sg_allowall.name}"]
   user_data       = "${data.template_cloudinit_config.rancherserver-cloudinit.rendered}"
 
-  tags {
+  tags = {
     Name = "${var.prefix}-rancherserver"
   }
 }
@@ -159,7 +159,7 @@ resource "aws_instance" "rancheragent-all" {
   security_groups = ["${aws_security_group.rancher_sg_allowall.name}"]
   user_data       = "${data.template_cloudinit_config.rancheragent-all-cloudinit.*.rendered[count.index]}"
 
-  tags {
+  tags = {
     Name = "${var.prefix}-rancheragent-${count.index}-all"
   }
 }
@@ -186,7 +186,7 @@ resource "aws_instance" "rancheragent-etcd" {
   security_groups = ["${aws_security_group.rancher_sg_allowall.name}"]
   user_data       = "${data.template_cloudinit_config.rancheragent-etcd-cloudinit.*.rendered[count.index]}"
 
-  tags {
+  tags = {
     Name = "${var.prefix}-rancheragent-${count.index}-etcd"
   }
 }
@@ -213,7 +213,7 @@ resource "aws_instance" "rancheragent-controlplane" {
   security_groups = ["${aws_security_group.rancher_sg_allowall.name}"]
   user_data     = "${data.template_cloudinit_config.rancheragent-controlplane-cloudinit.*.rendered[count.index]}"
 
-  tags {
+  tags = {
     Name = "${var.prefix}-rancheragent-${count.index}-controlplane"
   }
 }
@@ -240,7 +240,7 @@ resource "aws_instance" "rancheragent-worker" {
   security_groups = ["${aws_security_group.rancher_sg_allowall.name}"]
   user_data       = "${data.template_cloudinit_config.rancheragent-worker-cloudinit.*.rendered[count.index]}"
 
-  tags {
+  tags = {
     Name = "${var.prefix}-rancheragent-${count.index}-worker"
   }
 }
@@ -248,7 +248,7 @@ resource "aws_instance" "rancheragent-worker" {
 data "template_file" "userdata_server" {
   template = "${file("files/userdata_server")}"
 
-  vars {
+  vars = {
     admin_password        = "${var.admin_password}"
     cluster_name          = "${var.cluster_name}"
     docker_version_server = "${var.docker_version_server}"
@@ -260,7 +260,7 @@ data "template_file" "userdata_server" {
 data "template_file" "userdata_agent" {
   template = "${file("files/userdata_agent")}"
 
-  vars {
+  vars = {
     admin_password       = "${var.admin_password}"
     cluster_name         = "${var.cluster_name}"
     docker_version_agent = "${var.docker_version_agent}"
