@@ -2,10 +2,14 @@
 
 ## Summary
 
+**NOTE:** Terraform 0.12.0 or higher is required for cloud based environments. (AWS and DigitalOcean)
+
 This repo contains scripts that will allow you to quickly deploy and test Rancher for POC.
 The contents aren't intended for production but are here to get you up and going with running Rancher Server for a POC and to help show the functionality
 
 ## DO quick start
+
+**NOTE:** Terraform 0.12.0 or higher is required.
 
 The DO folder contains terraform code to stand up a single Rancher server instance with a 3 node cluster attached to it.
 
@@ -53,6 +57,8 @@ When provisioning is finished the Rancher UI will become accessible on http://17
 To remove the VM's that have been deployed run `vagrant destroy -f`
 
 ## Amazon AWS Quick Start
+
+**NOTE:** Terraform 0.12.0 or higher is required.
 
 The aws folder contains terraform code to stand up a single Rancher server instance with a 1 node cluster attached to it.
 
