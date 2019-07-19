@@ -127,7 +127,7 @@ resource "opentelekomcloud_compute_floatingip_associate_v2" "eip_rancheragent_2"
 }
 
 resource "opentelekomcloud_compute_instance_v2" "rancheragent_3-all" {
-  name              = "rancheragent_2-all"
+  name              = "rancheragent_3-all"
   availability_zone = "${var.availability_zone3}"
   flavor_id         = "${var.flavor_id}"
   key_pair          = "${opentelekomcloud_compute_keypair_v2.quickstart-key.name}"
