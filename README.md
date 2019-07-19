@@ -87,7 +87,7 @@ The otc folder contains terraform code for Open Telekom Cloud to stand up a sing
 This terraform setup will:
 
 - Setup VPC, Network, Security-Groups, SSH-Key
-- Start 5 instances running `rancher/rancher` version specified in `rancher_version`
+- Start 4 instances running `rancher/rancher` version specified in `rancher_version`
 - Create a custom cluster called `cluster_name`
 
 ### How to use
@@ -105,7 +105,8 @@ To remove VM's and all resources that have been deployed run `terraform destroy 
 
 ### OTC Notes
 - Each VM has a Floating IP, main.tf.snat provides an non-working example with SNAT
-- Copy Instance- and EIP block in main.tf to scale up your cluster
+- Copy Instance- and EIP block in main.tf to scale up your cluster use -all, -controlplane, -etcd, -worker to specify role
+
 
 **Please be aware that you will be responsible for the usage charges with  OTC**
 
