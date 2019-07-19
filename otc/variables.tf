@@ -74,7 +74,7 @@ variable "image_name" {
 
 variable "flavor_id" {
   description = "ID of Flavor"
-  default     = "c3.large.2 "
+  default     = "c3.large.2"
 }
 
 variable "public_key" {
