@@ -104,7 +104,9 @@ When provisioning has finished you will be given the url to connect to the Ranch
 To remove VM's and all resources that have been deployed run `terraform destroy --force`
 
 ### OTC Notes
-- Each VM has a Floating IP, main.tf.snat provides an non-working example with SNAT
+
+- main.tf: Each VM has a Floating IP
+- main.tf.snat: A working example with SNAT (beware of the hard codes external network ID)
 - Copy Instance- and EIP block in main.tf to scale up your cluster use -all, -controlplane, -etcd, -worker to specify role
 
 
