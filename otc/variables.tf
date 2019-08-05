@@ -57,6 +57,11 @@ variable "subnet_cidr" {
   default     = "192.168.1.0/24"
 }
 
+variable "dns_list" {
+    description = "list of DNS servers"
+    default = ["100.125.4.25", "8.8.8.8"]
+}
+
 variable "subnet_gateway_ip" {
   description = "Subnet Gateway"
   default     = "192.168.1.1"

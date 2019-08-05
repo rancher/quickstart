@@ -3,27 +3,18 @@ data "opentelekomcloud_images_image_v2" "image" {
   most_recent = true
 }
 
-resource "opentelekomcloud_networking_network_v2" "network" {
-  name           = "${var.vpc_name}"
-  admin_state_up = "true"
+resource "opentelekomcloud_vpc_v1" "vpc" {
+  name   = "${var.vpc_name}"
+  cidr   = "${var.vpc_cidr}"
+  shared = true
 }
 
-resource "opentelekomcloud_networking_subnet_v2" "subnet" {
-  name       = "${var.subnet_name}"
-  network_id = "${opentelekomcloud_networking_network_v2.network.id}"
-  cidr       = "${var.subnet_cidr}"
-  dns_nameservers   = ["100.125.4.25","8.8.8.8"]
-}
-
-resource "opentelekomcloud_networking_router_v2" "router" {
-  name             = "${var.vpc_name}"
-  enable_snat      = true
-  external_gateway = "0a2228f2-7f8a-45f1-8e09-9039e1d09975"
-}
-
-resource "opentelekomcloud_networking_router_interface_v2" "interface" {
-  router_id = "${opentelekomcloud_networking_router_v2.router.id}"
-  subnet_id = "${opentelekomcloud_networking_subnet_v2.subnet.id}"
+resource "opentelekomcloud_vpc_subnet_v1" "subnet" {
+  name     = "${var.vpc_name}"
+  vpc_id   = "${opentelekomcloud_vpc_v1.vpc.id}"
+  cidr     = "${var.subnet_cidr}"
+  dns_list = "${var.dns_list}"
+  gateway_ip = cidrhost(var.subnet_cidr, 1)
 }
 
 resource "opentelekomcloud_networking_secgroup_v2" "quickstart-secgroup" {
@@ -50,7 +41,6 @@ resource "opentelekomcloud_compute_keypair_v2" "quickstart-key" {
 }
 
 resource "opentelekomcloud_compute_instance_v2" "ranchermaster" {
-  depends_on        = [opentelekomcloud_networking_router_interface_v2.interface]
   name              = "ranchermaster"
   availability_zone = "${var.availability_zone1}"
   flavor_id         = "${var.flavor_id}"
@@ -58,7 +48,7 @@ resource "opentelekomcloud_compute_instance_v2" "ranchermaster" {
   security_groups   = ["${opentelekomcloud_networking_secgroup_v2.quickstart-secgroup.id}"]
   user_data         = "${data.template_file.userdata_server.rendered}"
   network {
-    uuid = "${opentelekomcloud_networking_subnet_v2.subnet.network_id}"
+    uuid = "${opentelekomcloud_vpc_subnet_v1.subnet.id}"
   }
   block_device {
     boot_index            = 0
@@ -87,7 +77,7 @@ resource "opentelekomcloud_compute_instance_v2" "rancheragent_1-all" {
   security_groups   = ["${opentelekomcloud_networking_secgroup_v2.quickstart-secgroup.id}"]
   user_data         = "${data.template_file.userdata_agent.rendered}"
   network {
-    uuid = "${opentelekomcloud_networking_subnet_v2.subnet.network_id}"
+    uuid = "${opentelekomcloud_vpc_subnet_v1.subnet.id}"
   }
   block_device {
     boot_index            = 0
@@ -107,7 +97,7 @@ resource "opentelekomcloud_compute_instance_v2" "rancheragent_2-all" {
   security_groups   = ["${opentelekomcloud_networking_secgroup_v2.quickstart-secgroup.id}"]
   user_data         = "${data.template_file.userdata_agent.rendered}"
   network {
-    uuid = "${opentelekomcloud_networking_subnet_v2.subnet.network_id}"
+    uuid = "${opentelekomcloud_vpc_subnet_v1.subnet.id}"
   }
   block_device {
     boot_index            = 0
@@ -127,7 +117,7 @@ resource "opentelekomcloud_compute_instance_v2" "rancheragent_3-all" {
   security_groups   = ["${opentelekomcloud_networking_secgroup_v2.quickstart-secgroup.id}"]
   user_data         = "${data.template_file.userdata_agent.rendered}"
   network {
-    uuid = "${opentelekomcloud_networking_subnet_v2.subnet.network_id}"
+    uuid = "${opentelekomcloud_vpc_subnet_v1.subnet.id}"
   }
   block_device {
     boot_index            = 0
@@ -147,7 +137,7 @@ resource "opentelekomcloud_compute_instance_v2" "rancherworker_1-worker" {
   security_groups   = ["${opentelekomcloud_networking_secgroup_v2.quickstart-secgroup.id}"]
   user_data         = "${data.template_file.userdata_agent.rendered}"
   network {
-    uuid = "${opentelekomcloud_networking_subnet_v2.subnet.network_id}"
+    uuid = "${opentelekomcloud_vpc_subnet_v1.subnet.id}"
   }
   block_device {
     boot_index            = 0
