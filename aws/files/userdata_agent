@@ -3,6 +3,8 @@ export curlimage=appropriate/curl
 export jqimage=stedolan/jq
 export rancher_server_ip='${server_address}'
 
+export DEBIAN_FRONTEND=noninteractive
+
 if [ `command -v curl` ]; then
   curl -sL https://releases.rancher.com/install-docker/${docker_version_agent}.sh | sh
 elif [ `command -v wget` ]; then

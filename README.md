@@ -41,9 +41,9 @@ To remove the VM's that have been deployed run `terraform destroy --force`
 
 ## Vagrant quick start
 
-The vagrant folder contains a vagrant code to stand up a single Rancher server instance with a 3 node cluster attached to it.
+The vagrant folder contains Vagrant code to stand up a single Rancher server instance with a 3 node cluster attached to it.
 
-The pre-requistes for this are [vagrant](https://www.vagrantup.com) and [virtualbox](https://www.virtualbox.org), installed on the PC you intend to run it on, and 6GB free memory
+The pre-requistes for this are [Vagrant](https://www.vagrantup.com) and [VirtualBox](https://www.virtualbox.org), installed on the PC you intend to run it on, and 6GB free memory
 
 ### How to Use
 
