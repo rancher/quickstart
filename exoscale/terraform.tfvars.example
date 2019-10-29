@@ -1,0 +1,36 @@
+# Exoscale API key
+exoscale_key = "EXO***"
+# Exoscale API secret
+exoscale_secret = "***"
+# Admin password to access Rancher
+admin_password = "admin"
+# Name of custom cluster that will be created
+cluster_name = "quickstart"
+# Resources will be prefixed with this to avoid clashing names
+prefix = "myname"
+# rancher/rancher image tag to use
+rancher_version = "latest"
+# Zone where resources should be created
+zone = "at-vie-1"
+# Security groups the cluster should run in:
+security_groups = ["default"]
+# Count of agent nodes with role all
+count_agent_all_nodes = "1"
+# Count of agent nodes with role etcd
+count_agent_etcd_nodes = "0"
+# Count of agent nodes with role controlplane
+count_agent_controlplane_nodes = "0"
+# Count of agent nodes with role worker
+count_agent_worker_nodes = "0"
+# Docker version of host running `rancher/rancher`
+docker_version_server = "18.09"
+# Docker version of host being added to a cluster (running `rancher/rancher-agent`)
+docker_version_agent = "18.09"
+# Instance size
+size = "Medium"
+# Instance disk size
+disk_size = 80
+# Exoscale SSH key to embed in the instance
+# ssh_keys = "your-key-name"
+# If this is not specified, you will not be able to log in to the underlying server
+ssh_key = ""
