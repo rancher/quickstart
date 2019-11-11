@@ -48,11 +48,11 @@ variable "size" {
 }
 
 variable "docker_version_server" {
-  default = "18.09"
+  default = "19.03"
 }
 
 variable "docker_version_agent" {
-  default = "18.09"
+  default = "19.03"
 }
 
 variable "ssh_keys" {

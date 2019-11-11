@@ -66,12 +66,12 @@ variable "type" {
 }
 
 variable "docker_version_server" {
-  default     = "18.09"
+  default     = "19.03"
   description = "Docker Version to run on Rancher Server"
 }
 
 variable "docker_version_agent" {
-  default     = "18.09"
+  default     = "19.03"
   description = "Docker Version to run on Kubernetes Nodes"
 }
 

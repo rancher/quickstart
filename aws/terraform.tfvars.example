@@ -23,8 +23,8 @@ count_agent_controlplane_nodes = "0"
 # Count of agent nodes with role worker
 count_agent_worker_nodes = "0"
 # Docker version of host running `rancher/rancher`
-docker_version_server = "18.09"
+docker_version_server = "19.03"
 # Docker version of host being added to a cluster (running `rancher/rancher-agent`)
-docker_version_agent = "18.09"
+docker_version_agent = "19.03"
 # AWS Instance Type
 type = "t3.medium"

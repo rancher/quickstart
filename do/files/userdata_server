@@ -2,6 +2,8 @@
 export curlimage=appropriate/curl
 export jqimage=stedolan/jq
 
+export DEBIAN_FRONTEND=noninteractive
+
 if [ `command -v curl` ]; then
   curl -sL https://releases.rancher.com/install-docker/${docker_version_server}.sh | sh
 elif [ `command -v wget` ]; then

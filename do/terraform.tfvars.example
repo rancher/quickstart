@@ -19,9 +19,9 @@ count_agent_controlplane_nodes = "0"
 # Count of agent nodes with role worker
 count_agent_worker_nodes = "0"
 # Docker version of host running `rancher/rancher`
-docker_version_server = "18.09"
+docker_version_server = "19.03"
 # Docker version of host being added to a cluster (running `rancher/rancher-agent`)
-docker_version_agent = "18.09"
+docker_version_agent = "19.03"
 # Droplet size
 size = "s-2vcpu-4gb"
 # DigitalOcean ssh-keyid: retrieve using `curl -s -X GET -H "Content-Type: application/json" -H "Authorization: Bearer $DIGITALOCEAN_TOKEN" "https://api.digitalocean.com/v2/account/keys?per_page=200"  | jq -r '.ssh_keys[] | select(.name=="YOUR_KEY_NAME") | .id'`
