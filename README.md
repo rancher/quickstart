@@ -29,7 +29,7 @@ See [/vagrant](./vagrant) for details on usage and settings.
 
 ## Cloud quickstart
 
-Quickstarts are provided for [**Amazon Web Services** (`aws`)](./aws) and [**DigitalOcean** (`do`)](./do).
+Quickstarts are provided for [**Amazon Web Services** (`aws`)](./aws), [**Microsoft Azure Cloud** (`azure`)](./azure), [**DigitalOcean** (`do`)](./do).
 
 **You will be responsible for any and all infrastructure costs incurred by these resources.**
 
