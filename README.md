@@ -1,96 +1,69 @@
 # Quickstart examples for Rancher
 
-## Summary
+Quikly stand up an HA-style Rancher management server in your infrastructure provider of choice.
 
-**NOTE:** Terraform 0.12.0 or higher is required for cloud based environments. (AWS and DigitalOcean)
+Intended for experimentation/evaluation ONLY.
 
-This repo contains scripts that will allow you to quickly deploy and test Rancher for POC.
-The contents aren't intended for production but are here to get you up and going with running Rancher Server for a POC and to help show the functionality
+**You will be responsible for any and all infrastructure costs incurred by these resources.**
+As a result, this repository minimizes costs by standing up the minimum required resources for a given provider.
+Use Vagrant to run Rancher locally and avoid cloud costs.
 
-## DO quick start
+## Local quickstart
 
-**NOTE:** Terraform 0.12.0 or higher is required.
+A local quickstart is provided in the form of Vagrant configuration.
 
-The DO folder contains terraform code to stand up a single Rancher server instance with a 3 node cluster attached to it.
+**The Vagrant quickstart does not currently follow Rancher best practices for installing a Rancher manangement server.**
+Use this configuration only to evaluate the features of Rancher.
+See cloud provider quickstarts for an HA foundation according to Rancher installtion best practices.
 
-This terraform setup will:
+### Requirements - Vagrant (local)
 
-- Start a droplet running `rancher/rancher` version specified in `rancher_version`
-- Create a custom cluster called `cluster_name`
-- Start `count_agent_all_nodes` amount of droplets and add them to the custom cluster with all roles
+- [Vagrant](https://www.vagrantup.com)
+- [VirtualBox](https://www.virtualbox.org)
+- 6GB unused RAM
 
-### How to use
+### Using Vagrant quickstart
 
-- Clone this repository and go into the DO subfolder
-- Move the file `terraform.tfvars.example` to `terraform.tfvars` and edit (see inline explanation)
-- Run `terraform init`
-- Run `terraform apply`
+See [/vagrant](./vagrant) for details on usage and settings.
 
-When provisioning has finished you will be given the url to connect to the Rancher Server
 
-### How to Remove
+## Cloud quickstart
 
-To remove the VM's that have been deployed run `terraform destroy --force`
+Quickstarts are provided for [**Amazon Web Services** (`aws`)](./aws) and [**DigitalOcean** (`do`)](./do).
 
-### Optional adding nodes per role
-- Start `count_agent_etcd_nodes` amount of droplets and add them to the custom cluster with etcd role
-- Start `count_agent_controlplane_nodes` amount of droplets and add them to the custom cluster with controlplane role
-- Start `count_agent_worker_nodes` amount of droplets and add them to the custom cluster with worker role
+**You will be responsible for any and all infrastructure costs incurred by these resources.**
 
-**Please be aware that you will be responsible for the usage charges with Digital Ocean**
+Each quickstart will install Rancher on a single-node RKE cluster, then will provision another single-node workload cluster using a Custom cluster in Rancher.
+This setup provides easy access to the core Rancher functionality while establishing a foundation that can be easily expanded to a full HA Rancher server.
 
-## Vagrant quick start
+### Requirements - Cloud
 
-The vagrant folder contains Vagrant code to stand up a single Rancher server instance with a 3 node cluster attached to it.
+- Terraform >=0.12.0
+- RKE terraform provider version 0.14.1 installed locally - see [`Using the provider` in rancher/terraform-provider-rke](https://github.com/rancher/terraform-provider-rke#using-the-provider) for installation instructions
+- Credentials for the cloud provider used for the quickstart
 
-The pre-requistes for this are [Vagrant](https://www.vagrantup.com) and [VirtualBox](https://www.virtualbox.org), installed on the PC you intend to run it on, and 6GB free memory
+### Deploy
 
-### How to Use
+To begin with any quickstart, perform the following steps:
 
-- Clone this repository and go into the vagrant subfolder
-- Run `vagrant up`
+1. Clone or download this repository to a local folder
+1. Choose a cloud provider and navigate into the provider's folder
+1. Copy or rename `terraform.tfvars.example` to `terraform.tfvars` and fill in all required variables
+1. Run `terraform init`
+1. Run `terraform apply`
 
-When provisioning is finished the Rancher UI will become accessible on http://172.22.101.101 the default password is `admin`, but this can be updated in the config.yaml file.
+When provisioning has finished, terraform will output the URL to connect to the Rancher server.
+Two sets of Kubernetes configurations will also be generated:
+- `kube_config_server.yaml` contains credentials to access the RKE cluster supporting the Rancher server
+- `kube_config_workload.yaml` contains credentials to access the provisioned workload cluster
 
-### How to Remove
+For more details on each cloud provider, refer to the documentation in their respective folders.
 
-To remove the VM's that have been deployed run `vagrant destroy -f`
+### Remove
 
-## Amazon AWS Quick Start
+When you're finished exploring the Rancher server, use terraform to tear down all resources in the quickstart.
 
-**NOTE:** Terraform 0.12.0 or higher is required.
+**NOTE: Any resources not provisioned by the quickstart are not guaranteed to be destroyed when tearing down the quickstart.**
+Make sure you tear down any resources you provisioned manually before running the destroy command.
 
-The aws folder contains terraform code to stand up a single Rancher server instance with a 1 node cluster attached to it.
-
-You will need the following:
-
-- An AWS Account with an access key and secret key
-- The name of a pre-created AWS Key Pair
-- Your desired AWS Deployment Region
-
-This terraform setup will:
-
-- Start an Amazon AWS EC2 instance running `rancher/rancher` version specified in `rancher_version`
-- Create a custom cluster called `cluster_name`
-- Start `count_agent_all_nodes` amount of AWS EC2 instances and add them to the custom cluster with all roles
-
-### How to use
-
-- Clone this repository and go into the aws subfolder
-- Move the file `terraform.tfvars.example` to `terraform.tfvars` and edit (see inline explanation)
-- Run `terraform init`
-- Run `terraform apply`
-
-When provisioning has finished you will be given the url to connect to the Rancher Server
-
-### How to Remove
-
-To remove the VM's that have been deployed run `terraform destroy --force`
-
-### Optional adding nodes per role
-- Start `count_agent_all_nodes` amount of AWS EC2 Instances and add them to the custom cluster with all role
-- Start `count_agent_etcd_nodes` amount of AWS EC2 Instances and add them to the custom cluster with etcd role
-- Start `count_agent_controlplane_nodes` amount of AWS EC2 Instances and add them to the custom cluster with controlplane role
-- Start `count_agent_worker_nodes` amount of AWS EC2 Instances and add them to the custom cluster with worker role
-
-**Please be aware that you will be responsible for the usage charges with Amazon AWS**
+Run `terraform destroy -auto-approve` to remove all resources without prompting for confirmation.
