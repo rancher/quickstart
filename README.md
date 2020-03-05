@@ -1,6 +1,6 @@
 # Quickstart examples for Rancher
 
-Quikly stand up an HA-style Rancher management server in your infrastructure provider of choice.
+Quickly stand up an HA-style Rancher management server in your infrastructure provider of choice.
 
 Intended for experimentation/evaluation ONLY.
 
