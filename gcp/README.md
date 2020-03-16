@@ -1,6 +1,6 @@
 # GCP Rancher Quickstart
 
-Two single-node RKE Kubernetes clusters will be created from two EC2 instances running Ubuntu 18.04 and Docker.
+Two single-node RKE Kubernetes clusters will be created from two Compute Engine instances running Ubuntu 18.04 and Docker.
 Both instances will have wide-open security groups and will be accessible over SSH using the provided SSH key in `ssh_key_file_name`.
 
 ## Variables
