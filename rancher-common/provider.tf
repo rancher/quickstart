@@ -1,6 +1,6 @@
 # Local provider
 provider "local" {
-  version = "~> 1.4"
+  version = "1.4.0"
 }
 
 # RKE provider - community plugin as of 2020-02-02
@@ -23,7 +23,7 @@ provider "kubernetes" {
 
 # Helm provider
 provider "helm" {
-  version = "~> 1.0"
+  version = "1.0.0"
   # version = "~> 0.10"
 
   # tiller_image    = "gcr.io/kubernetes-helm/tiller:v2.16.1"
@@ -42,7 +42,7 @@ provider "helm" {
 
 # Rancher2 bootstrapping provider
 provider "rancher2" {
-  version = "~> 1.7"
+  version = "1.7.3"
 
   alias = "bootstrap"
 
@@ -54,7 +54,7 @@ provider "rancher2" {
 
 # Rancher2 administration provider
 provider "rancher2" {
-  version = "~> 1.7"
+  version = "1.7.3"
 
   alias = "admin"
 
