@@ -10,8 +10,11 @@ puts "Config: #{x.inspect}\n\n"
 $private_nic_type = x.fetch('net').fetch('private_nic_type')
 
 Vagrant.configure(2) do |config|
+  if Vagrant.has_plugin?("vagrant-proxyconf")
+     config.proxy.enabled = { docker: false }
+  end
 
-    config.vm.define "server-01" do |server|
+  config.vm.define "server-01" do |server|
      c = x.fetch('server')
       server.vm.box= "chrisurwin/RancherOS"
       server.vm.box_version = x.fetch('ROS_version')
