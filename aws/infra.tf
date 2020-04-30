@@ -49,10 +49,24 @@ resource "aws_instance" "rancher_server" {
     ]
 
     connection {
-      type        = "ssh"
+      type = "ssh"
+
+      # If the private key has a passphrase, is managed by an SSH agent, and 'agent' here is set to 'true', then
+      # setting 'private_key' is counter-productive, as Terraform will follow the 'private_key' value before checking
+      # with the SSH agent, load the encrypted key first, and subsequently fail with the following:
+      #
+      # Error: Failed to parse ssh private key: ssh: cannot decode encrypted private keys
+      #
+      # This is worked around with a single override input variable to toggle the behaviour appropriately.
+      #
+      # Ref:
+      # - https://github.com/hashicorp/terraform/issues/13734#issuecomment-295061898
+      # - https://www.hashicorp.com/blog/terraform-0-12-conditional-operator-improvements/
+
+      agent       = var.override_ssh_agent
       host        = self.public_ip
+      private_key = var.override_ssh_agent != null ? null : file(var.ssh_key_file_name)
       user        = local.node_username
-      private_key = file(var.ssh_key_file_name)
     }
   }
 
@@ -102,10 +116,12 @@ resource "aws_instance" "quickstart_node" {
     ]
 
     connection {
-      type        = "ssh"
+      type = "ssh"
+
+      agent       = var.override_ssh_agent
       host        = self.public_ip
+      private_key = var.override_ssh_agent != null ? null : file(var.ssh_key_file_name)
       user        = local.node_username
-      private_key = file(var.ssh_key_file_name)
     }
   }
 
@@ -114,4 +130,3 @@ resource "aws_instance" "quickstart_node" {
     Creator = "rancher-quickstart"
   }
 }
-

@@ -11,7 +11,6 @@ aws_secret_key = ""
 # Password used to log in to the `admin` account on the new Rancher server
 rancher_server_admin_password = ""
 
-
 # Optional variables, uncomment to customize the quickstart
 # ----------------------------------------------------------
 
@@ -33,6 +32,10 @@ rancher_server_admin_password = ""
 # - Public key is assumed to be at "${ssh_key_file_name}.pub" (e.g. ~/.ssh/id_rsa_do.pub)
 # ssh_key_file_name = ""
 
+# Override instance/SSH behaviour
+# - Uncomment if your private key has a passphrase and is handled by an SSH agent
+# override_ssh_agent = true
+
 # Kubernetes version used for creating management server cluster
 # - Must be supported by RKE terraform provider 0.14.1
 # rke_kubernetes_version = ""
@@ -46,4 +49,3 @@ rancher_server_admin_password = ""
 
 # Version of Rancher to install
 # rancher_version = ""
-

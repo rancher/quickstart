@@ -74,6 +74,11 @@ variable "rancher_server_admin_password" {
   description = "Admin password to use for Rancher server bootstrap"
 }
 
+# Override instance/SSH behaviour, for private keys protected by passphrases and managed by an SSH agent
+variable "override_ssh_agent" {
+  type    = bool
+  default = null
+}
 
 # Local variables used to reduce repetition
 locals {
