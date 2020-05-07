@@ -1,9 +1,5 @@
 
 provider "digitalocean" {
-  version = "~> 1.13"
+  version = "1.13.0"
   token   = var.do_token
-}
-
-provider "null" {
-  version = "~> 2.1"
 }
