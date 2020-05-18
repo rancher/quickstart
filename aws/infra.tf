@@ -38,7 +38,7 @@ resource "aws_instance" "rancher_server" {
   key_name        = aws_key_pair.quickstart_key_pair.key_name
   security_groups = [aws_security_group.rancher_sg_allowall.name]
 
-  user_data = templatefile("../cloud-common/files/userdata_rancher_server.template", {
+  user_data = templatefile(join("/", [path.module, "../cloud-common/files/userdata_rancher_server.template"]), {
     docker_version = var.docker_version
     username       = local.node_username
   })
@@ -90,7 +90,7 @@ resource "aws_instance" "quickstart_node" {
   key_name        = aws_key_pair.quickstart_key_pair.key_name
   security_groups = [aws_security_group.rancher_sg_allowall.name]
 
-  user_data = templatefile("../cloud-common/files/userdata_quickstart_node.template", {
+  user_data = templatefile(join("/", [path.module, "../cloud-common/files/userdata_quickstart_node.template"]), {
     docker_version   = var.docker_version
     username         = local.node_username
     register_command = module.rancher_common.custom_cluster_command
@@ -114,4 +114,3 @@ resource "aws_instance" "quickstart_node" {
     Creator = "rancher-quickstart"
   }
 }
-
