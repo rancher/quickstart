@@ -43,10 +43,13 @@ resource "google_compute_instance" "rancher_server" {
 
   metadata = {
     ssh-keys = "ubuntu:${file("${var.ssh_key_file_name}.pub")}"
-    user-data = templatefile("../cloud-common/files/userdata_rancher_server.template", {
-      docker_version = var.docker_version
-      username       = local.node_username
-    })
+    user-data = templatefile(
+      join("/", [path.module, "../cloud-common/files/userdata_rancher_server.template"]),
+      {
+        docker_version = var.docker_version
+        username       = local.node_username
+      }
+    )
   }
 
   provisioner "remote-exec" {
@@ -61,7 +64,6 @@ resource "google_compute_instance" "rancher_server" {
       private_key = file(var.ssh_key_file_name)
     }
   }
-
 }
 
 # Rancher resources
@@ -105,11 +107,14 @@ resource "google_compute_instance" "quickstart_node" {
 
   metadata = {
     ssh-keys = "ubuntu:${file("${var.ssh_key_file_name}.pub")}"
-    user-data = templatefile("../cloud-common/files/userdata_quickstart_node.template", {
-      docker_version   = var.docker_version
-      username         = local.node_username
-      register_command = module.rancher_common.custom_cluster_command
-    })
+    user-data = templatefile(
+      join("/", [path.module, "../cloud-common/files/userdata_quickstart_node.template"]),
+      {
+        docker_version   = var.docker_version
+        username         = local.node_username
+        register_command = module.rancher_common.custom_cluster_command
+      }
+    )
   }
 
   provisioner "remote-exec" {
@@ -124,5 +129,4 @@ resource "google_compute_instance" "quickstart_node" {
       private_key = file(var.ssh_key_file_name)
     }
   }
-
 }

@@ -15,10 +15,13 @@ resource "digitalocean_droplet" "rancher_server" {
   ssh_keys           = [digitalocean_ssh_key.quickstart_ssh_key.fingerprint]
   private_networking = true
 
-  user_data = templatefile("../cloud-common/files/userdata_rancher_server.template", {
-    docker_version = var.docker_version
-    username       = local.node_username
-  })
+  user_data = templatefile(
+    join("/", [path.module, "../cloud-common/files/userdata_rancher_server.template"]),
+    {
+      docker_version = var.docker_version
+      username       = local.node_username
+    }
+  )
 
   provisioner "remote-exec" {
     inline = [
@@ -68,11 +71,14 @@ resource "digitalocean_droplet" "quickstart_node" {
   ssh_keys           = [digitalocean_ssh_key.quickstart_ssh_key.fingerprint]
   private_networking = true
 
-  user_data = templatefile("../cloud-common/files/userdata_quickstart_node.template", {
-    docker_version   = var.docker_version
-    username         = local.node_username
-    register_command = module.rancher_common.custom_cluster_command
-  })
+  user_data = templatefile(
+    join("/", [path.module, "../cloud-common/files/userdata_quickstart_node.template"]),
+    {
+      docker_version   = var.docker_version
+      username         = local.node_username
+      register_command = module.rancher_common.custom_cluster_command
+    }
+  )
 
   provisioner "remote-exec" {
     inline = [
