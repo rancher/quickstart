@@ -3,9 +3,9 @@ provider "local" {
   version = "1.4.0"
 }
 
-# RKE provider - community plugin as of 2020-02-02
+# RKE provider - community plugin as of 2020-05-12
 provider "rke" {
-  version = "0.14.1"
+  version = "1.0.0"
 }
 
 # Kubernetes provider

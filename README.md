@@ -39,7 +39,7 @@ This setup provides easy access to the core Rancher functionality while establis
 ### Requirements - Cloud
 
 - Terraform >=0.12.0
-- RKE terraform provider version 0.14.1 installed locally - see [`Using the provider` in rancher/terraform-provider-rke](https://github.com/rancher/terraform-provider-rke#using-the-provider) for installation instructions
+- RKE terraform provider version 1.0.0 installed locally - see [`Using the provider` in rancher/terraform-provider-rke](https://github.com/rancher/terraform-provider-rke#using-the-provider) for installation instructions
 - Credentials for the cloud provider used for the quickstart
 
 ### Deploy
