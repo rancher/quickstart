@@ -39,11 +39,6 @@ resource "digitalocean_droplet" "rancher_server" {
   }
 }
 
-locals {
-  # SSL certs can only use DNS names as hosts; use xip.io as a placeholder DNS name
-  droplet_dns = join(".", ["rancher", digitalocean_droplet.rancher_server.ipv4_address, "xip.io"])
-}
-
 # Rancher resources
 module "rancher_common" {
   source = "../rancher-common"
@@ -57,7 +52,7 @@ module "rancher_common" {
   cert_manager_version = var.cert_manager_version
   rancher_version      = var.rancher_version
 
-  rancher_server_dns = local.droplet_dns
+  rancher_server_dns = join(".", ["rancher", digitalocean_droplet.rancher_server.ipv4_address, "xip.io"])
   admin_password     = var.rancher_server_admin_password
 
   workload_kubernetes_version = var.workload_kubernetes_version
