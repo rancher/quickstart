@@ -6,6 +6,9 @@
 # - Specify full path and name (e.g. ~/.gcp/account.json)
 gcp_account_json = ""
 
+# Project to deploy resources into
+gcp_project = ""
+
 # Password used to log in to the `admin` account on the new Rancher server
 rancher_server_admin_password = ""
 
