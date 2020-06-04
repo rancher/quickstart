@@ -102,7 +102,9 @@ resource "azurerm_linux_virtual_machine" "rancher_server" {
 
   provisioner "remote-exec" {
     inline = [
-      "cloud-init status --wait"
+      "echo 'Waiting for cloud-init to complete...'",
+      "cloud-init status --wait > /dev/null",
+      "echo 'Completed cloud-init!'",
     ]
 
     connection {
@@ -207,7 +209,9 @@ resource "azurerm_linux_virtual_machine" "quickstart-node" {
 
   provisioner "remote-exec" {
     inline = [
-      "cloud-init status --wait"
+      "echo 'Waiting for cloud-init to complete...'",
+      "cloud-init status --wait > /dev/null",
+      "echo 'Completed cloud-init!'",
     ]
 
     connection {

@@ -54,7 +54,9 @@ resource "google_compute_instance" "rancher_server" {
 
   provisioner "remote-exec" {
     inline = [
-      "cloud-init status --wait"
+      "echo 'Waiting for cloud-init to complete...'",
+      "cloud-init status --wait > /dev/null",
+      "echo 'Completed cloud-init!'",
     ]
 
     connection {
@@ -119,7 +121,9 @@ resource "google_compute_instance" "quickstart_node" {
 
   provisioner "remote-exec" {
     inline = [
-      "cloud-init status --wait"
+      "echo 'Waiting for cloud-init to complete...'",
+      "cloud-init status --wait > /dev/null",
+      "echo 'Completed cloud-init!'",
     ]
 
     connection {
