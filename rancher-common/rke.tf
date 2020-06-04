@@ -9,7 +9,7 @@ resource "rke_cluster" "rancher_cluster" {
     internal_address = var.node_internal_ip
     user             = var.node_username
     role             = ["controlplane", "etcd", "worker"]
-    ssh_key          = file(var.ssh_key_file_name)
+    ssh_key          = var.ssh_private_key_pem
   }
 
   kubernetes_version = var.rke_kubernetes_version

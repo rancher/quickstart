@@ -1,5 +1,10 @@
 # Azure Infrastructure Resources
 
+resource "tls_private_key" "global_key" {
+  algorithm = "RSA"
+  rsa_bits  = 2048
+}
+
 # Resource group containing all resources
 resource "azurerm_resource_group" "rancher-quickstart" {
   name     = "${var.prefix}-rancher-quickstart"
@@ -88,7 +93,7 @@ resource "azurerm_linux_virtual_machine" "rancher_server" {
 
   admin_ssh_key {
     username   = local.node_username
-    public_key = file("${var.ssh_key_file_name}.pub")
+    public_key = tls_private_key.global_key.public_key_openssh
   }
 
   os_disk {
@@ -111,7 +116,7 @@ resource "azurerm_linux_virtual_machine" "rancher_server" {
       type        = "ssh"
       host        = self.public_ip_address
       user        = local.node_username
-      private_key = file(var.ssh_key_file_name)
+      private_key = tls_private_key.global_key.private_key_pem
     }
   }
 }
@@ -123,7 +128,7 @@ module "rancher_common" {
   node_public_ip         = azurerm_linux_virtual_machine.rancher_server.public_ip_address
   node_internal_ip       = azurerm_linux_virtual_machine.rancher_server.private_ip_address
   node_username          = local.node_username
-  ssh_key_file_name      = var.ssh_key_file_name
+  ssh_private_key_pem    = tls_private_key.global_key.private_key_pem
   rke_kubernetes_version = var.rke_kubernetes_version
 
   cert_manager_version = var.cert_manager_version
@@ -195,7 +200,7 @@ resource "azurerm_linux_virtual_machine" "quickstart-node" {
 
   admin_ssh_key {
     username   = local.node_username
-    public_key = file("${var.ssh_key_file_name}.pub")
+    public_key = tls_private_key.global_key.public_key_openssh
   }
 
   os_disk {
@@ -218,7 +223,7 @@ resource "azurerm_linux_virtual_machine" "quickstart-node" {
       type        = "ssh"
       host        = self.public_ip_address
       user        = local.node_username
-      private_key = file(var.ssh_key_file_name)
+      private_key = tls_private_key.global_key.private_key_pem
     }
   }
 }

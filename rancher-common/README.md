@@ -17,11 +17,11 @@ Internal IP of compute node for Rancher cluster
 - **Required**
 Username used for SSH access to the Rancher server cluster node
 
-###### `ssh_key_file_name`
-- Default: **`"~/.ssh/id_rsa"`**
-File path and name of SSH private key used for infrastructure and RKE.
+###### `ssh_private_key_pem`
+- **Required**
+Private key used for SSH access to the Rancher server cluster node
 
-A private key file name is expected, the public key is assumed to be located at `${ssh_key_file_name}.pub`.
+Expected to be in PEM format.
 
 ###### `rke_kubernetes_version`
 - Default: **`"v1.15.3-rancher1-1"`**

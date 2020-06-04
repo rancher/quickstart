@@ -40,12 +40,6 @@ variable "docker_version" {
   default     = "19.03"
 }
 
-variable "ssh_key_file_name" {
-  type        = string
-  description = "File path and name of SSH private key used for infrastructure and RKE"
-  default     = "~/.ssh/id_rsa"
-}
-
 variable "rke_kubernetes_version" {
   type        = string
   description = "Kubernetes version to use for Rancher server RKE cluster"

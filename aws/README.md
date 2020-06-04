@@ -29,12 +29,6 @@ Instance type used for all EC2 instances
 - Default: **`"19.03"`**
 Docker version to install on nodes
 
-###### `ssh_key_file_name`
-- Default: **`"~/.ssh/id_rsa"`**
-File path and name of SSH private key used for infrastructure and RKE
-
-See `rancher-common` module variable `ssh_key_file_name` for more details.
-
 ###### `rke_kubernetes_version`
 - Default: **`"v1.15.3-rancher1-1"`**
 Kubernetes version to use for Rancher server RKE cluster

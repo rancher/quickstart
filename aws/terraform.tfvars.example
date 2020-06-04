@@ -28,11 +28,6 @@ rancher_server_admin_password = ""
 # - Must be a version supported by the Rancher install scripts
 # docker_version = ""
 
-# SSH key file name used to access nodes
-# - Specify private key path and name (e.g. ~/.ssh/id_rsa_do)
-# - Public key is assumed to be at "${ssh_key_file_name}.pub" (e.g. ~/.ssh/id_rsa_do.pub)
-# ssh_key_file_name = ""
-
 # Kubernetes version used for creating management server cluster
 # - Must be supported by RKE terraform provider 1.0.0
 # rke_kubernetes_version = ""

@@ -1,5 +1,10 @@
 # GCP infrastructure resources
 
+resource "tls_private_key" "global_key" {
+  algorithm = "RSA"
+  rsa_bits  = 2048
+}
+
 # GCP Public Compute Address for rancher server node
 resource "google_compute_address" "rancher_server_address" {
   name = "rancher-server-ipv4-address"
@@ -46,7 +51,7 @@ resource "google_compute_instance" "rancher_server" {
   }
 
   metadata = {
-    ssh-keys = "ubuntu:${file("${var.ssh_key_file_name}.pub")}"
+    ssh-keys = "ubuntu:${tls_private_key.global_key.public_key_openssh}"
     user-data = templatefile(
       join("/", [path.module, "../cloud-common/files/userdata_rancher_server.template"]),
       {
@@ -67,7 +72,7 @@ resource "google_compute_instance" "rancher_server" {
       type        = "ssh"
       host        = self.network_interface.0.access_config.0.nat_ip
       user        = local.node_username
-      private_key = file(var.ssh_key_file_name)
+      private_key = tls_private_key.global_key.private_key_pem
     }
   }
 }
@@ -79,7 +84,7 @@ module "rancher_common" {
   node_public_ip         = google_compute_instance.rancher_server.network_interface.0.access_config.0.nat_ip
   node_internal_ip       = google_compute_instance.rancher_server.network_interface.0.network_ip
   node_username          = local.node_username
-  ssh_key_file_name      = var.ssh_key_file_name
+  ssh_private_key_pem    = tls_private_key.global_key.private_key_pem
   rke_kubernetes_version = var.rke_kubernetes_version
 
   cert_manager_version = var.cert_manager_version
@@ -116,7 +121,7 @@ resource "google_compute_instance" "quickstart_node" {
   }
 
   metadata = {
-    ssh-keys = "ubuntu:${file("${var.ssh_key_file_name}.pub")}"
+    ssh-keys = "ubuntu:${tls_private_key.global_key.public_key_openssh}"
     user-data = templatefile(
       join("/", [path.module, "../cloud-common/files/userdata_quickstart_node.template"]),
       {
@@ -138,7 +143,7 @@ resource "google_compute_instance" "quickstart_node" {
       type        = "ssh"
       host        = self.network_interface.0.access_config.0.nat_ip
       user        = local.node_username
-      private_key = file(var.ssh_key_file_name)
+      private_key = tls_private_key.global_key.private_key_pem
     }
   }
 }

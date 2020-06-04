@@ -1,9 +1,14 @@
 # DO infrastructure resources
 
+resource "tls_private_key" "global_key" {
+  algorithm = "RSA"
+  rsa_bits  = 2048
+}
+
 # Temporary key pair used for SSH accesss
 resource "digitalocean_ssh_key" "quickstart_ssh_key" {
   name       = "${var.prefix}-droplet-ssh-key"
-  public_key = file("${var.ssh_key_file_name}.pub")
+  public_key = tls_private_key.global_key.public_key_openssh
 }
 
 # DO droplet for creating a single node RKE cluster and installing the Rancher server
@@ -34,7 +39,7 @@ resource "digitalocean_droplet" "rancher_server" {
       type        = "ssh"
       host        = self.ipv4_address
       user        = local.node_username
-      private_key = file(var.ssh_key_file_name)
+      private_key = tls_private_key.global_key.private_key_pem
     }
   }
 }
@@ -46,7 +51,7 @@ module "rancher_common" {
   node_public_ip         = digitalocean_droplet.rancher_server.ipv4_address
   node_internal_ip       = digitalocean_droplet.rancher_server.ipv4_address_private
   node_username          = local.node_username
-  ssh_key_file_name      = var.ssh_key_file_name
+  ssh_private_key_pem    = tls_private_key.global_key.private_key_pem
   rke_kubernetes_version = var.rke_kubernetes_version
 
   cert_manager_version = var.cert_manager_version
@@ -88,7 +93,7 @@ resource "digitalocean_droplet" "quickstart_node" {
       type        = "ssh"
       host        = self.ipv4_address
       user        = local.node_username
-      private_key = file(var.ssh_key_file_name)
+      private_key = tls_private_key.global_key.private_key_pem
     }
   }
 }

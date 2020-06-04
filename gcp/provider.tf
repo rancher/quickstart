@@ -6,3 +6,7 @@ provider "google" {
   region      = var.gcp_region
   zone        = var.gcp_zone
 }
+
+provider "tls" {
+  version = "2.1.1"
+}
