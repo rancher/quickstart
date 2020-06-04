@@ -24,6 +24,10 @@ resource "google_compute_firewall" "rancher_fw_allowall" {
 
 # GCP Compute Instance for creating a single node RKE cluster and installing the Rancher server
 resource "google_compute_instance" "rancher_server" {
+  depends_on = [
+    google_compute_firewall.rancher_fw_allowall,
+  ]
+
   name         = "${var.prefix}-rancher-server"
   machine_type = var.machine_type
   zone         = var.gcp_zone
@@ -90,6 +94,10 @@ module "rancher_common" {
 
 # GCP compute instance for creating a single node workload cluster
 resource "google_compute_instance" "quickstart_node" {
+  depends_on = [
+    google_compute_firewall.rancher_fw_allowall,
+  ]
+
   name         = "${var.prefix}-quickstart-node"
   machine_type = var.machine_type
   zone         = var.gcp_zone
