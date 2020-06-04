@@ -18,10 +18,10 @@ variable "node_username" {
   description = "Username used for SSH access to the Rancher server cluster node"
 }
 
-variable "ssh_key_file_name" {
+# Required
+variable "ssh_private_key_pem" {
   type        = string
-  description = "File path and name of SSH private key used for infrastructure and RKE"
-  default     = "~/.ssh/id_rsa"
+  description = "Private key used for SSH access to the Rancher server cluster node"
 }
 
 variable "rke_kubernetes_version" {
