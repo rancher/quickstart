@@ -25,7 +25,9 @@ resource "digitalocean_droplet" "rancher_server" {
 
   provisioner "remote-exec" {
     inline = [
-      "cloud-init status --wait"
+      "echo 'Waiting for cloud-init to complete...'",
+      "cloud-init status --wait > /dev/null",
+      "echo 'Completed cloud-init!'",
     ]
 
     connection {
@@ -82,7 +84,9 @@ resource "digitalocean_droplet" "quickstart_node" {
 
   provisioner "remote-exec" {
     inline = [
-      "cloud-init status --wait"
+      "echo 'Waiting for cloud-init to complete...'",
+      "cloud-init status --wait > /dev/null",
+      "echo 'Completed cloud-init!'",
     ]
 
     connection {
