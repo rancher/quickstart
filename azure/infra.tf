@@ -69,10 +69,15 @@ resource "azurerm_linux_virtual_machine" "rancher_server" {
   size                  = var.instance_type
   admin_username        = local.node_username
 
-  custom_data = base64encode(templatefile("../cloud-common/files/userdata_rancher_server.template", {
-    docker_version = var.docker_version
-    username       = local.node_username
-  }))
+  custom_data = base64encode(
+    templatefile(
+      join("/", [path.module, "../cloud-common/files/userdata_rancher_server.template"]),
+      {
+        docker_version = var.docker_version
+        username       = local.node_username
+      }
+    )
+  )
 
   source_image_reference {
     publisher = "Canonical"
@@ -168,11 +173,16 @@ resource "azurerm_linux_virtual_machine" "quickstart-node" {
   size                  = var.instance_type
   admin_username        = local.node_username
 
-  custom_data = base64encode(templatefile("../cloud-common/files/userdata_quickstart_node.template", {
-    docker_version   = var.docker_version
-    username         = local.node_username
-    register_command = module.rancher_common.custom_cluster_command
-  }))
+  custom_data = base64encode(
+    templatefile(
+      join("/", [path.module, "../cloud-common/files/userdata_quickstart_node.template"]),
+      {
+        docker_version   = var.docker_version
+        username         = local.node_username
+        register_command = module.rancher_common.custom_cluster_command
+      }
+    )
+  )
 
   source_image_reference {
     publisher = "Canonical"
