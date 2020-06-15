@@ -20,6 +20,11 @@ resource "rancher2_cluster" "quickstart_workload" {
   description = "Custom workload cluster created by Rancher quickstart"
 
   rke_config {
+    network {
+      plugin  = var.rke_network_plugin
+      options = var.rke_network_options
+    }
     kubernetes_version = var.workload_kubernetes_version
   }
+  windows_prefered_cluster = var.windows_prefered_cluster
 }
