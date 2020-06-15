@@ -65,3 +65,20 @@ variable "workload_cluster_name" {
   type        = string
   description = "Name for created custom workload cluster"
 }
+
+variable "rke_network_plugin" {
+  type        = string
+  description = "Network plugin used for the custom workload cluster"
+  default     = "canal"
+}
+
+variable "rke_network_options" {
+  description = "Network options used for the custom workload cluster"
+  default     = null
+}
+
+variable "windows_prefered_cluster" {
+  type        = bool
+  description = "Activate windows supports for the custom workload cluster"
+  default     = false
+}
