@@ -193,7 +193,7 @@ resource "azurerm_linux_virtual_machine" "quickstart-node" {
 
   custom_data = base64encode(
     templatefile(
-      join("/", [path.module, "../cloud-common/files/userdata_quickstart_node.template"]),
+      join("/", [path.module, "files/userdata_quickstart_node.template"]),
       {
         docker_version   = var.docker_version
         username         = local.node_username
