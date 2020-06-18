@@ -1,7 +1,8 @@
 # Azure Rancher Quickstart
 
 Two single-node RKE Kubernetes clusters will be created from two linux virtual instances running Ubuntu 18.04 and Docker.
-Both instances will have wide-open security groups and will be accessible over SSH using the provided SSH key in `ssh_key_file_name`.
+Both instances will have wide-open security groups and will be accessible over SSH using the SSH keys
+`id_rsa` and `id_rsa.pub`.
 
 ## Variables
 
