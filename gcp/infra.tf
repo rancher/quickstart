@@ -134,11 +134,12 @@ resource "google_compute_instance" "quickstart_node" {
   metadata = {
     ssh-keys = "ubuntu:${tls_private_key.global_key.public_key_openssh}"
     user-data = templatefile(
-      join("/", [path.module, "../cloud-common/files/userdata_quickstart_node.template"]),
+      join("/", [path.module, "files/userdata_quickstart_node.template"]),
       {
         docker_version   = var.docker_version
         username         = local.node_username
         register_command = module.rancher_common.custom_cluster_command
+        public_ip        = google_compute_address.quickstart_node_address.address
       }
     )
   }
