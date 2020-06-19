@@ -201,7 +201,7 @@ resource "azurerm_linux_virtual_machine" "quickstart-node" {
 
   custom_data = base64encode(
     templatefile(
-      join("/", [path.module, "../cloud-common/files/userdata_quickstart_node.template"]),
+      join("/", [path.module, "files/userdata_quickstart_node.template"]),
       {
         docker_version   = var.docker_version
         username         = local.node_username
@@ -314,7 +314,13 @@ resource "azurerm_virtual_machine_extension" "join-rancher" {
 
   settings = <<SETTINGS
     {
-        "commandToExecute": ${jsonencode(module.rancher_common.custom_cluster_windows_command)}
+        "commandToExecute": ${jsonencode(
+          replace(
+            module.rancher_common.custom_cluster_windows_command,
+            "| iex}",
+            "--address ${azurerm_windows_virtual_machine.quickstart-windows-node.public_ip_address} --internal-address ${azurerm_windows_virtual_machine.quickstart-windows-node.private_ip_address} --worker | iex}",
+          )
+        )}
     }
 SETTINGS
 }
