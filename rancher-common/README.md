@@ -24,7 +24,7 @@ Private key used for SSH access to the Rancher server cluster node
 Expected to be in PEM format.
 
 ###### `rke_kubernetes_version`
-- Default: **`"v1.15.3-rancher1-1"`**
+- Default: **`"v1.18.3-rancher2-2"`**
 Kubernetes version to use for Rancher server RKE cluster
 
 ###### `cert_manager_version`
@@ -34,7 +34,7 @@ Version of cert-mananger to install alongside Rancher (format: `0.0.0`)
 Used in the case of older Rancher versions.
 
 ###### `rancher_version`
-- Default: **`"v2.3.5"`**
+- Default: **`"v2.4.5"`**
 Rancher server version (format `v0.0.0`)
 
 ###### `rancher_server_dns`
@@ -52,7 +52,7 @@ Admin password to use for Rancher server bootstrap
 Log in to the Rancher server using username `admin` and this password.
 
 ###### `workload_kubernetes_version`
-- Default: **`"v1.16.6-rancher1-2"`**
+- Default: **`"v1.17.6-rancher2-2"`**
 Kubernetes version to use for managed workload cluster
 
 Defaulted to one version behind most recent minor release to allow experimenting with upgrading Kubernetes versions.

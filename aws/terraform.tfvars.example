@@ -29,11 +29,11 @@ rancher_server_admin_password = ""
 # docker_version = ""
 
 # Kubernetes version used for creating management server cluster
-# - Must be supported by RKE terraform provider 1.0.0
+# - Must be supported by RKE terraform provider 1.0.1
 # rke_kubernetes_version = ""
 
 # Kubernetes version used for creating workload cluster
-# - Must be supported by RKE terraform provider 1.0.0
+# - Must be supported by RKE terraform provider 1.0.1
 # workload_kubernetes_version = ""
 
 # Version of cert-manager to install, used in case of older Rancher versions

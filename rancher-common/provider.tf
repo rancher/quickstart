@@ -5,7 +5,7 @@ provider "local" {
 
 # RKE provider - community plugin as of 2020-05-12
 provider "rke" {
-  version = "1.0.0"
+  version = "1.0.1"
 }
 
 # Kubernetes provider
@@ -42,7 +42,7 @@ provider "helm" {
 
 # Rancher2 bootstrapping provider
 provider "rancher2" {
-  version = "1.8.3"
+  version = "1.9.0"
 
   alias = "bootstrap"
 
@@ -54,7 +54,7 @@ provider "rancher2" {
 
 # Rancher2 administration provider
 provider "rancher2" {
-  version = "1.8.3"
+  version = "1.9.0"
 
   alias = "admin"
 
