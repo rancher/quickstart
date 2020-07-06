@@ -62,6 +62,10 @@ resource "aws_instance" "rancher_server" {
     }
   )
 
+  root_block_device {
+    volume_size = 16
+  }
+
   provisioner "remote-exec" {
     inline = [
       "echo 'Waiting for cloud-init to complete...'",
@@ -96,7 +100,8 @@ module "rancher_common" {
   cert_manager_version = var.cert_manager_version
   rancher_version      = var.rancher_version
 
-  rancher_server_dns = aws_instance.rancher_server.public_dns
+  rancher_server_dns = join(".", ["rancher", aws_instance.rancher_server.public_ip, "xip.io"])
+
   admin_password     = var.rancher_server_admin_password
 
   workload_kubernetes_version = var.workload_kubernetes_version
