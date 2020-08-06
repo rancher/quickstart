@@ -23,11 +23,7 @@ provider "kubernetes" {
 
 # Helm provider
 provider "helm" {
-  version = "1.0.0"
-  # version = "~> 0.10"
-
-  # tiller_image    = "gcr.io/kubernetes-helm/tiller:v2.16.1"
-  # service_account = "tiller"
+  version = "1.2.4"
 
   kubernetes {
     host = rke_cluster.rancher_cluster.api_server_url
