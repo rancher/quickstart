@@ -42,7 +42,7 @@ provider "helm" {
 
 # Rancher2 bootstrapping provider
 provider "rancher2" {
-  version = "1.9.0"
+  version = "1.10.0"
 
   alias = "bootstrap"
 
@@ -54,7 +54,7 @@ provider "rancher2" {
 
 # Rancher2 administration provider
 provider "rancher2" {
-  version = "1.9.0"
+  version = "1.10.0"
 
   alias = "admin"
 
