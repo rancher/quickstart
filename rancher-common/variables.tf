@@ -33,7 +33,7 @@ variable "rke_kubernetes_version" {
 variable "cert_manager_version" {
   type        = string
   description = "Version of cert-mananger to install alongside Rancher (format: 0.0.0)"
-  default     = "0.12.0"
+  default     = "0.16.0"
 }
 
 variable "rancher_version" {

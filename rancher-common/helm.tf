@@ -3,7 +3,6 @@
 # Install cert-manager helm chart
 resource "helm_release" "cert_manager" {
   depends_on = [
-    kubernetes_job.install_certmanager_crds,
     kubernetes_service_account.cert_manager_crd,
     kubernetes_cluster_role_binding.cert_manager_crd_admin,
   ]
@@ -13,6 +12,11 @@ resource "helm_release" "cert_manager" {
   chart      = "cert-manager"
   version    = "v${var.cert_manager_version}"
   namespace  = "cert-manager"
+
+  set {
+    name  = "installCRDs"
+    value = "true"
+  }
 }
 
 # Install Rancher helm chart

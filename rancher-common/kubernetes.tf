@@ -61,30 +61,6 @@ resource "kubernetes_job" "create_cert_manager_ns" {
   }
 }
 
-# Create and run job to install cert-manager CRDs
-resource "kubernetes_job" "install_certmanager_crds" {
-  metadata {
-    name      = "install-certmanager-crds"
-    namespace = "kube-system"
-  }
-  spec {
-    template {
-      metadata {}
-      spec {
-        container {
-          name    = "hyperkube"
-          image   = "rancher/hyperkube:${local.hyperkube_tag}"
-          command = ["kubectl", "apply", "-f", "https://raw.githubusercontent.com/jetstack/cert-manager/release-0.12/deploy/manifests/00-crds.yaml", "--validate=false"]
-        }
-        host_network                    = true
-        automount_service_account_token = true
-        service_account_name            = kubernetes_service_account.cert_manager_crd.metadata[0].name
-        restart_policy                  = "Never"
-      }
-    }
-  }
-}
-
 # Create cattle-system namespace for Rancher
 resource "kubernetes_job" "create_cattle_system_ns" {
   metadata {
