@@ -1,17 +1,13 @@
 # Local provider
 provider "local" {
-  version = "1.4.0"
 }
 
 # RKE provider - community plugin as of 2020-05-12
 provider "rke" {
-  version = "1.0.1"
 }
 
 # Kubernetes provider
 provider "kubernetes" {
-  version = "1.10.0"
-
   host = rke_cluster.rancher_cluster.api_server_url
 
   client_certificate     = rke_cluster.rancher_cluster.client_cert
@@ -23,8 +19,6 @@ provider "kubernetes" {
 
 # Helm provider
 provider "helm" {
-  version = "1.2.4"
-
   kubernetes {
     host = rke_cluster.rancher_cluster.api_server_url
 
@@ -38,8 +32,6 @@ provider "helm" {
 
 # Rancher2 bootstrapping provider
 provider "rancher2" {
-  version = "1.10.0"
-
   alias = "bootstrap"
 
   api_url  = "https://${var.rancher_server_dns}"
@@ -50,8 +42,6 @@ provider "rancher2" {
 
 # Rancher2 administration provider
 provider "rancher2" {
-  version = "1.10.0"
-
   alias = "admin"
 
   api_url  = "https://${var.rancher_server_dns}"

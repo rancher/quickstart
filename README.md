@@ -38,77 +38,8 @@ This setup provides easy access to the core Rancher functionality while establis
 
 ### Requirements - Cloud
 
-- Terraform >=0.12.0
-- RKE terraform provider version 1.0.1 installed locally - full install instructions [below](#installing-terraform-provider-rke)
+- Terraform >=0.13.0
 - Credentials for the cloud provider used for the quickstart
-
-#### Installing terraform-provider-rke
-
-##### Linux
-
-###### 64-bit
-
-Download [the v1.0.1 release archive for Linux](https://github.com/rancher/terraform-provider-rke/releases/download/v1.0.1/terraform-provider-rke_1.0.1_linux_amd64.zip),
-extract the archive, and move the binary to
-`~/.terraform.d/plugins/linux_amd64/terraform-provider-rke_v1.0.1`.
-
-If curl and unzip are installed, you can use the following script:
-```sh
-curl -LO https://github.com/rancher/terraform-provider-rke/releases/download/v1.0.1/terraform-provider-rke_1.0.1_linux_amd64.zip && \
-unzip terraform-provider-rke_1.0.1_linux_amd64.zip && \
-chmod +x ./terraform-provider-rke_v1.0.1 && \
-mkdir -p ~/.terraform.d/plugins/linux_amd64/ && \
-mv ./terraform-provider-rke_v1.0.1 ~/.terraform.d/plugins/linux_amd64/terraform-provider-rke_v1.0.1
-rm -rf ./terraform-provider-rke_*
-```
-
-##### MacOS
-
-Download [the v1.0.1 release archive for MacOS](https://github.com/rancher/terraform-provider-rke/releases/download/v1.0.1/terraform-provider-rke_1.0.1_darwin_amd64.zip),
-extract the archive, and move the binary to
-`~/.terraform.d/plugins/darwin_amd64/terraform-provider-rke_v1.0.1`.
-
-If curl and unzip are installed, you can use the following script:
-```sh
-curl -LO https://github.com/rancher/terraform-provider-rke/releases/download/v1.0.1/terraform-provider-rke_1.0.1_darwin_amd64.zip && \
-unzip terraform-provider-rke_1.0.1_darwin_amd64.zip && \
-chmod +x ./terraform-provider-rke_v1.0.1 && \
-mkdir -p ~/.terraform.d/plugins/darwin_amd64/ && \
-mv ./terraform-provider-rke_v1.0.1 ~/.terraform.d/plugins/darwin_amd64/terraform-provider-rke_v1.0.1
-rm -rf ./terraform-provider-rke_*
-```
-
-##### Windows
-
-###### 64-bit
-
-Download [the v1.0.1 release archive for Windows (64-bit)](https://github.com/rancher/terraform-provider-rke/releases/download/v1.0.1/terraform-provider-rke_1.0.1_windows_amd64.zip),
-extract the archive, and move the executable to
-`%APPDATA%\terraform.d\plugins\windows_amd64\terraform-provider-rke_v1.0.1.exe`.
-
-You can use the following PowerShell script to perform the same steps (tested with PS version 5.1):
-```
-New-Item -Path $Env:APPDATA\terraform.d\plugins\windows_amd64 -ItemType Directory -Force
-Invoke-WebRequest -Uri https://github.com/rancher/terraform-provider-rke/releases/download/v1.0.1/terraform-provider-rke_1.0.1_windows_amd64.zip -OutFile terraform-provider-rke_1.0.1_windows_amd64.zip -UseBasicParsing
-Expand-Archive terraform-provider-rke_1.0.1_windows_amd64.zip
-Move-Item -Path terraform-provider-rke_1.0.1_windows_amd64\terraform-provider-rke_v1.0.1.exe -Destination $Env:APPDATA\terraform.d\plugins\windows_amd64\terraform-provider-rke_v1.0.1.exe
-Remove-Item -Path terraform-provider-rke_1.0.1_windows_amd64* -Recurse
-```
-
-###### 32-bit
-
-Download [the v1.0.1 release archive for Windows (32-bit)](https://github.com/rancher/terraform-provider-rke/releases/download/v1.0.1/terraform-provider-rke_1.0.1_windows_386.zip),
-extract the archive, and move the executable to
-`%APPDATA%\terraform.d\plugins\windows_386\terraform-provider-rke_v1.0.1.exe`.
-
-You can use the following PowerShell script to perform the same steps (tested with PS version 5.1):
-```
-Invoke-WebRequest -Uri https://github.com/rancher/terraform-provider-rke/releases/download/v1.0.1/terraform-provider-rke_1.0.1_windows_386.zip -OutFile terraform-provider-rke_1.0.1_windows_386.zip -UseBasicParsing
-New-Item -Path $Env:APPDATA\terraform.d\plugins\windows_386 -ItemType Directory -Force
-Expand-Archive terraform-provider-rke_1.0.1_windows_386.zip
-Move-Item -Path terraform-provider-rke_1.0.1_windows_386\terraform-provider-rke_v1.0.1.exe -Destination $Env:APPDATA\terraform.d\plugins\windows_386\terraform-provider-rke_v1.0.1.exe
-Remove-Item -Path terraform-provider-rke_1.0.1_windows_386* -Recurse
-```
 
 ### Deploy
 
