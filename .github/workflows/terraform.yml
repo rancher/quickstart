@@ -19,7 +19,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ${{ matrix.provider }
+        working-directory: ${{ matrix.provider }}
 
     # Checkout the repository to the GitHub Actions runner
     steps:
