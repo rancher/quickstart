@@ -38,6 +38,10 @@ jobs:
     - name: Terraform Format
       run: terraform fmt -check
 
+    # Validates the Terraform configuration files
+    - name: Terraform Validate
+      run: terraform validate
+
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: terraform plan -input=false
