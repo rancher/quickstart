@@ -147,7 +147,7 @@ module "rancher_common" {
 
   rancher_server_dns = join(".", ["rancher", azurerm_linux_virtual_machine.rancher_server.public_ip_address, "xip.io"])
 
-  admin_password     = var.rancher_server_admin_password
+  admin_password = var.rancher_server_admin_password
 
   workload_kubernetes_version = var.workload_kubernetes_version
   workload_cluster_name       = "quickstart-azure-custom"

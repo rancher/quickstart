@@ -147,7 +147,7 @@ module "rancher_common" {
 
   rancher_server_dns = join(".", ["rancher", azurerm_linux_virtual_machine.rancher_server.public_ip_address, "xip.io"])
 
-  admin_password     = var.rancher_server_admin_password
+  admin_password = var.rancher_server_admin_password
 
   workload_kubernetes_version = var.workload_kubernetes_version
   workload_cluster_name       = "quickstart-azure-custom"
@@ -316,12 +316,12 @@ resource "azurerm_virtual_machine_extension" "join-rancher" {
   settings = <<SETTINGS
     {
         "commandToExecute": ${jsonencode(
-          replace(
-            module.rancher_common.custom_cluster_windows_command,
-            "| iex}",
-            "--address ${azurerm_windows_virtual_machine.quickstart-windows-node.public_ip_address} --internal-address ${azurerm_windows_virtual_machine.quickstart-windows-node.private_ip_address} --worker | iex}",
-          )
-        )}
+  replace(
+    module.rancher_common.custom_cluster_windows_command,
+    "| iex}",
+    "--address ${azurerm_windows_virtual_machine.quickstart-windows-node.public_ip_address} --internal-address ${azurerm_windows_virtual_machine.quickstart-windows-node.private_ip_address} --worker | iex}",
+  )
+)}
     }
 SETTINGS
 }
