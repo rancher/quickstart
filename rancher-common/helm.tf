@@ -8,11 +8,12 @@ resource "helm_release" "cert_manager" {
     kubernetes_cluster_role_binding.cert_manager_crd_admin,
   ]
 
-  repository = "https://charts.jetstack.io"
-  name       = "cert-manager"
-  chart      = "cert-manager"
-  version    = "v${var.cert_manager_version}"
-  namespace  = "cert-manager"
+  repository       = "https://charts.jetstack.io"
+  name             = "cert-manager"
+  chart            = "cert-manager"
+  version          = "v${var.cert_manager_version}"
+  namespace        = "cert-manager"
+  create_namespace = true
 }
 
 # Install Rancher helm chart
@@ -21,11 +22,12 @@ resource "helm_release" "rancher_server" {
     helm_release.cert_manager,
   ]
 
-  repository = "https://releases.rancher.com/server-charts/latest"
-  name       = "rancher"
-  chart      = "rancher"
-  version    = var.rancher_version
-  namespace  = "cattle-system"
+  repository       = "https://releases.rancher.com/server-charts/latest"
+  name             = "rancher"
+  chart            = "rancher"
+  version          = var.rancher_version
+  namespace        = "cattle-system"
+  create_namespace = true
 
   set {
     name  = "hostname"
