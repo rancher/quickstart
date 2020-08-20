@@ -102,7 +102,7 @@ module "rancher_common" {
 
   rancher_server_dns = join(".", ["rancher", aws_instance.rancher_server.public_ip, "xip.io"])
 
-  admin_password     = var.rancher_server_admin_password
+  admin_password = var.rancher_server_admin_password
 
   workload_kubernetes_version = var.workload_kubernetes_version
   workload_cluster_name       = "quickstart-aws-custom"

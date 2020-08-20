@@ -18,7 +18,7 @@ resource "local_file" "ssh_public_key_openssh" {
 
 # Resource group containing all resources
 resource "azurerm_resource_group" "rancher-quickstart" {
-  name     = "${var.prefix}-rancher-quickstart"
+  name     = "${var.prefix}-rancher-win-quickstart"
   location = var.azure_location
 
   tags = {
@@ -28,7 +28,7 @@ resource "azurerm_resource_group" "rancher-quickstart" {
 
 # Public IP of Rancher server
 resource "azurerm_public_ip" "rancher-server-pip" {
-  name                = "rancher-server-pip"
+  name                = "rancher-win-server-pip"
   location            = azurerm_resource_group.rancher-quickstart.location
   resource_group_name = azurerm_resource_group.rancher-quickstart.name
   allocation_method   = "Dynamic"
@@ -40,7 +40,7 @@ resource "azurerm_public_ip" "rancher-server-pip" {
 
 # Azure virtual network space for quickstart resources
 resource "azurerm_virtual_network" "rancher-quickstart" {
-  name                = "${var.prefix}-network"
+  name                = "${var.prefix}-win-network"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.rancher-quickstart.location
   resource_group_name = azurerm_resource_group.rancher-quickstart.name
@@ -52,7 +52,7 @@ resource "azurerm_virtual_network" "rancher-quickstart" {
 
 # Azure internal subnet for quickstart resources
 resource "azurerm_subnet" "rancher-quickstart-internal" {
-  name                 = "rancher-quickstart-internal"
+  name                 = "rancher-win-quickstart-internal"
   resource_group_name  = azurerm_resource_group.rancher-quickstart.name
   virtual_network_name = azurerm_virtual_network.rancher-quickstart.name
   address_prefixes     = ["10.0.0.0/16"]
@@ -60,7 +60,7 @@ resource "azurerm_subnet" "rancher-quickstart-internal" {
 
 # Azure network interface for quickstart resources
 resource "azurerm_network_interface" "rancher-server-interface" {
-  name                = "rancher-quickstart-interface"
+  name                = "rancher-win-quickstart-interface"
   location            = azurerm_resource_group.rancher-quickstart.location
   resource_group_name = azurerm_resource_group.rancher-quickstart.name
 
@@ -78,7 +78,7 @@ resource "azurerm_network_interface" "rancher-server-interface" {
 
 # Azure linux virtual machine for creating a single node RKE cluster and installing the Rancher Server
 resource "azurerm_linux_virtual_machine" "rancher_server" {
-  name                  = "${var.prefix}-rancher-server"
+  name                  = "${var.prefix}-rancher-win-server"
   location              = azurerm_resource_group.rancher-quickstart.location
   resource_group_name   = azurerm_resource_group.rancher-quickstart.name
   network_interface_ids = [azurerm_network_interface.rancher-server-interface.id]
@@ -147,7 +147,7 @@ module "rancher_common" {
 
   rancher_server_dns = join(".", ["rancher", azurerm_linux_virtual_machine.rancher_server.public_ip_address, "xip.io"])
 
-  admin_password     = var.rancher_server_admin_password
+  admin_password = var.rancher_server_admin_password
 
   workload_kubernetes_version = var.workload_kubernetes_version
   workload_cluster_name       = "quickstart-azure-custom"
@@ -163,7 +163,7 @@ module "rancher_common" {
 
 # Public IP of quickstart node
 resource "azurerm_public_ip" "quickstart-node-pip" {
-  name                = "quickstart-node-pip"
+  name                = "quickstart-win-node-pip"
   location            = azurerm_resource_group.rancher-quickstart.location
   resource_group_name = azurerm_resource_group.rancher-quickstart.name
   allocation_method   = "Dynamic"
@@ -175,7 +175,7 @@ resource "azurerm_public_ip" "quickstart-node-pip" {
 
 # Azure network interface for quickstart resources
 resource "azurerm_network_interface" "quickstart-node-interface" {
-  name                = "quickstart-node-interface"
+  name                = "quickstart-win-node-interface"
   location            = azurerm_resource_group.rancher-quickstart.location
   resource_group_name = azurerm_resource_group.rancher-quickstart.name
 
@@ -193,7 +193,7 @@ resource "azurerm_network_interface" "quickstart-node-interface" {
 
 # Azure linux virtual machine for creating for the workload cluster
 resource "azurerm_linux_virtual_machine" "quickstart-node" {
-  name                  = "${var.prefix}-quickstart-node"
+  name                  = "${var.prefix}-quickstart-win-node"
   location              = azurerm_resource_group.rancher-quickstart.location
   resource_group_name   = azurerm_resource_group.rancher-quickstart.name
   network_interface_ids = [azurerm_network_interface.quickstart-node-interface.id]
@@ -316,12 +316,12 @@ resource "azurerm_virtual_machine_extension" "join-rancher" {
   settings = <<SETTINGS
     {
         "commandToExecute": ${jsonencode(
-          replace(
-            module.rancher_common.custom_cluster_windows_command,
-            "| iex}",
-            "--address ${azurerm_windows_virtual_machine.quickstart-windows-node.public_ip_address} --internal-address ${azurerm_windows_virtual_machine.quickstart-windows-node.private_ip_address} --worker | iex}",
-          )
-        )}
+  replace(
+    module.rancher_common.custom_cluster_windows_command,
+    "| iex}",
+    "--address ${azurerm_windows_virtual_machine.quickstart-windows-node.public_ip_address} --internal-address ${azurerm_windows_virtual_machine.quickstart-windows-node.private_ip_address} --worker | iex}",
+  )
+)}
     }
 SETTINGS
 }
