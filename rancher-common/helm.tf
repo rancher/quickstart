@@ -3,9 +3,7 @@
 # Install cert-manager helm chart
 resource "helm_release" "cert_manager" {
   depends_on = [
-    kubernetes_job.install_certmanager_crds,
-    kubernetes_service_account.cert_manager_crd,
-    kubernetes_cluster_role_binding.cert_manager_crd_admin,
+    k8s_manifest.cert_manager_crds,
   ]
 
   repository       = "https://charts.jetstack.io"
