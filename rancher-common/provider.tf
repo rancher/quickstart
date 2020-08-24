@@ -2,12 +2,16 @@
 provider "local" {
 }
 
+# HTTP provider
+provider "http" {
+}
+
 # RKE provider - community plugin as of 2020-05-12
 provider "rke" {
 }
 
 # Kubernetes provider
-provider "kubernetes" {
+provider "k8s" {
   host = rke_cluster.rancher_cluster.api_server_url
 
   client_certificate     = rke_cluster.rancher_cluster.client_cert

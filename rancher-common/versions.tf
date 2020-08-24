@@ -4,14 +4,17 @@ terraform {
       source  = "hashicorp/helm"
       version = "1.2.4"
     }
-    kubernetes = {
-      source  = "hashicorp/kubernetes"
-      version = "1.12.0"
+    http = {
+      source  = "hashicorp/http"
+      version = "1.2.0"
+    }
+    k8s = {
+      source  = "banzaicloud/k8s"
+      version = "0.8.2"
     }
     local = {
       source  = "hashicorp/local"
       version = "1.4.0"
-
     }
     rancher2 = {
       source  = "rancher/rancher2"
