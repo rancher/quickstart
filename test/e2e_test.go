@@ -34,6 +34,10 @@ func TestE2E_Gcp(t *testing.T) {
 	runTerraformAndVerify(t, "../gcp")
 }
 
+func TestE2E_Openstack(t *testing.T) {
+	runTerraformAndVerify(t, "../openstack")
+}
+
 func runTerraformAndVerify(t *testing.T, terraformDir string) {
 	t.Parallel()
 
