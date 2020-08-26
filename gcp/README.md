@@ -31,13 +31,13 @@ Machine type used for all compute instances
 Docker version to install on nodes
 
 ###### `rke_kubernetes_version`
-- Default: **`"v1.18.3-rancher2-2"`**
+- Default: **`"v1.18.6-rancher1-1"`**
 Kubernetes version to use for Rancher server RKE cluster
 
 See `rancher-common` module variable `rke_kubernetes_version` for more details.
 
 ###### `workload_kubernetes_version`
-- Default: **`"v1.17.6-rancher2-2"`**
+- Default: **`"v1.17.9-rancher1-1"`**
 Kubernetes version to use for managed workload cluster
 
 See `rancher-common` module variable `workload_kubernetes_version` for more details.
