@@ -30,7 +30,7 @@ Expected to be in PEM format.
 Kubernetes version to use for Rancher server RKE cluster
 
 ###### `cert_manager_version`
-- Default: **`"0.12.0"`**
+- Default: **`"0.15.1"`**
 Version of cert-mananger to install alongside Rancher (format: `0.0.0`)
 
 Available versions are found in `files/cert-manager`, where a supported version

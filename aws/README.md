@@ -43,7 +43,7 @@ Kubernetes version to use for managed workload cluster
 See `rancher-common` module variable `workload_kubernetes_version` for more details.
 
 ###### `cert_manager_version`
-- Default: **`"0.12.0"`**
+- Default: **`"0.15.1"`**
 Version of cert-mananger to install alongside Rancher (format: 0.0.0)
 
 See `rancher-common` module variable `cert_manager_version` for more details.
