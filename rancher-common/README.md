@@ -31,7 +31,8 @@ Kubernetes version to use for Rancher server RKE cluster
 - Default: **`"0.12.0"`**
 Version of cert-mananger to install alongside Rancher (format: `0.0.0`)
 
-Used in the case of older Rancher versions.
+Used in the case of older Rancher versions. Available versions are found in `files/cert-manager`,
+where a supported version is indicated by the presence of `crds-${version}.yaml`.
 
 ###### `rancher_version`
 - Default: **`"v2.4.5"`**
