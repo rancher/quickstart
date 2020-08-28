@@ -8,10 +8,10 @@ import (
 	"time"
 
 	http_helper "github.com/gruntwork-io/terratest/modules/http-helper"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-
 	"github.com/gruntwork-io/terratest/modules/k8s"
 	"github.com/gruntwork-io/terratest/modules/terraform"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/util/rand"
 )
 
 func TestE2E_Aws(t *testing.T) {
@@ -37,19 +37,24 @@ func TestE2E_Gcp(t *testing.T) {
 func runTerraformAndVerify(t *testing.T, terraformDir string) {
 	t.Parallel()
 
+	prefix := "qs-test-" + rand.String(7)
+
 	terraformOptions := &terraform.Options{
 		TerraformDir: terraformDir,
+		Vars: map[string]interface{}{
+			"prefix": prefix,
+		},
 	}
 
 	defer terraform.Destroy(t, terraformOptions)
 
 	terraform.InitAndApply(t, terraformOptions)
 
-	rancher_server_url := terraform.Output(t, terraformOptions, "rancher_server_url")
+	rancherServerURL := terraform.Output(t, terraformOptions, "rancher_server_url")
 
 	http_helper.HttpGetWithRetryWithCustomValidation(
 		t,
-		rancher_server_url,
+		rancherServerURL,
 		&tls.Config{
 			InsecureSkipVerify: true,
 		},
