@@ -2,11 +2,7 @@
 provider "local" {
 }
 
-# HTTP provider
-provider "http" {
-}
-
-# RKE provider - community plugin as of 2020-05-12
+# RKE provider
 provider "rke" {
 }
 
