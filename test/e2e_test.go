@@ -4,6 +4,7 @@ import (
 	"crypto/tls"
 	"fmt"
 	"github.com/stretchr/testify/assert"
+	"math/rand"
 	"testing"
 	"time"
 
@@ -37,19 +38,24 @@ func TestE2E_Gcp(t *testing.T) {
 func runTerraformAndVerify(t *testing.T, terraformDir string) {
 	t.Parallel()
 
+	prefix := "qs-test-" + randomLowerString(7)
+
 	terraformOptions := &terraform.Options{
 		TerraformDir: terraformDir,
+		Vars: map[string]interface{}{
+			"prefix": prefix,
+		},
 	}
 
 	defer terraform.Destroy(t, terraformOptions)
 
 	terraform.InitAndApply(t, terraformOptions)
 
-	rancher_server_url := terraform.Output(t, terraformOptions, "rancher_server_url")
+	rancherServerURL := terraform.Output(t, terraformOptions, "rancher_server_url")
 
 	http_helper.HttpGetWithRetryWithCustomValidation(
 		t,
-		rancher_server_url,
+		rancherServerURL,
 		&tls.Config{
 			InsecureSkipVerify: true,
 		},
@@ -73,4 +79,15 @@ func runTerraformAndVerify(t *testing.T, terraformDir string) {
 	for _, rancherPod := range rancherPods {
 		k8s.WaitUntilPodAvailable(t, k8sOptions, rancherPod.Name, 10, 5*time.Second)
 	}
+}
+
+const lowerLetters = "abcdefghijklmnopqrstuvwxyz"
+
+func randomLowerString(length int) string {
+	rand.Seed(time.Now().UnixNano())
+	bytes := make([]byte, length)
+	for i := range bytes {
+		bytes[i] = lowerLetters[rand.Intn(len(lowerLetters))]
+	}
+	return string(bytes)
 }
