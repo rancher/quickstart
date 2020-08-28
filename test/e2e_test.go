@@ -4,15 +4,14 @@ import (
 	"crypto/tls"
 	"fmt"
 	"github.com/stretchr/testify/assert"
-	"math/rand"
 	"testing"
 	"time"
 
 	http_helper "github.com/gruntwork-io/terratest/modules/http-helper"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-
 	"github.com/gruntwork-io/terratest/modules/k8s"
 	"github.com/gruntwork-io/terratest/modules/terraform"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/util/rand"
 )
 
 func TestE2E_Aws(t *testing.T) {
@@ -38,7 +37,7 @@ func TestE2E_Gcp(t *testing.T) {
 func runTerraformAndVerify(t *testing.T, terraformDir string) {
 	t.Parallel()
 
-	prefix := "qs-test-" + randomLowerString(7)
+	prefix := "qs-test-" + rand.String(7)
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: terraformDir,
@@ -79,15 +78,4 @@ func runTerraformAndVerify(t *testing.T, terraformDir string) {
 	for _, rancherPod := range rancherPods {
 		k8s.WaitUntilPodAvailable(t, k8sOptions, rancherPod.Name, 10, 5*time.Second)
 	}
-}
-
-const lowerLetters = "abcdefghijklmnopqrstuvwxyz"
-
-func randomLowerString(length int) string {
-	rand.Seed(time.Now().UnixNano())
-	bytes := make([]byte, length)
-	for i := range bytes {
-		bytes[i] = lowerLetters[rand.Intn(len(lowerLetters))]
-	}
-	return string(bytes)
 }
