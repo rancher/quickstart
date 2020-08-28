@@ -18,3 +18,5 @@ kube_config*
 # vagrant files
 .vagrant/
 
+# MacOS junk
+.DS_Store

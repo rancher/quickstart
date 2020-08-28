@@ -26,25 +26,25 @@ Droplet size used for all droplets
 Docker version to install on nodes
 
 ###### `rke_kubernetes_version`
-- Default: **`"v1.18.3-rancher2-2"`**
+- Default: **`"v1.18.6-rancher1-1"`**
 Kubernetes version to use for Rancher server RKE cluster
 
 See `rancher-common` module variable `rke_kubernetes_version` for more details.
 
 ###### `workload_kubernetes_version`
-- Default: **`"v1.17.6-rancher2-2"`**
+- Default: **`"v1.17.9-rancher1-1"`**
 Kubernetes version to use for managed workload cluster
 
 See `rancher-common` module variable `workload_kubernetes_version` for more details.
 
 ###### `cert_manager_version`
-- Default: **`"0.12.0"`**
+- Default: **`"0.15.1"`**
 Version of cert-mananger to install alongside Rancher (format: 0.0.0)
 
 See `rancher-common` module variable `cert_manager_version` for more details.
 
 ###### `rancher_version`
-- Default: **`"v2.4.5"`**
+- Default: **`"v2.4.6"`**
 Rancher server version (format v0.0.0)
 
 See `rancher-common` module variable `rancher_version` for more details.
