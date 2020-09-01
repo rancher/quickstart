@@ -18,7 +18,7 @@ resource "local_file" "ssh_public_key_openssh" {
 
 # Upload Ubuntu image
 resource "openstack_images_image_v2" "rancher-ubuntu-image" {
-  name             = "${var.prefix}-ubuntu-image"
+  name             = "${var.prefix}-rancher-ubuntu-image"
   image_source_url = "https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img"
   container_format = "bare"
   disk_format      = "qcow2"
@@ -43,14 +43,14 @@ resource "openstack_compute_keypair_v2" "rancher-keypair" {
 
 # OpenStack virtual network for quickstart resources
 resource "openstack_networking_network_v2" "rancher-quickstart" {
-  name = "${var.prefix}-network"
+  name = "${var.prefix}-rancher-network"
 
   tags = ["rancher-quickstart"]
 }
 
 # OpenStack internal subnet for quickstart resources
 resource "openstack_networking_subnet_v2" "rancher-quickstart-internal" {
-  name       = "rancher-quickstart-internal"
+  name       = "${var.prefix}-rancher-quickstart-internal"
   network_id = openstack_networking_network_v2.rancher-quickstart.id
   cidr       = var.network_cidr
 
@@ -85,7 +85,7 @@ resource "openstack_networking_floatingip_v2" "rancher-server-pip" {
 
 # OpenStack network interface for quickstart resources
 resource "openstack_networking_port_v2" "rancher-server-interface" {
-  name       = "rancher-quickstart-interface"
+  name       = "${var.prefix}-rancher-quickstart-interface"
   network_id = openstack_networking_network_v2.rancher-quickstart.id
 
   fixed_ip {
@@ -248,7 +248,7 @@ module "rancher_common" {
   admin_password = var.rancher_server_admin_password
 
   workload_kubernetes_version = var.workload_kubernetes_version
-  workload_cluster_name       = "quickstart-openstack-custom"
+  workload_cluster_name       = "${var.prefix}-quickstart-openstack-custom"
 }
 
 # Floating IP of quickstart node
@@ -260,7 +260,7 @@ resource "openstack_networking_floatingip_v2" "quickstart-node-pip" {
 
 # OpenStack network interface for quickstart resources
 resource "openstack_networking_port_v2" "quickstart-node-interface" {
-  name       = "quickstart-node-interface"
+  name       = "${var.prefix}-quickstart-node-interface"
   network_id = openstack_networking_network_v2.rancher-quickstart.id
 
   fixed_ip {
@@ -293,7 +293,7 @@ data "cloudinit_config" "quickstart-node-cloudinit" {
 
 # OpenStack instance for creating a single node RKE cluster and installing the Rancher Server
 resource "openstack_compute_instance_v2" "quickstart-node" {
-  name        = "${var.prefix}-quickstart-node"
+  name        = "${var.prefix}-rancher-quickstart-node"
   flavor_name = var.instance_type
   key_pair    = openstack_compute_keypair_v2.rancher-keypair.name
   user_data   = data.cloudinit_config.quickstart-node-cloudinit.rendered
