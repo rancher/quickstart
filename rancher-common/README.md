@@ -37,7 +37,7 @@ Available versions are found in `files/cert-manager`, where a supported version
 is indicated by the presence of `crds-${var.cert_manager_version}.yaml`.
 
 ###### `rancher_version`
-- Default: **`"v2.4.6"`**
+- Default: **`"v2.4.7"`**
 Rancher server version (format `v0.0.0`)
 
 ###### `rancher_server_dns`
