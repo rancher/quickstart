@@ -270,6 +270,12 @@ resource "openstack_networking_port_v2" "quickstart-node-interface" {
   tags = ["rancher-quickstart"]
 }
 
+# Associate security group to Quickstart node port
+resource "openstack_networking_port_secgroup_associate_v2" "quickstart-node-interface-secgroup" {
+  port_id            = openstack_networking_port_v2.quickstart-node-interface.id
+  security_group_ids = [openstack_networking_secgroup_v2.rancher-quickstart-secgroup.id]
+}
+
 # Associate Quickstart node floating IP with the Quickstart node port
 resource "openstack_networking_floatingip_associate_v2" "quickstart-node-pip-associate" {
   floating_ip = openstack_networking_floatingip_v2.quickstart-node-pip.address
