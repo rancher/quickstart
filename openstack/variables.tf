@@ -11,27 +11,9 @@ variable "openstack_auth_url" {
   default     = null
 }
 
-variable "openstack_cloud" {
-  type        = string
-  description = "The entry in a clouds.yaml file."
-  default     = null
-}
-
-variable "openstack_region" {
-  type        = string
-  description = "The region of the OpenStack cloud to use."
-  default     = null
-}
-
 variable "openstack_user_name" {
   type        = string
   description = "The Username to login with."
-  default     = null
-}
-
-variable "openstack_project_name" {
-  type        = string
-  description = "The Name of the Project."
   default     = null
 }
 
@@ -41,33 +23,21 @@ variable "openstack_password" {
   default     = null
 }
 
-variable "openstack_domain_name" {
+variable "openstack_region" {
+  type        = string
+  description = "The region of the OpenStack cloud to use."
+  default     = null
+}
+
+variable "openstack_domain_id" {
   type        = string
   description = "The Name of the Domain to scope to."
   default     = null
 }
 
-variable "openstack_user_id" {
+variable "openstack_domain_name" {
   type        = string
-  description = "The User ID to login with."
-  default     = null
-}
-
-variable "openstack_application_credential_id" {
-  type        = string
-  description = "The ID of an application credential to authenticate with."
-  default     = null
-}
-
-variable "openstack_application_credential_name" {
-  type        = string
-  description = "The name of an application credential to authenticate with."
-  default     = null
-}
-
-variable "openstack_application_credential_secret" {
-  type        = string
-  description = "The secret of an application credential to authenticate with."
+  description = "The Name of the Domain to scope to."
   default     = null
 }
 
@@ -77,39 +47,9 @@ variable "openstack_project_id" {
   default     = null
 }
 
-variable "openstack_token" {
+variable "openstack_project_name" {
   type        = string
-  description = "The auth token to login with."
-  default     = null
-}
-
-variable "openstack_user_domain_name" {
-  type        = string
-  description = "The domain name where the user is located."
-  default     = null
-}
-
-variable "openstack_user_domain_id" {
-  type        = string
-  description = "The domain ID where the user is located."
-  default     = null
-}
-
-variable "openstack_project_domain_name" {
-  type        = string
-  description = "The domain name where the project is located."
-  default     = null
-}
-
-variable "openstack_project_domain_id" {
-  type        = string
-  description = "The domain ID where the project is located."
-  default     = null
-}
-
-variable "openstack_domain_id" {
-  type        = string
-  description = "The Name of the Domain to scope to."
+  description = "The Name of the Project."
   default     = null
 }
 
@@ -122,18 +62,6 @@ variable "openstack_insecure" {
 variable "openstack_cacert_file" {
   type        = string
   description = "Specify a custom CA certificate when communicating over SSL."
-  default     = null
-}
-
-variable "openstack_cert" {
-  type        = string
-  description = "Specify client certificate file for SSL client authentication."
-  default     = null
-}
-
-variable "openstack_key" {
-  type        = string
-  description = "Specify client private key file for SSL client authentication."
   default     = null
 }
 

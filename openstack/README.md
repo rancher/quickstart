@@ -11,96 +11,44 @@ Both instances will have wide-open security groups and will be accessible over S
 The name of the pool from which to obtain the floating IPs
 
 ###### `openstack_auth_url`
-- **Optional**; required if `openstack_cloud` is not specified.
+- **Optional**
 The OpenStack Identity authentication URL.
 If omitted, the `OS_AUTH_URL` environment variable is used.
-
-###### `openstack_cloud`
-- **Optional**; required if `openstack_auth_url` is not specified.
-An entry in a `clouds.yaml` file.
-See the OpenStack openstacksdk documentation for more information about clouds.yaml files.
-If omitted, the `OS_CLOUD` environment variable is used.
-
-###### `openstack_region`
-- **Optional**
-The region of the OpenStack cloud to use.
-If omitted, the `OS_REGION_NAME` environment variable is used.
 
 ###### `openstack_user_name`
 - **Optional**
 The Username to login with.
-f omitted, the `OS_USERNAME` environment variable is used.
-
-###### `openstack_project_name`
-- **Optional**
-The Name of the Project.
-If omitted, the `OS_TENANT_ID` or `OS_PROJECT_ID` environment variables are used.
+If omitted, the `OS_USERNAME` environment variable is used.
 
 ###### `openstack_password`
 - **Optional**
 The Password to login with.
 If omitted, the `OS_PASSWORD` environment variable is used.
 
+###### `openstack_region`
+- **Optional**
+The region of the OpenStack cloud to use.
+If omitted, the `OS_REGION_NAME` environment variable is used.
+
+###### `openstack_domain_id`
+- **Optional**
+The Name of the Domain to scope to.
+If omitted, the `OS_DOMAIN_ID` environment variable is checked.
+
 ###### `openstack_domain_name`
 - **Optional**
 The Name of the Domain to scope to.
 If omitted, the `OS_DOMAIN_NAME` environment variable is used.
-
-###### `openstack_user_id`
-- **Optional**
-The User ID to login with.
-If omitted, the `OS_USER_ID` environment variable is checked.
-
-###### `openstack_application_credential_id`
-- **Optional**
-The ID of an application credential to authenticate with.
-An `openstack_application_credential_secret` has to bet set along with this parameter.
-
-###### `openstack_application_credential_name`
-- **Optional**
-The name of an application credential to authenticate with.
-Requires `openstack_user_id`, or `openstack_user_name` and `openstack_user_domain_name` (or `openstack_user_domain_id`) to be set.
-
-###### `openstack_application_credential_secret`
-- **Optional**
-The secret of an application credential to authenticate with.
-Required by `openstack_application_credential_id` or `openstack_application_credential_name`.
 
 ###### `openstack_project_id`
 - **Optional**
 The ID of the Project to login with.
 If omitted, the `OS_TENANT_ID` or `OS_PROJECT_ID` environment variables are used.
 
-###### `openstack_token`
+###### `openstack_project_name`
 - **Optional**
-The auth token to login with.
-A token is an expiring, temporary means of access issued via the Keystone service.
-If omitted, the `OS_TOKEN` or `OS_AUTH_TOKEN` environment variables are used.
-
-###### `openstack_user_domain_name`
-- **Optional**
-The domain name where the user is located.
-If omitted, the `OS_USER_DOMAIN_NAME` environment variable is checked.
-
-###### `openstack_user_domain_id`
-- **Optional**
-The domain ID where the user is located.
-If omitted, the `OS_USER_DOMAIN_ID` environment variable is checked.
-
-###### `openstack_project_domain_name`
-- **Optional**
-The domain name where the project is located.
-If omitted, the `OS_PROJECT_DOMAIN_NAME` environment variable is checked.
-
-###### `openstack_project_domain_id`
-- **Optional**
-The domain ID where the project is located.
-If omitted, the `OS_PROJECT_DOMAIN_ID` environment variable is checked.
-
-###### `openstack_domain_id`
-- **Optional**
-The Name of the Domain to scope to.
-If omitted, the `OS_DOMAIN_ID` environment variable is checked.
+The Name of the Project.
+If omitted, the `OS_TENANT_ID` or `OS_PROJECT_ID` environment variables are used.
 
 ###### `openstack_insecure`
 - **Optional**
@@ -112,18 +60,6 @@ If omitted, the `OS_INSECURE` environment variable is used.
 Specify a custom CA certificate when communicating over SSL.
 You can specify either a path to the file or the contents of the certificate.
 If omitted, the `OS_CACERT` environment variable is used.
-
-###### `openstack_cert`
-- **Optional**
-Specify client certificate file for SSL client authentication.
-You can specify either a path to the file or the contents of the certificate.
-If omitted the `OS_CERT` environment variable is used.
-
-###### `openstack_key`
-- **Optional**
-Specify client private key file for SSL client authentication.
-You can specify either a path to the file or the contents of the key.
-If omitted the `OS_KEY` environment variable is used.
 
 ###### `prefix`
 - Default: **`"quickstart"`**

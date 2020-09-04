@@ -11,73 +11,35 @@ rancher_server_admin_password = ""
 # Use either the OS_* environment variables or the following variables
 # to authenticate with OpenStack infrastructure.
 
-# OpenStack entry in a clouds.yaml file
-# - Required if openstack_auth_url is not specified
-# openstack_cloud = ""
-
 # OpenStack Identity authentication URL
-# - Required if openstack_cloud is not specified
 # openstack_auth_url = ""
-
-# OpenStack Region
-# openstack_region = ""
 
 # OpenStack User Name
 # openstack_user_name = ""
 
-# OpenStack Project Name
-# openstack_project_name = ""
-
 # OpenStack Password
 # openstack_password = ""
+
+# OpenStack Region
+# openstack_region = ""
+
+# OpenStack Domain ID
+# openstack_domain_id = ""
 
 # OpenStack Domain Name
 # openstack_domain_name = ""
 
-# OpenStack User ID
-# openstack_user_id = ""
-
-# OpenStack Application Credential ID
-# openstack_application_credential_id = ""
-
-# OpenStack Application Credential Name
-# openstack_application_credential_name = ""
-
-# OpenStack Application Credential Secret
-# openstack_application_credential_secret = ""
-
 # OpenStacl Project ID
 # openstack_project_id = ""
 
-# OpenStack Token
-# openstack_token = ""
-
-# OpenStack User Domain Name
-# openstack_user_domain_name = ""
-
-# OpenStack User Domain ID
-# openstack_user_domain_id = ""
-
-# OpenStack Project Domain Nmae
-# openstack_project_domain_name = ""
-
-# OpenStack Project Domain ID
-# openstack_project_domain_id = ""
-
-# OpenStack Domain ID
-# openstack_domain_id = ""
+# OpenStack Project Name
+# openstack_project_name = ""
 
 # OpenStack Insecure
 # openstack_insecure = ""
 
 # OpenStack CACert File
 # openstack_cacert_file = ""
-
-# OpenStack Cert
-# openstack_cert = ""
-
-# OpenStack Key
-# openstack_key = ""
 
 # Optional variables, uncomment to customize the quickstart
 # ----------------------------------------------------------
