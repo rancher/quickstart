@@ -107,52 +107,16 @@ resource "openstack_networking_secgroup_v2" "rancher-quickstart-secgroup" {
 }
 
 # OpenStack security group rules
-resource "openstack_networking_secgroup_rule_v2" "rancher-quickstart-secgroup-rule-ssh" {
+resource "openstack_networking_secgroup_rule_v2" "rancher-quickstart-secgroup-rule-v4-all" {
   direction         = "ingress"
   ethertype         = "IPv4"
-  protocol          = "tcp"
-  port_range_min    = 22
-  port_range_max    = 22
   remote_ip_prefix  = "0.0.0.0/0"
   security_group_id = openstack_networking_secgroup_v2.rancher-quickstart-secgroup.id
 }
 
-resource "openstack_networking_secgroup_rule_v2" "rancher-quickstart-secgroup-rule-http" {
+resource "openstack_networking_secgroup_rule_v2" "rancher-quickstart-secgroup-rule-v6-all" {
   direction         = "ingress"
-  ethertype         = "IPv4"
-  protocol          = "tcp"
-  port_range_min    = 80
-  port_range_max    = 80
-  remote_ip_prefix  = "0.0.0.0/0"
-  security_group_id = openstack_networking_secgroup_v2.rancher-quickstart-secgroup.id
-}
-
-resource "openstack_networking_secgroup_rule_v2" "rancher-quickstart-secgroup-rule-https" {
-  direction         = "ingress"
-  ethertype         = "IPv4"
-  protocol          = "tcp"
-  port_range_min    = 443
-  port_range_max    = 443
-  remote_ip_prefix  = "0.0.0.0/0"
-  security_group_id = openstack_networking_secgroup_v2.rancher-quickstart-secgroup.id
-}
-
-resource "openstack_networking_secgroup_rule_v2" "rancher-quickstart-secgroup-rule-kubeapi" {
-  direction         = "ingress"
-  ethertype         = "IPv4"
-  protocol          = "tcp"
-  port_range_min    = 6443
-  port_range_max    = 6443
-  remote_ip_prefix  = "0.0.0.0/0"
-  security_group_id = openstack_networking_secgroup_v2.rancher-quickstart-secgroup.id
-}
-
-resource "openstack_networking_secgroup_rule_v2" "rancher-quickstart-secgroup-rule-docker" {
-  direction         = "ingress"
-  ethertype         = "IPv4"
-  protocol          = "tcp"
-  port_range_min    = 2376
-  port_range_max    = 2376
+  ethertype         = "IPv6"
   remote_ip_prefix  = "0.0.0.0/0"
   security_group_id = openstack_networking_secgroup_v2.rancher-quickstart-secgroup.id
 }
