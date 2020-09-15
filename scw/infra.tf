@@ -22,7 +22,10 @@ resource "scaleway_account_ssh_key" "main" {
 }
 
 # SCW Public Compute Address for rancher server node
-resource "scaleway_instance_ip" "public_ip" {}
+resource "scaleway_instance_ip" "rancher_server_address" {}
+
+# SCW Public Compute Address for workload server node
+resource "scaleway_instance_ip" "workload_server_address" {}
 
 # Firewall Rule to allow all traffic
 resource "scaleway_instance_security_group" "rancher_fw_allowall" {
@@ -42,7 +45,7 @@ resource "scaleway_instance_server" "rancher_server" {
   type         = var.machine_type
   image        = "centos_7.6"
 
-  ip_id        = scaleway_instance_ip.public_ip.id
+  ip_id        = scaleway_instance_ip.rancher_server_address.id
 
   security_group_id = scaleway_instance_security_group.rancher_fw_allowall.id
 
@@ -63,7 +66,7 @@ resource "scaleway_instance_server" "rancher_server" {
 
     connection {
       type        = "ssh"
-      host        = scaleway_instance_ip.public_ip.address
+      host        = scaleway_instance_ip.rancher_server_address.address
       user        = local.node_username
       private_key = tls_private_key.global_key.private_key_pem
     }
@@ -90,3 +93,43 @@ module "rancher_common" {
   workload_cluster_name       = "quickstart-gcp-custom"
 }
 
+
+
+resource "scaleway_instance_server" "workload_server" {
+  depends_on = [
+    scaleway_instance_security_group.rancher_fw_allowall,
+  ]
+
+  name         = "${var.prefix}-workload-server"
+  type         = var.machine_type
+  image        = "centos_7.6"
+
+  ip_id        = scaleway_instance_ip.workload_server_address.id
+
+  security_group_id = scaleway_instance_security_group.rancher_fw_allowall.id
+
+  cloud_init = templatefile(
+    join("/", [path.module, "../cloud-common/files/userdata_quickstart_node.template"]),
+    {
+      docker_version   = var.docker_version
+      username         = local.node_username
+      register_command = module.rancher_common.custom_cluster_command
+      public_ip        = scaleway_instance_ip.workload_server_address.address
+    }
+  )
+
+  provisioner "remote-exec" {
+    inline = [
+      "echo 'Waiting for cloud-init to complete...'",
+      "cloud-init status --wait > /dev/null",
+      "echo 'Completed cloud-init!'",
+    ]
+
+    connection {
+      type        = "ssh"
+      host        = scaleway_instance_ip.workload_server_address.address
+      user        = local.node_username
+      private_key = tls_private_key.global_key.private_key_pem
+    }
+  }
+}

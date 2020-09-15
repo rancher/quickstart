@@ -6,3 +6,6 @@ output "rancher_node_ip" {
   value = scaleway_instance_server.rancher_server.public_ip
 }
 
+#output "workload_node_ip" {
+#  value = scaleway_instance_server.workload_server.public_ip
+#}
