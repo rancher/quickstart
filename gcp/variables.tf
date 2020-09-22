@@ -43,13 +43,13 @@ variable "docker_version" {
 variable "rke_kubernetes_version" {
   type        = string
   description = "Kubernetes version to use for Rancher server RKE cluster"
-  default     = "v1.18.6-rancher1-1"
+  default     = "v1.18.8-rancher1-1"
 }
 
 variable "workload_kubernetes_version" {
   type        = string
   description = "Kubernetes version to use for managed workload cluster"
-  default     = "v1.17.9-rancher1-1"
+  default     = "v1.17.11-rancher1-1"
 }
 
 variable "cert_manager_version" {
