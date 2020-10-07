@@ -14,6 +14,7 @@ resource "rancher2_bootstrap" "admin" {
 
 # Create custom managed cluster for quickstart
 resource "rancher2_cluster" "quickstart_workload" {
+  count = var.create_workload_cluster ? 1 : 0
   provider = rancher2.admin
 
   name        = var.workload_cluster_name
