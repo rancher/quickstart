@@ -158,7 +158,7 @@ module "rancher_common" {
     flannel_backend_type = "vxlan"
     flannel_backend_vni  = "4096"
   }
-  windows_prefered_cluster = true
+  windows_preferred_cluster = true
 }
 
 # Public IP of quickstart node

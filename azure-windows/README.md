@@ -53,7 +53,7 @@ See `rancher-common` module variable `workload_kubernetes_version` for more deta
 
 ###### `cert_manager_version`
 - Default: **`"0.15.1"`**
-Version of cert-mananger to install alongside Rancher (format: 0.0.0)
+Version of cert-manager to install alongside Rancher (format: 0.0.0)
 
 See `rancher-common` module variable `cert_manager_version` for more details.
 

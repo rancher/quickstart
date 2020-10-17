@@ -26,5 +26,5 @@ resource "rancher2_cluster" "quickstart_workload" {
     }
     kubernetes_version = var.workload_kubernetes_version
   }
-  windows_prefered_cluster = var.windows_prefered_cluster
+  windows_preferred_cluster = var.windows_preferred_cluster
 }

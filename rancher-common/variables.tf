@@ -32,7 +32,7 @@ variable "rke_kubernetes_version" {
 
 variable "cert_manager_version" {
   type        = string
-  description = "Version of cert-mananger to install alongside Rancher (format: 0.0.0)"
+  description = "Version of cert-manager to install alongside Rancher (format: 0.0.0)"
   default     = "0.15.1"
 }
 
@@ -77,7 +77,7 @@ variable "rke_network_options" {
   default     = null
 }
 
-variable "windows_prefered_cluster" {
+variable "windows_preferred_cluster" {
   type        = bool
   description = "Activate windows supports for the custom workload cluster"
   default     = false
