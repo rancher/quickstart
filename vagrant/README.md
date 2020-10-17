@@ -1,6 +1,6 @@
 # Vagrant Quickstart
 
-This folder contains Vagrant code to stand up a single Rancher server instance with a 3 node cluster attached to it.
+This folder contains Vagrant code to stand up a single Rancher server instance with a single node cluster attached to it.
 
 ## Requirements
 
