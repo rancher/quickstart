@@ -77,7 +77,7 @@ variable "rke_network_options" {
   default     = null
 }
 
-variable "windows_preferred_cluster" {
+variable "windows_prefered_cluster" {
   type        = bool
   description = "Activate windows supports for the custom workload cluster"
   default     = false
