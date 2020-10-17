@@ -43,7 +43,7 @@ variable "workload_kubernetes_version" {
 
 variable "cert_manager_version" {
   type        = string
-  description = "Version of cert-mananger to install alongside Rancher (format: 0.0.0)"
+  description = "Version of cert-manager to install alongside Rancher (format: 0.0.0)"
   default     = "0.15.1"
 }
 

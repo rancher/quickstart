@@ -12,9 +12,9 @@ Use Vagrant to run Rancher locally and avoid cloud costs.
 
 A local quickstart is provided in the form of Vagrant configuration.
 
-**The Vagrant quickstart does not currently follow Rancher best practices for installing a Rancher manangement server.**
+**The Vagrant quickstart does not currently follow Rancher best practices for installing a Rancher management server.**
 Use this configuration only to evaluate the features of Rancher.
-See cloud provider quickstarts for an HA foundation according to Rancher installtion best practices.
+See cloud provider quickstarts for an HA foundation according to Rancher installation best practices.
 
 ### Requirements - Vagrant (local)
 
