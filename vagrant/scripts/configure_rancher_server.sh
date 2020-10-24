@@ -2,7 +2,7 @@
 
 rancher_ip="172.22.101.101"
 admin_password=${1:-password}
-rancher_version=${2:-latest}
+rancher_version=${2:-stable}
 k8s_version=$3
 curlimage="appropriate/curl"
 jqimage="stedolan/jq"
