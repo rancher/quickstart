@@ -37,7 +37,7 @@ func TestE2E_Gcp(t *testing.T) {
 func runTerraformAndVerify(t *testing.T, terraformDir string) {
 	t.Parallel()
 
-	prefix := "qs-test-" + rand.String(7)
+	prefix := "qs-" + rand.String(5) + "-test"
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: terraformDir,
