@@ -6,7 +6,7 @@ terraform {
     }
     k8s = {
       source  = "banzaicloud/k8s"
-      version = "0.8.3"
+      version = "0.8.2"
     }
     local = {
       source  = "hashicorp/local"
