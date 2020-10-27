@@ -76,9 +76,16 @@ resource "azurerm_network_interface" "rancher-server-interface" {
   }
 }
 
+// ensure computer_name meets 15 character limit
+// uses assumption that resources only use 4 characters for a suffix
+locals {
+  computer_name_prefix = substr(var.prefix, 0, 11)
+}
+
 # Azure linux virtual machine for creating a single node RKE cluster and installing the Rancher Server
 resource "azurerm_linux_virtual_machine" "rancher_server" {
   name                  = "${var.prefix}-rancher-server"
+  computer_name         = "${local.computer_name_prefix}-rs" // ensure computer_name meets 15 character limit
   location              = azurerm_resource_group.rancher-quickstart.location
   resource_group_name   = azurerm_resource_group.rancher-quickstart.name
   network_interface_ids = [azurerm_network_interface.rancher-server-interface.id]
@@ -186,6 +193,7 @@ resource "azurerm_network_interface" "quickstart-node-interface" {
 # Azure linux virtual machine for creating a single node RKE cluster and installing the Rancher Server
 resource "azurerm_linux_virtual_machine" "quickstart-node" {
   name                  = "${var.prefix}-quickstart-node"
+  computer_name         = "${local.computer_name_prefix}-qn" // ensure computer_name meets 15 character limit
   location              = azurerm_resource_group.rancher-quickstart.location
   resource_group_name   = azurerm_resource_group.rancher-quickstart.name
   network_interface_ids = [azurerm_network_interface.quickstart-node-interface.id]
