@@ -11,6 +11,8 @@ crash.log
 # terraform.tvars
 terraform.tfvars
 
+*.tfvars
+
 # known files created by terraform modules
 id_rsa*
 kube_config*

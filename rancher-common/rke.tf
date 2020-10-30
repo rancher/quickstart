@@ -11,7 +11,7 @@ resource "rke_cluster" "rancher_cluster" {
       internal_address = var.node_internal_ip
       user             = var.node_username
       role             = ["controlplane", "etcd", "worker"]
-      ssh_key          = file(var.ssh_private_key_pem)
+      ssh_key          = file(pathexpand(var.ssh_private_key_pem))
     }
   }
 
