@@ -39,7 +39,7 @@ Instance type used for all linux virtual instances
 Docker version to install on nodes
 
 ###### `rke_kubernetes_version`
-- Default: **`"v1.18.8-rancher1-1"`**
+- Default: **`"v1.19.3-rancher1-2"`**
 Kubernetes version to use for Rancher server RKE cluster
 
 See `rancher-common` module variable `rke_kubernetes_version` for more details.
