@@ -1,0 +1,41 @@
+# Required variables
+# - Fill in before beginning quickstart
+# ==========================================================
+
+# Linode API token
+linode_token = ""
+
+# Password used to log in to the `admin` account on the new Rancher server
+rancher_server_admin_password = ""
+
+
+# Optional variables
+# - Uncomment variables to customize quickstart
+# ----------------------------------------------------------
+
+# DigitalOcean region for all resources
+# linode_region = ""
+
+# Prefix for all resources created by quickstart
+# prefix = ""
+
+# Size of all created linodes
+# linode_type = ""
+
+# Docker version installed on target hosts
+# - Must be a version supported by the Rancher install scripts
+# docker_version = ""
+
+# Kubernetes version used for creating management server cluster
+# - Must be supported by RKE terraform provider 1.0.1
+# rke_kubernetes_version = ""
+
+# Kubernetes version used for creating workload cluster
+# - Must be supported by RKE terraform provider 1.0.1
+# workload_kubernetes_version = ""
+
+# Version of cert-manager to install, used in case of older Rancher versions
+# cert_manager_version = ""
+
+# Version of Rancher to install
+# rancher_version = ""

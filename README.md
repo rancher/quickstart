@@ -29,7 +29,7 @@ See [/vagrant](./vagrant) for details on usage and settings.
 
 ## Cloud quickstart
 
-Quickstarts are provided for [**Amazon Web Services** (`aws`)](./aws), [**Microsoft Azure Cloud** (`azure`)](./azure), [**Microsoft Azure Cloud with Windows nodes** (`azure-windows`)](./azure-windows), [**DigitalOcean** (`do`)](./do), and [**Google Cloud Platform** (`gcp`)](./gcp).
+Quickstarts are provided for [**Amazon Web Services** (`aws`)](./aws), [**Microsoft Azure Cloud** (`azure`)](./azure), [**Microsoft Azure Cloud with Windows nodes** (`azure-windows`)](./azure-windows), [**DigitalOcean** (`do`)](./do), [**Google Cloud Platform** (`gcp`)](./gcp) and [**Linode** (`linode`)](./linode).
 
 **You will be responsible for any and all infrastructure costs incurred by these resources.**
 
