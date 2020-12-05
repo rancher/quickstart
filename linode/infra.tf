@@ -18,12 +18,12 @@ resource "local_file" "ssh_public_key_openssh" {
 
 # Temporary key pair used for SSH accesss
 resource "linode_sshkey" "quickstart_ssh_key" {
-  label = "${var.prefix}-rancher-ssh-key"
-  ssh_key = replace(tls_private_key.global_key.public_key_openssh,"\n","")
+  label   = "${var.prefix}-rancher-ssh-key"
+  ssh_key = replace(tls_private_key.global_key.public_key_openssh, "\n", "")
 }
 
 resource "linode_stackscript" "rancher_server" {
-  label = "rancher-server"
+  label       = "rancher-server"
   description = "Rancher server launch script"
   script = templatefile(
     join("/", [path.module, "../cloud-common/files/userdata_rancher_server.template"]),
@@ -33,17 +33,17 @@ resource "linode_stackscript" "rancher_server" {
     }
   )
 
-  images = ["linode/ubuntu18.04"]
+  images   = ["linode/ubuntu18.04"]
   rev_note = "initial version"
 }
 
 # Linode for creating a single node RKE cluster and installing the Rancher server
 resource "linode_instance" "rancher_server" {
-  label              = "${var.prefix}-rancher-server"
-  image              = "linode/ubuntu18.04"
-  region             = var.linode_region
-  type               = var.linode_type
-  authorized_keys    = [linode_sshkey.quickstart_ssh_key.ssh_key]
+  label           = "${var.prefix}-rancher-server"
+  image           = "linode/ubuntu18.04"
+  region          = var.linode_region
+  type            = var.linode_type
+  authorized_keys = [linode_sshkey.quickstart_ssh_key.ssh_key]
 
   stackscript_id = linode_stackscript.rancher_server.id
 }
@@ -70,7 +70,7 @@ module "rancher_common" {
 
 # Linode stackscript to initialise node
 resource "linode_stackscript" "quickstart_node" {
-  label = "workload-node"
+  label       = "workload-node"
   description = "Quickstart launch script"
   script = templatefile(
     join("/", [path.module, "../cloud-common/files/userdata_quickstart_node.template"]),
@@ -80,18 +80,18 @@ resource "linode_stackscript" "quickstart_node" {
       register_command = module.rancher_common.custom_cluster_command
     }
   )
-  
-  images = ["linode/ubuntu18.04"]
+
+  images   = ["linode/ubuntu18.04"]
   rev_note = "initial version"
 }
 
 # Linode for creating a single node workload cluster
 resource "linode_instance" "quickstart_node" {
-  label              = "${var.prefix}-workload-node"
-  image              = "linode/ubuntu18.04"
-  region             = var.linode_region
-  type               = var.linode_type
-  authorized_keys    = [linode_sshkey.quickstart_ssh_key.ssh_key]
+  label           = "${var.prefix}-workload-node"
+  image           = "linode/ubuntu18.04"
+  region          = var.linode_region
+  type            = var.linode_type
+  authorized_keys = [linode_sshkey.quickstart_ssh_key.ssh_key]
 
   stackscript_id = linode_stackscript.quickstart_node.id
 }
