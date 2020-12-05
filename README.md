@@ -37,6 +37,7 @@ Quickstarts are provided for:
 - [**DigitalOcean** (`do`)](./do)
 - [**Google Cloud Platform** (`gcp`)](./gcp)
 - [**Hetzner Cloud** (`hcloud`)](./hcloud)
+- [**Linode** (`linode`)](./linode)
 
 **You will be responsible for any and all infrastructure costs incurred by these resources.**
 
