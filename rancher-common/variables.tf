@@ -33,13 +33,13 @@ variable "rke_kubernetes_version" {
 variable "cert_manager_version" {
   type        = string
   description = "Version of cert-manager to install alongside Rancher (format: 0.0.0)"
-  default     = "0.15.1"
+  default     = "1.0.4"
 }
 
 variable "rancher_version" {
   type        = string
   description = "Rancher server version (format v0.0.0)"
-  default     = "v2.4.8"
+  default     = "v2.5.2"
 }
 
 # Required
@@ -57,7 +57,7 @@ variable "admin_password" {
 variable "workload_kubernetes_version" {
   type        = string
   description = "Kubernetes version to use for managed workload cluster"
-  default     = "v1.17.11-rancher1-1"
+  default     = "v1.18.10-rancher1-2"
 }
 
 # Required

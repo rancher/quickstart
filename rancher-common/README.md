@@ -30,14 +30,14 @@ Expected to be in PEM format.
 Kubernetes version to use for Rancher server RKE cluster
 
 ###### `cert_manager_version`
-- Default: **`"0.15.1"`**
+- Default: **`"1.0.4"`**
 Version of cert-manager to install alongside Rancher (format: `0.0.0`)
 
 Available versions are found in `files/cert-manager`, where a supported version
 is indicated by the presence of `crds-${var.cert_manager_version}.yaml`.
 
 ###### `rancher_version`
-- Default: **`"v2.4.8"`**
+- Default: **`"v2.5.2"`**
 Rancher server version (format `v0.0.0`)
 
 ###### `rancher_server_dns`
@@ -56,7 +56,7 @@ Admin password to use for Rancher server bootstrap
 Log in to the Rancher server using username `admin` and this password.
 
 ###### `workload_kubernetes_version`
-- Default: **`"v1.17.11-rancher1-1"`**
+- Default: **`"v1.18.10-rancher1-2"`**
 Kubernetes version to use for managed workload cluster
 
 Defaulted to one version behind most recent minor release to allow experimenting
