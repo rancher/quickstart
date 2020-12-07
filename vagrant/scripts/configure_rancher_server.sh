@@ -14,7 +14,7 @@ for image in $curlimage $jqimage "rancher/rancher:${rancher_version}"; do
   done
 done
 
-docker run -d --restart=unless-stopped -p 80:80 -p 443:443 -v /opt/rancher:/var/lib/rancher rancher/rancher:${rancher_version}
+docker run -d --restart=unless-stopped -p 80:80 -p 443:443 -v /opt/rancher:/var/lib/rancher --privileged rancher/rancher:${rancher_version}
 
 # wait until rancher server is ready
 while true; do
