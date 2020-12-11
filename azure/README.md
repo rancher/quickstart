@@ -45,7 +45,7 @@ Kubernetes version to use for Rancher server RKE cluster
 See `rancher-common` module variable `rke_kubernetes_version` for more details.
 
 ###### `workload_kubernetes_version`
-- Default: **`"v1.18.10-rancher1-2"`**
+- Default: **`"v1.18.12-rancher1-1"`**
 Kubernetes version to use for managed workload cluster
 
 See `rancher-common` module variable `workload_kubernetes_version` for more details.
