@@ -27,7 +27,7 @@ variable "ssh_private_key_pem" {
 variable "rke_kubernetes_version" {
   type        = string
   description = "Kubernetes version to use for Rancher server RKE cluster"
-  default     = "v1.19.3-rancher1-2"
+  default     = "v1.19.4-rancher1-1"
 }
 
 variable "cert_manager_version" {

@@ -26,7 +26,7 @@ Private key used for SSH access to the Rancher server cluster node
 Expected to be in PEM format.
 
 ###### `rke_kubernetes_version`
-- Default: **`"v1.19.3-rancher1-2"`**
+- Default: **`"v1.19.4-rancher1-1"`**
 Kubernetes version to use for Rancher server RKE cluster
 
 ###### `cert_manager_version`

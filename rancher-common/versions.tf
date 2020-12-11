@@ -18,7 +18,7 @@ terraform {
     }
     rke = {
       source  = "rancher/rke"
-      version = "1.1.5"
+      version = "1.1.6"
     }
   }
   required_version = ">= 0.13"
