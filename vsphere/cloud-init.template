@@ -1,0 +1,7 @@
+#cloud-config
+resize_rootfs: true
+hostname: ${node_name}
+ssh_authorized_keys:
+%{ for key in authorized_keys ~}
+  - ${key}
+%{ endfor ~}
