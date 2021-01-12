@@ -42,3 +42,5 @@ rancher_server_admin_password = ""
 # Version of Rancher to install
 # rancher_version = ""
 
+# Whether to create a windows cluster
+# windows_cluster = false

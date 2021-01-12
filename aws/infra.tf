@@ -106,6 +106,9 @@ module "rancher_common" {
 
   workload_kubernetes_version = var.workload_kubernetes_version
   workload_cluster_name       = "quickstart-aws-custom"
+
+  windows_prefered_cluster = var.windows_cluster
+  rke_network_plugin       = var.windows_cluster ? "flannel" : "canal"
 }
 
 # AWS EC2 instance for creating a single node workload cluster
@@ -144,4 +147,31 @@ resource "aws_instance" "quickstart_node" {
     Name    = "${var.prefix}-quickstart-node"
     Creator = "rancher-quickstart"
   }
+}
+
+resource "aws_instance" "quickstart_node_win" {
+  count         = var.windows_cluster ? 1 : 0
+  ami           = data.aws_ami.windows.id
+  instance_type = var.instance_type_win
+
+  key_name        = aws_key_pair.quickstart_key_pair.key_name
+  security_groups = [aws_security_group.rancher_sg_allowall.name]
+
+  user_data = templatefile(
+    join("/", [path.module, "files/userdata_quickstart_win.template"]),
+    {
+      register_command = module.rancher_common.custom_cluster_windows_command
+    }
+  )
+
+  root_block_device {
+    volume_size = 50
+  }
+
+
+  tags = {
+    Name    = "${var.prefix}-quickstart-win"
+    Creator = "rancher-quickstart"
+  }
+
 }

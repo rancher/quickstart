@@ -32,6 +32,18 @@ variable "instance_type" {
   default     = "t3a.medium"
 }
 
+variable "instance_type_win" {
+  type        = string
+  description = "Instance type used for all Windows EC2 instances"
+  default     = "t3a.large"
+}
+
+variable "windows_cluster" {
+  type        = bool
+  description = "Whether to create a windows cluster and add windows node"
+  default     = false
+}
+
 variable "docker_version" {
   type        = string
   description = "Docker version to install on nodes"
@@ -59,7 +71,7 @@ variable "cert_manager_version" {
 variable "rancher_version" {
   type        = string
   description = "Rancher server version (format: v0.0.0)"
-  default     = "v2.5.3"
+  default     = "v2.5.5"
 }
 
 # Required
