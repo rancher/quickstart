@@ -16,6 +16,8 @@ This folder contains Vagrant code to stand up a single Rancher server instance w
 When provisioning is finished the Rancher UI will become accessible on [172.22.101.101](http://172.22.101.101).
 The default password is `admin`, but this can be updated in the config.yaml file.
 
+If you want to keep the configuration changes outside the git repository you can copy the config.yaml file to local_config.yaml and make changes there.
+
 ## Remove
 
 To remove the VMs that have been deployed run `vagrant destroy -f`

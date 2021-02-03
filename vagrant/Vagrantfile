@@ -4,7 +4,12 @@ require_relative 'vagrant_rancheros_guest_plugin.rb'
 require 'ipaddr'
 require 'yaml'
 
-x = YAML.load_file(File.join(File.dirname(__FILE__), 'config.yaml'))
+if File.exists?(File.join(File.dirname(__FILE__), "local_config.yaml")) then
+    puts "Using local configuration file"
+    x = YAML.load_file(File.join(File.dirname(__FILE__), "local_config.yaml"))
+else
+    x = YAML.load_file(File.join(File.dirname(__FILE__), 'config.yaml'))
+end
 puts "Config: #{x.inspect}\n\n"
 
 $private_nic_type = x.fetch('net').fetch('private_nic_type')
