@@ -18,3 +18,10 @@ data "aws_ami" "ubuntu" {
     values = ["hvm"]
   }
 }
+# Use latest SLES 15 SP2 AMI
+#data "susepubliccloud_image_ids" "sles" {
+#  cloud      = "amazon"
+#  region     = "us-east-1"
+#  state      = "active"
+#  name_regex = "suse-sles-15-sp2.*-hvm-ssd-x86_64"
+#}
