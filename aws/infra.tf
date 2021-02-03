@@ -49,6 +49,8 @@ resource "aws_security_group" "rancher_sg_allowall" {
 # AWS EC2 instance for creating a single node RKE cluster and installing the Rancher server
 resource "aws_instance" "rancher_server" {
   ami           = data.aws_ami.ubuntu.id
+# AWS EC2 SLES instance
+# ami           = data.susepubliccloud_image_ids.sles.ids[0]
   instance_type = var.instance_type
 
   key_name        = aws_key_pair.quickstart_key_pair.key_name
@@ -71,6 +73,7 @@ resource "aws_instance" "rancher_server" {
       "echo 'Waiting for cloud-init to complete...'",
       "cloud-init status --wait > /dev/null",
       "echo 'Completed cloud-init!'",
+# Start docker daemon on SLES   "sudo systemctl start docker",
     ]
 
     connection {
@@ -111,6 +114,8 @@ module "rancher_common" {
 # AWS EC2 instance for creating a single node workload cluster
 resource "aws_instance" "quickstart_node" {
   ami           = data.aws_ami.ubuntu.id
+# AWS SLES instance
+# ami           = data.susepubliccloud_image_ids.sles.ids[0]
   instance_type = var.instance_type
 
   key_name        = aws_key_pair.quickstart_key_pair.key_name
@@ -130,6 +135,7 @@ resource "aws_instance" "quickstart_node" {
       "echo 'Waiting for cloud-init to complete...'",
       "cloud-init status --wait > /dev/null",
       "echo 'Completed cloud-init!'",
+# Start docker daemon on SLES   "sudo systemctl start docker",
     ]
 
     connection {
