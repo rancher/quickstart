@@ -80,6 +80,15 @@ variable "rancher_server_admin_password" {
   description = "Admin password to use for Rancher server bootstrap"
 }
 
+variable "rancher_windows_network_options" {
+  description = "Network options for windows flannel"
+  default = {
+    flannel_backend_port = 4789
+    flannel_backend_type = "vxlan"
+    flannel_backend_vni  = 4096
+  }
+}
+
 
 # Local variables used to reduce repetition
 locals {

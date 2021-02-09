@@ -109,6 +109,7 @@ module "rancher_common" {
 
   windows_prefered_cluster = var.windows_cluster
   rke_network_plugin       = var.windows_cluster ? "flannel" : "canal"
+  rke_network_options      = var.windows_cluster ? var.rancher_windows_network_options : null
 }
 
 # AWS EC2 instance for creating a single node workload cluster
