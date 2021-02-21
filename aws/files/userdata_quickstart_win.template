@@ -1,0 +1,17 @@
+<powershell>
+$headers = @{
+    'X-aws-ec2-metadata-token-ttl-seconds' = '21600'
+}
+$token = Invoke-RestMethod -Method 'Put' -Headers $headers -Uri http://169.254.169.254/latest/api/token
+
+$headers = @{
+    'X-aws-ec2-metadata-token' = $token
+}
+$publicIp = Invoke-RestMethod -Method 'Get' -Headers $headers -Uri http://169.254.169.254/latest/meta-data/public-ipv4
+$privateIp = Invoke-RestMethod -Method 'Get' -Headers $headers -Uri http://169.254.169.254/latest/meta-data/local-ipv4
+
+$command = '${register_command}'
+$command = $command -replace '\| iex}"','--address $publicIP --internal-address $privateIP --worker \| iex}"'
+
+$command | iex
+</powershell>
