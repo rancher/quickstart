@@ -27,7 +27,7 @@ variable "ssh_private_key_pem" {
 variable "rke_kubernetes_version" {
   type        = string
   description = "Kubernetes version to use for Rancher server RKE cluster"
-  default     = "v1.19.6-rancher1-1"
+  default     = "v1.20.4-rancher1-1"
 }
 
 variable "cert_manager_version" {
@@ -39,7 +39,7 @@ variable "cert_manager_version" {
 variable "rancher_version" {
   type        = string
   description = "Rancher server version (format v0.0.0)"
-  default     = "v2.5.5"
+  default     = "v2.5.7"
 }
 
 # Required
@@ -57,7 +57,7 @@ variable "admin_password" {
 variable "workload_kubernetes_version" {
   type        = string
   description = "Kubernetes version to use for managed workload cluster"
-  default     = "v1.18.14-rancher1-1"
+  default     = "v1.19.8-rancher1-1"
 }
 
 # Required
