@@ -33,6 +33,7 @@ Vagrant.configure(2) do |config|
       end
       server.vm.network x.fetch('net').fetch('network_type'), ip: x.fetch('ip').fetch('server') , nic_type: $private_nic_type
       server.vm.hostname = "server-01"
+      server.vm.network "forwarded_port", guest: 443, host: 8443
       server.vm.provision "shell", path: "scripts/configure_rancher_server.sh", args: [x.fetch('admin_password'), x.fetch('rancher_version'), x.fetch('k8s_version')]
     
   end
