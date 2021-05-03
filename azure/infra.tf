@@ -152,7 +152,7 @@ module "rancher_common" {
   cert_manager_version = var.cert_manager_version
   rancher_version      = var.rancher_version
 
-  rancher_server_dns = join(".", ["rancher", azurerm_linux_virtual_machine.rancher_server.public_ip_address, "xip.io"])
+  rancher_server_dns = join(".", ["rancher", azurerm_linux_virtual_machine.rancher_server.public_ip_address, "nip.io"])
 
   admin_password = var.rancher_server_admin_password
 
