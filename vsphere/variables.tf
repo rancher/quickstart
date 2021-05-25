@@ -57,7 +57,7 @@ variable "rancher_server_name" {
 }
 
 variable "domain_for_rancher" {
-  default = "xip.io"
+  default = "nip.io"
 }
 
 variable "rancher_version" {
