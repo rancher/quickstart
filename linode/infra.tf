@@ -59,7 +59,7 @@ resource "linode_instance" "rke" {
 
   provisioner "remote-exec" {
     inline = [
-      "export DEBIAN_FRONTEND=noninteractive;curl -sSL https://raw.githubusercontent.com/rancher/install-docker/master/${var.docker_version}.sh | sh -"
+      "export DEBIAN_FRONTEND=noninteractive;curl -sSL https://releases.rancher.com/install-docker/${var.docker_version}.sh | sh -"
     ]
   }
 }
