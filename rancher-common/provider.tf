@@ -1,11 +1,3 @@
-# Local provider
-provider "local" {
-}
-
-# RKE provider
-provider "rke" {
-}
-
 # Kubernetes provider
 provider "k8s" {
   host = rke_cluster.rancher_cluster.api_server_url
