@@ -94,34 +94,34 @@ provider "registry.terraform.io/hashicorp/tls" {
 }
 
 provider "registry.terraform.io/rancher/rancher2" {
-  version     = "1.12.0"
-  constraints = "1.12.0"
+  version     = "1.15.1"
+  constraints = "1.15.1"
   hashes = [
-    "h1:v/C9tKn1EY7mo6sMS4u0r+usMmBHBER+ugLQ+26k1xg=",
-    "zh:08375225138bc85305357e80c01fe0e3c10edf78b8623b20d4f3236753ee412d",
-    "zh:0f8d6d0ca45eddd69c548951a7705ba7df5b49ddaff836bd1e77cd37a4324f83",
-    "zh:3e22612b71e4d70fe76cd05ed0f17387abb5973a7e2dfee65b8fd7eb8104943c",
-    "zh:44dc9c2175f92b140e50fe0fef2f7789fbcf818ed3a877162aa677ac875a1cb7",
-    "zh:6c8be2e1e056a8197d3be47775b3fa4cfee28aed47db860dbcbf33c6d98cd526",
-    "zh:8691fecb23dac6a77821950d591bdadf6b4554bc7712b24513de239e0397a548",
-    "zh:a2bfd1fcf789ec0ebb0da201f0ef12bbd2974fbdeb6cefd41ca8a9f520f07f27",
-    "zh:b752e6c4a324a5328c1db1760cfb5252d4495f0af9411d71bd18cda799c11634",
-    "zh:bda644d9b7c90314316b06b5808065889c8386e4fdfad103051a5a6998f6e470",
-    "zh:c5cbdb581c02bb8c8063435549bb53c991233ad3946144858100c4c10db2259c",
-    "zh:fc2b5d58d7fe89d424193afc1f524a17f97fb306272960cf4087707e2bad1784",
+    "h1:9QsOHDa8xTFzXZ/fUVATNQULk1V7+WDcrhKvqW0ztUg=",
+    "zh:2135bd4df89743973859dbc0d7629b3a8703107a34d2a003aac32fecd13196f1",
+    "zh:35079bc6d0126746293e181177fc4879bcc4e10de78fe3e6a41946364c231994",
+    "zh:3573acee6a8ead423ef63276c6d4d7060c474d983a7d4aa3df73fc738df9ca3b",
+    "zh:49a56ab652d1e77bea15c4be987e62c1714c81748d8e5e9f59797e9a65fd343f",
+    "zh:6638ee6bba615901dccc45c3542f8e6cba5796dde4844479e3323b887bb6d797",
+    "zh:9e1c5b3634f408ad03ccc63b3f3ee6185a157f4d83245f4d007aa1a769b5d49e",
+    "zh:a38a074c979088c1be610a9cb3c3e82de6552b38b90a7954df622907439d02d2",
+    "zh:ae530311b88510b242859f0555797c58293d77e2af7ad2f53624c1d350a6ee21",
+    "zh:de66176b9544033f7574bd9fa9e222f1a7412eafe8e66db9b6c59cf46aa5ebbb",
+    "zh:e0a44aaa9e25c8db8b0d7f556aecf1c979aff3d3f867ce361f85d502f3dccbd5",
+    "zh:fd5000e1886fa504c94bdaaf3a3ba7cbaf15afd67093d881ae737c724ee83352",
   ]
 }
 
 provider "registry.terraform.io/rancher/rke" {
-  version     = "1.2.1"
-  constraints = "1.2.1"
+  version     = "1.2.2"
+  constraints = "1.2.2"
   hashes = [
-    "h1:kPe8pDvdVlW6OGKGWMtMS8ddl6zdimyFtR69r+2dUa8=",
-    "zh:49a06fdcbec632665175716defe37e7d9867e539c34cb27e0f36fc3b269f2252",
-    "zh:afb4341cf562fccee62509cf61b2eb8889c6666516d745371c1903b672c366ae",
-    "zh:c3d7e0bd1a2afb129f293ad9b78b727ff188404445c50abe734f105f2e7d62e0",
-    "zh:d9a0bd876a575c21115a58c177f601eb1cde4c11af0f9be8f7d6f024cc89bfae",
-    "zh:e1f8bd3a740322eb0e669b08543760db25d5754a703f5773ece50d533d7d57f2",
-    "zh:e5f1f4a7d33da5834024fab3c4949e7852afcb99ffa62d5702017309ca661ea7",
+    "h1:0M7TkARgtdpMV9dvfaIGR8uI8DFTfy5NBLbA4gd+eGE=",
+    "zh:2c69a6b2c076ceabf08312f25f5042be5afc0264d9d2f063d9ec6a3dd12205ed",
+    "zh:58ab4aa01574c8ca1a4b28b3bbc1f4501abf3d5dc1d51ed7120b5e41b3ec191f",
+    "zh:5c489814801acd28721f106b633c485595cb615c620a816dcc1eae108a4fdab4",
+    "zh:8c5a3f28309a2be9f9744eb0852bc2746bd53582940aff07550f887c200dc929",
+    "zh:9baebd8b619dea744a57eb3129c5d0e766bc14df5f207d465409f33de3e423c9",
+    "zh:b6a33af13310a17c44fdd14a5255582c78e0c80e58c26b1879a36a6549112387",
   ]
 }
