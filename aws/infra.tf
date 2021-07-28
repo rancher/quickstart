@@ -22,6 +22,11 @@ resource "aws_key_pair" "quickstart_key_pair" {
   public_key      = tls_private_key.global_key.public_key_openssh
 }
 
+# 
+
+data "external" "whatismyip" {
+  program = ["/bin/bash" , "${path.module}/whatsmyip.sh"]
+}
 # Security group to allow all traffic
 resource "aws_security_group" "rancher_sg_allowall" {
   name        = "${var.prefix}-rancher-allowall"
@@ -31,9 +36,8 @@ resource "aws_security_group" "rancher_sg_allowall" {
     from_port   = "0"
     to_port     = "0"
     protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [format("%s/%s",data.external.whatismyip.result["internet_ip"],32)]
   }
-
   egress {
     from_port   = "0"
     to_port     = "0"
@@ -44,6 +48,15 @@ resource "aws_security_group" "rancher_sg_allowall" {
   tags = {
     Creator = "rancher-quickstart"
   }
+}
+
+resource "aws_security_group_rule" "add_quickstart" {
+  type              = "ingress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = [format("%s/%s",aws_instance.quickstart_node.public_ip,32)]
+  security_group_id = aws_security_group.rancher_sg_allowall.id
 }
 
 # AWS EC2 instance for creating a single node RKE cluster and installing the Rancher server
@@ -124,6 +137,10 @@ resource "aws_instance" "quickstart_node" {
       register_command = module.rancher_common.custom_cluster_command
     }
   )
+
+  root_block_device {
+    volume_size = 32
+  }
 
   provisioner "remote-exec" {
     inline = [
