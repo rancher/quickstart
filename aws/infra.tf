@@ -27,10 +27,10 @@ resource "aws_key_pair" "quickstart_key_pair" {
 data "external" "whatismyip" {
   program = ["/bin/bash" , "${path.module}/whatsmyip.sh"]
 }
-# Security group to allow all traffic
-resource "aws_security_group" "rancher_sg_allowall" {
-  name        = "${var.prefix}-rancher-allowall"
-  description = "Rancher quickstart - allow all traffic"
+# Security group to allow ingress traffic
+resource "aws_security_group" "rancher_sg_allowingress" {
+  name        = "${var.prefix}-rancher-allowingress"
+  description = "Rancher quickstart - allow ingress traffic"
 
   ingress {
     from_port   = "0"
@@ -56,7 +56,7 @@ resource "aws_security_group_rule" "add_quickstart" {
   to_port           = 0
   protocol          = "-1"
   cidr_blocks       = [format("%s/%s",aws_instance.quickstart_node.public_ip,32)]
-  security_group_id = aws_security_group.rancher_sg_allowall.id
+  security_group_id = aws_security_group.rancher_sg_allowingress.id
 }
 
 # AWS EC2 instance for creating a single node RKE cluster and installing the Rancher server
@@ -65,7 +65,7 @@ resource "aws_instance" "rancher_server" {
   instance_type = var.instance_type
 
   key_name        = aws_key_pair.quickstart_key_pair.key_name
-  security_groups = [aws_security_group.rancher_sg_allowall.name]
+  security_groups = [aws_security_group.rancher_sg_allowingress.name]
 
   user_data = templatefile(
     join("/", [path.module, "../cloud-common/files/userdata_rancher_server.template"]),
@@ -127,7 +127,7 @@ resource "aws_instance" "quickstart_node" {
   instance_type = var.instance_type
 
   key_name        = aws_key_pair.quickstart_key_pair.key_name
-  security_groups = [aws_security_group.rancher_sg_allowall.name]
+  security_groups = [aws_security_group.rancher_sg_allowingress.name]
 
   user_data = templatefile(
     join("/", [path.module, "files/userdata_quickstart_node.template"]),
