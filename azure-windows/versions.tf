@@ -1,4 +1,11 @@
 terraform {
+  backend "remote" {
+    organization = "rocketlab"
+
+    workspaces {
+      name = "bluerancher-quickstart"
+    }
+  }
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
