@@ -18,7 +18,7 @@ resource "local_file" "ssh_public_key_openssh" {
 
 # Resource group containing all resources
 resource "azurerm_resource_group" "rancher-quickstart" {
-  name     = "${var.prefix}-rancher-quickstart"
+  name     = "${var.prefix}-rancher"
   location = var.azure_location
 
   tags = {
