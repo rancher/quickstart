@@ -28,7 +28,7 @@ resource "azurerm_resource_group" "rancher-quickstart" {
 
 # Public IP of Rancher server
 resource "azurerm_public_ip" "rancher-server-pip" {
-  name                = "pip-rancher-win-server"
+  name                = "pip-rancher-win-plane"
   location            = azurerm_resource_group.rancher-quickstart.location
   resource_group_name = azurerm_resource_group.rancher-quickstart.name
   allocation_method   = "Dynamic"
@@ -41,7 +41,7 @@ resource "azurerm_public_ip" "rancher-server-pip" {
 # Azure virtual network space for quickstart resources
 resource "azurerm_virtual_network" "rancher-quickstart" {
   name                = "vnet-${var.prefix}-win-demo"
-  address_space       = ["10.0.0.0/16"]
+  address_space       = ["172.20.0.0/22"]
   location            = azurerm_resource_group.rancher-quickstart.location
   resource_group_name = azurerm_resource_group.rancher-quickstart.name
 
@@ -55,7 +55,7 @@ resource "azurerm_subnet" "rancher-quickstart-internal" {
   name                 = "snet-rancher-win-internal"
   resource_group_name  = azurerm_resource_group.rancher-quickstart.name
   virtual_network_name = azurerm_virtual_network.rancher-quickstart.name
-  address_prefixes     = ["10.0.0.0/16"]
+  address_prefixes     = ["172.20.1.0/24"]
 }
 
 # Azure network interface for quickstart resources
@@ -170,7 +170,7 @@ module "rancher_common" {
 
 # Public IP of quickstart node
 resource "azurerm_public_ip" "quickstart-node-pip" {
-  name                = "pip-win-node"
+  name                = "pip-rancher-master-node"
   location            = azurerm_resource_group.rancher-quickstart.location
   resource_group_name = azurerm_resource_group.rancher-quickstart.name
   allocation_method   = "Dynamic"
@@ -182,7 +182,7 @@ resource "azurerm_public_ip" "quickstart-node-pip" {
 
 # Azure network interface for quickstart resources
 resource "azurerm_network_interface" "quickstart-node-interface" {
-  name                = "nic-win-node"
+  name                = "nic-win-master-node"
   location            = azurerm_resource_group.rancher-quickstart.location
   resource_group_name = azurerm_resource_group.rancher-quickstart.name
 
@@ -258,7 +258,7 @@ resource "azurerm_linux_virtual_machine" "quickstart-node" {
 
 # Public IP of quickstart node
 resource "azurerm_public_ip" "quickstart-windows-node-pip" {
-  name                = "pip-windows-node"
+  name                = "pip-windows-worker"
   location            = azurerm_resource_group.rancher-quickstart.location
   resource_group_name = azurerm_resource_group.rancher-quickstart.name
   allocation_method   = "Dynamic"
@@ -270,7 +270,7 @@ resource "azurerm_public_ip" "quickstart-windows-node-pip" {
 
 # Azure network interface for quickstart resources
 resource "azurerm_network_interface" "quickstart-windows-node-interface" {
-  name                = "nic-windows-node"
+  name                = "nic-windows-worker"
   location            = azurerm_resource_group.rancher-quickstart.location
   resource_group_name = azurerm_resource_group.rancher-quickstart.name
 
