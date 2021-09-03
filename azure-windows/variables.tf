@@ -3,21 +3,25 @@
 variable "azure_subscription_id" {
   type        = string
   description = "Azure subscription id under which resources will be provisioned"
+  sensitive   = true
 }
 
 variable "azure_client_id" {
   type        = string
   description = "Azure client id used to create resources"
+  sensitive   = true
 }
 
 variable "azure_client_secret" {
   type        = string
   description = "Client secret used to authenticate with Azure apis"
+  sensitive   = true
 }
 
 variable "azure_tenant_id" {
   type        = string
   description = "Azure tenant id used to create resources"
+  sensitive   = true
 }
 
 variable "azure_location" {
