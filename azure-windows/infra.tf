@@ -18,7 +18,7 @@ resource "local_file" "ssh_public_key_openssh" {
 
 # Resource group containing all resources
 resource "azurerm_resource_group" "rancher-quickstart" {
-  name     = "${var.prefix}-rancher-win"
+  name     = "rg-${var.prefix}-rancher-win"
   location = var.azure_location
 
   tags = {
@@ -28,7 +28,7 @@ resource "azurerm_resource_group" "rancher-quickstart" {
 
 # Public IP of Rancher server
 resource "azurerm_public_ip" "rancher-server-pip" {
-  name                = "rancher-win-server-pip"
+  name                = "pip-rancher-win-server"
   location            = azurerm_resource_group.rancher-quickstart.location
   resource_group_name = azurerm_resource_group.rancher-quickstart.name
   allocation_method   = "Dynamic"
@@ -40,7 +40,7 @@ resource "azurerm_public_ip" "rancher-server-pip" {
 
 # Azure virtual network space for quickstart resources
 resource "azurerm_virtual_network" "rancher-quickstart" {
-  name                = "${var.prefix}-win-network"
+  name                = "vnet-${var.prefix}-win-demo"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.rancher-quickstart.location
   resource_group_name = azurerm_resource_group.rancher-quickstart.name
@@ -52,7 +52,7 @@ resource "azurerm_virtual_network" "rancher-quickstart" {
 
 # Azure internal subnet for quickstart resources
 resource "azurerm_subnet" "rancher-quickstart-internal" {
-  name                 = "rancher-win-internal"
+  name                 = "snet-rancher-win-internal"
   resource_group_name  = azurerm_resource_group.rancher-quickstart.name
   virtual_network_name = azurerm_virtual_network.rancher-quickstart.name
   address_prefixes     = ["10.0.0.0/16"]
@@ -60,7 +60,7 @@ resource "azurerm_subnet" "rancher-quickstart-internal" {
 
 # Azure network interface for quickstart resources
 resource "azurerm_network_interface" "rancher-server-interface" {
-  name                = "rancher-win-interface"
+  name                = "nic-rancher-win"
   location            = azurerm_resource_group.rancher-quickstart.location
   resource_group_name = azurerm_resource_group.rancher-quickstart.name
 
@@ -84,7 +84,7 @@ locals {
 
 # Azure linux virtual machine for creating a single node RKE cluster and installing the Rancher Server
 resource "azurerm_linux_virtual_machine" "rancher_server" {
-  name                  = "${var.prefix}-rancher-win-server"
+  name                  = "vm-${var.prefix}-rancher-win-plane"
   computer_name         = "${local.computer_name_prefix}-rws" // ensure computer_name meets 15 character limit
   location              = azurerm_resource_group.rancher-quickstart.location
   resource_group_name   = azurerm_resource_group.rancher-quickstart.name
@@ -170,7 +170,7 @@ module "rancher_common" {
 
 # Public IP of quickstart node
 resource "azurerm_public_ip" "quickstart-node-pip" {
-  name                = "win-node-pip"
+  name                = "pip-win-node"
   location            = azurerm_resource_group.rancher-quickstart.location
   resource_group_name = azurerm_resource_group.rancher-quickstart.name
   allocation_method   = "Dynamic"
@@ -182,7 +182,7 @@ resource "azurerm_public_ip" "quickstart-node-pip" {
 
 # Azure network interface for quickstart resources
 resource "azurerm_network_interface" "quickstart-node-interface" {
-  name                = "win-node-interface"
+  name                = "nic-win-node"
   location            = azurerm_resource_group.rancher-quickstart.location
   resource_group_name = azurerm_resource_group.rancher-quickstart.name
 
@@ -200,7 +200,7 @@ resource "azurerm_network_interface" "quickstart-node-interface" {
 
 # Azure linux virtual machine for creating for the workload cluster
 resource "azurerm_linux_virtual_machine" "quickstart-node" {
-  name                  = "${var.prefix}-win-node-master"
+  name                  = "vm-${var.prefix}-win-node-master"
   computer_name         = "${local.computer_name_prefix}-qm" // ensure computer_name meets 15 character limit
   location              = azurerm_resource_group.rancher-quickstart.location
   resource_group_name   = azurerm_resource_group.rancher-quickstart.name
@@ -258,7 +258,7 @@ resource "azurerm_linux_virtual_machine" "quickstart-node" {
 
 # Public IP of quickstart node
 resource "azurerm_public_ip" "quickstart-windows-node-pip" {
-  name                = "windows-node-pip"
+  name                = "pip-windows-node"
   location            = azurerm_resource_group.rancher-quickstart.location
   resource_group_name = azurerm_resource_group.rancher-quickstart.name
   allocation_method   = "Dynamic"
@@ -270,7 +270,7 @@ resource "azurerm_public_ip" "quickstart-windows-node-pip" {
 
 # Azure network interface for quickstart resources
 resource "azurerm_network_interface" "quickstart-windows-node-interface" {
-  name                = "windows-node-interface"
+  name                = "nic-windows-node"
   location            = azurerm_resource_group.rancher-quickstart.location
   resource_group_name = azurerm_resource_group.rancher-quickstart.name
 
@@ -288,7 +288,7 @@ resource "azurerm_network_interface" "quickstart-windows-node-interface" {
 
 # Azure windows virtual machine for joining the workload cluster
 resource "azurerm_windows_virtual_machine" "quickstart-windows-node" {
-  name                  = "${var.prefix}-win-node-worker"
+  name                  = "vm-${var.prefix}-win-node-worker"
   computer_name         = "${local.computer_name_prefix}-qw" // ensure computer_name meets 15 character limit
   location              = azurerm_resource_group.rancher-quickstart.location
   resource_group_name   = azurerm_resource_group.rancher-quickstart.name
@@ -316,7 +316,7 @@ resource "azurerm_windows_virtual_machine" "quickstart-windows-node" {
 
 # Join windows not to the cluster
 resource "azurerm_virtual_machine_extension" "join-rancher" {
-  name                 = "${var.prefix}-windows-node-join-rancher"
+  name                 = "cse-${var.prefix}-windows-node-join-rancher"
   virtual_machine_id   = azurerm_windows_virtual_machine.quickstart-windows-node.id
   publisher            = "Microsoft.Compute"
   type                 = "CustomScriptExtension"

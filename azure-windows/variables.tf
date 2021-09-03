@@ -76,12 +76,14 @@ variable "rancher_version" {
 variable "rancher_server_admin_password" {
   type        = string
   description = "Admin password to use for Rancher server bootstrap"
+  sensitive   = true
 }
 
 # Required
 variable "windows_admin_password" {
   type        = string
   description = "Admin password to use for the Windows VM"
+  sensitive   = true
 }
 
 # Local variables used to reduce repetition
