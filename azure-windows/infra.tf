@@ -18,7 +18,7 @@ resource "local_file" "ssh_public_key_openssh" {
 
 # Resource group containing all resources
 resource "azurerm_resource_group" "rancher-quickstart" {
-  name     = "${var.prefix}-rancher-win-quickstart"
+  name     = "${var.prefix}-rancher-win"
   location = var.azure_location
 
   tags = {
@@ -52,7 +52,7 @@ resource "azurerm_virtual_network" "rancher-quickstart" {
 
 # Azure internal subnet for quickstart resources
 resource "azurerm_subnet" "rancher-quickstart-internal" {
-  name                 = "rancher-win-quickstart-internal"
+  name                 = "rancher-win-internal"
   resource_group_name  = azurerm_resource_group.rancher-quickstart.name
   virtual_network_name = azurerm_virtual_network.rancher-quickstart.name
   address_prefixes     = ["10.0.0.0/16"]
@@ -60,7 +60,7 @@ resource "azurerm_subnet" "rancher-quickstart-internal" {
 
 # Azure network interface for quickstart resources
 resource "azurerm_network_interface" "rancher-server-interface" {
-  name                = "rancher-win-quickstart-interface"
+  name                = "rancher-win-interface"
   location            = azurerm_resource_group.rancher-quickstart.location
   resource_group_name = azurerm_resource_group.rancher-quickstart.name
 
@@ -157,7 +157,7 @@ module "rancher_common" {
   admin_password = var.rancher_server_admin_password
 
   workload_kubernetes_version = var.workload_kubernetes_version
-  workload_cluster_name       = "quickstart-azure-custom"
+  workload_cluster_name       = "azure-custom-ranchdip"
 
   rke_network_plugin = "flannel"
   rke_network_options = {
@@ -170,7 +170,7 @@ module "rancher_common" {
 
 # Public IP of quickstart node
 resource "azurerm_public_ip" "quickstart-node-pip" {
-  name                = "quickstart-win-node-pip"
+  name                = "win-node-pip"
   location            = azurerm_resource_group.rancher-quickstart.location
   resource_group_name = azurerm_resource_group.rancher-quickstart.name
   allocation_method   = "Dynamic"
@@ -182,7 +182,7 @@ resource "azurerm_public_ip" "quickstart-node-pip" {
 
 # Azure network interface for quickstart resources
 resource "azurerm_network_interface" "quickstart-node-interface" {
-  name                = "quickstart-win-node-interface"
+  name                = "win-node-interface"
   location            = azurerm_resource_group.rancher-quickstart.location
   resource_group_name = azurerm_resource_group.rancher-quickstart.name
 
@@ -200,7 +200,7 @@ resource "azurerm_network_interface" "quickstart-node-interface" {
 
 # Azure linux virtual machine for creating for the workload cluster
 resource "azurerm_linux_virtual_machine" "quickstart-node" {
-  name                  = "${var.prefix}-quickstart-win-node-master"
+  name                  = "${var.prefix}-win-node-master"
   computer_name         = "${local.computer_name_prefix}-qm" // ensure computer_name meets 15 character limit
   location              = azurerm_resource_group.rancher-quickstart.location
   resource_group_name   = azurerm_resource_group.rancher-quickstart.name
@@ -258,7 +258,7 @@ resource "azurerm_linux_virtual_machine" "quickstart-node" {
 
 # Public IP of quickstart node
 resource "azurerm_public_ip" "quickstart-windows-node-pip" {
-  name                = "quickstart-windows-node-pip"
+  name                = "windows-node-pip"
   location            = azurerm_resource_group.rancher-quickstart.location
   resource_group_name = azurerm_resource_group.rancher-quickstart.name
   allocation_method   = "Dynamic"
@@ -270,7 +270,7 @@ resource "azurerm_public_ip" "quickstart-windows-node-pip" {
 
 # Azure network interface for quickstart resources
 resource "azurerm_network_interface" "quickstart-windows-node-interface" {
-  name                = "quickstart-windows-node-interface"
+  name                = "windows-node-interface"
   location            = azurerm_resource_group.rancher-quickstart.location
   resource_group_name = azurerm_resource_group.rancher-quickstart.name
 
@@ -288,7 +288,7 @@ resource "azurerm_network_interface" "quickstart-windows-node-interface" {
 
 # Azure windows virtual machine for joining the workload cluster
 resource "azurerm_windows_virtual_machine" "quickstart-windows-node" {
-  name                  = "${var.prefix}-quickstart-win-node-worker"
+  name                  = "${var.prefix}-win-node-worker"
   computer_name         = "${local.computer_name_prefix}-qw" // ensure computer_name meets 15 character limit
   location              = azurerm_resource_group.rancher-quickstart.location
   resource_group_name   = azurerm_resource_group.rancher-quickstart.name
@@ -316,7 +316,7 @@ resource "azurerm_windows_virtual_machine" "quickstart-windows-node" {
 
 # Join windows not to the cluster
 resource "azurerm_virtual_machine_extension" "join-rancher" {
-  name                 = "${var.prefix}-quickstart-windows-node-join-rancher"
+  name                 = "${var.prefix}-windows-node-join-rancher"
   virtual_machine_id   = azurerm_windows_virtual_machine.quickstart-windows-node.id
   publisher            = "Microsoft.Compute"
   type                 = "CustomScriptExtension"
@@ -334,3 +334,9 @@ resource "azurerm_virtual_machine_extension" "join-rancher" {
     }
 SETTINGS
 }
+
+
+
+
+#Get TC remote backend working or change to local state for faster plans/applies.
+#Local execution against remote TC back-end is too slow
