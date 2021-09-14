@@ -25,19 +25,11 @@ resource "digitalocean_ssh_key" "quickstart_ssh_key" {
 # DO droplet for creating a single node RKE cluster and installing the Rancher server
 resource "digitalocean_droplet" "rancher_server" {
   name               = "${var.prefix}-rancher-server"
-  image              = "ubuntu-18-04-x64"
+  image              = "ubuntu-20-04-x64"
   region             = var.do_region
   size               = var.droplet_size
   ssh_keys           = [digitalocean_ssh_key.quickstart_ssh_key.fingerprint]
   private_networking = true
-
-  user_data = templatefile(
-    join("/", [path.module, "../cloud-common/files/userdata_rancher_server.template"]),
-    {
-      docker_version = var.docker_version
-      username       = local.node_username
-    }
-  )
 
   provisioner "remote-exec" {
     inline = [
@@ -59,16 +51,16 @@ resource "digitalocean_droplet" "rancher_server" {
 module "rancher_common" {
   source = "../rancher-common"
 
-  node_public_ip         = digitalocean_droplet.rancher_server.ipv4_address
-  node_internal_ip       = digitalocean_droplet.rancher_server.ipv4_address_private
-  node_username          = local.node_username
-  ssh_private_key_pem    = tls_private_key.global_key.private_key_pem
-  rke_kubernetes_version = var.rke_kubernetes_version
+  node_public_ip             = digitalocean_droplet.rancher_server.ipv4_address
+  node_internal_ip           = digitalocean_droplet.rancher_server.ipv4_address_private
+  node_username              = local.node_username
+  ssh_private_key_pem        = tls_private_key.global_key.private_key_pem
+  rancher_kubernetes_version = var.rancher_kubernetes_version
 
   cert_manager_version = var.cert_manager_version
   rancher_version      = var.rancher_version
 
-  rancher_server_dns = join(".", ["rancher", digitalocean_droplet.rancher_server.ipv4_address, "nip.io"])
+  rancher_server_dns = join(".", ["rancher", digitalocean_droplet.rancher_server.ipv4_address, "sslip.io"])
   admin_password     = var.rancher_server_admin_password
 
   workload_kubernetes_version = var.workload_kubernetes_version
@@ -78,7 +70,7 @@ module "rancher_common" {
 # DO droplet for creating a single node workload cluster
 resource "digitalocean_droplet" "quickstart_node" {
   name               = "${var.prefix}-quickstart-node"
-  image              = "ubuntu-18-04-x64"
+  image              = "ubuntu-20-04-x64"
   region             = var.do_region
   size               = var.droplet_size
   ssh_keys           = [digitalocean_ssh_key.quickstart_ssh_key.fingerprint]

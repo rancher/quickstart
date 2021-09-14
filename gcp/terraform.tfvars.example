@@ -33,7 +33,7 @@ rancher_server_admin_password = ""
 
 # Kubernetes version used for creating management server cluster
 # - Must be supported by RKE terraform provider 1.0.1
-# rke_kubernetes_version = ""
+# rancher_kubernetes_version = ""
 
 # Kubernetes version used for creating workload cluster
 # - Must be supported by RKE terraform provider 1.0.1

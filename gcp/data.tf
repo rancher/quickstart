@@ -3,8 +3,8 @@
 # GCP data
 # ----------------------------------------------------------
 
-# Use latest Ubuntu 18.04 Image
-data "google_compute_image" "ubuntu" {
-  family  = "ubuntu-1804-lts"
-  project = "ubuntu-os-cloud"
+# Use latest SLES 15
+data "google_compute_image" "sles" {
+  family  = "sles-15"
+  project = "suse-cloud"
 }

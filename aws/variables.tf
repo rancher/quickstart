@@ -17,6 +17,7 @@ variable "aws_secret_key" {
 variable "aws_session_token" {
   type        = string
   description = "AWS session token used to create AWS infrastructure"
+  default     = ""
 }
 
 variable "aws_region" {
@@ -43,28 +44,28 @@ variable "docker_version" {
   default     = "19.03"
 }
 
-variable "rke_kubernetes_version" {
+variable "rancher_kubernetes_version" {
   type        = string
-  description = "Kubernetes version to use for Rancher server RKE cluster"
-  default     = "v1.20.6-rancher1-1"
+  description = "Kubernetes version to use for Rancher server cluster"
+  default     = "v1.21.4+k3s1"
 }
 
 variable "workload_kubernetes_version" {
   type        = string
   description = "Kubernetes version to use for managed workload cluster"
-  default     = "v1.19.9-rancher1-1"
+  default     = "v1.20.10-rancher1-2"
 }
 
 variable "cert_manager_version" {
   type        = string
   description = "Version of cert-manager to install alongside Rancher (format: 0.0.0)"
-  default     = "1.0.4"
+  default     = "1.5.3"
 }
 
 variable "rancher_version" {
   type        = string
   description = "Rancher server version (format: v0.0.0)"
-  default     = "v2.5.8"
+  default     = "v2.6.0"
 }
 
 # Required
@@ -73,8 +74,14 @@ variable "rancher_server_admin_password" {
   description = "Admin password to use for Rancher server bootstrap"
 }
 
+# Required
+variable "add_windows_node" {
+  type        = bool
+  description = "Add a windows node to the workload cluster"
+  default     = false
+}
 
 # Local variables used to reduce repetition
 locals {
-  node_username = "ubuntu"
+  node_username = "ec2-user"
 }
