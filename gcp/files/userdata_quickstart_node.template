@@ -1,8 +1,11 @@
 #!/bin/bash -x
 
-export DEBIAN_FRONTEND=noninteractive
-curl -sL https://releases.rancher.com/install-docker/${docker_version}.sh | sh
-sudo usermod -aG docker ${username}
+if docker ps; then
+    exit 0
+fi
+
+systemctl enable docker
+systemctl start docker
 
 privateIP=$(curl -H 'Metadata-Flavor: Google' http://metadata.google.internal/computeMetadata/v1/instance/network-interfaces/0/ip)
 

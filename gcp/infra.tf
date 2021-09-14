@@ -124,7 +124,9 @@ resource "google_compute_instance" "quickstart_node" {
 
   metadata = {
     ssh-keys = "${local.node_username}:${tls_private_key.global_key.public_key_openssh}"
-    startup-script = templatefile(
+  }
+
+  metadata_startup_script = templatefile(
       join("/", [path.module, "files/userdata_quickstart_node.template"]),
       {
         docker_version   = var.docker_version
@@ -133,7 +135,6 @@ resource "google_compute_instance" "quickstart_node" {
         public_ip        = google_compute_address.quickstart_node_address.address
       }
     )
-  }
 
   provisioner "remote-exec" {
     inline = [

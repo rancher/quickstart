@@ -24,7 +24,7 @@ resource "azurerm_network_interface" "quickstart-windows-node-interface" {
     name                          = "rancher_server_ip_config"
     subnet_id                     = azurerm_subnet.rancher-quickstart-internal.id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = azurerm_public_ip.quickstart-windows-node-pip.id
+    public_ip_address_id          = azurerm_public_ip.quickstart-windows-node-pip[count.index].id
   }
 
   tags = {
@@ -40,7 +40,7 @@ resource "azurerm_windows_virtual_machine" "quickstart-windows-node" {
   computer_name         = "${local.computer_name_prefix}-qw" // ensure computer_name meets 15 character limit
   location              = azurerm_resource_group.rancher-quickstart.location
   resource_group_name   = azurerm_resource_group.rancher-quickstart.name
-  network_interface_ids = [azurerm_network_interface.quickstart-windows-node-interface.id]
+  network_interface_ids = [azurerm_network_interface.quickstart-windows-node-interface[count.index].id]
   size                  = var.instance_type
   admin_username        = "adminuser"
   admin_password        = var.windows_admin_password
@@ -67,7 +67,7 @@ resource "azurerm_virtual_machine_extension" "join-rancher" {
   count = var.add_windows_node ? 1 : 0
 
   name                 = "${var.prefix}-quickstart-windows-node-join-rancher"
-  virtual_machine_id   = azurerm_windows_virtual_machine.quickstart-windows-node.id
+  virtual_machine_id   = azurerm_windows_virtual_machine.quickstart-windows-node[count.index].id
   publisher            = "Microsoft.Compute"
   type                 = "CustomScriptExtension"
   type_handler_version = "1.9"
@@ -78,7 +78,7 @@ resource "azurerm_virtual_machine_extension" "join-rancher" {
   replace(
     module.rancher_common.custom_cluster_windows_command,
     "| iex}",
-    "--address ${azurerm_windows_virtual_machine.quickstart-windows-node.public_ip_address} --internal-address ${azurerm_windows_virtual_machine.quickstart-windows-node.private_ip_address} --worker | iex}",
+    "--address ${azurerm_windows_virtual_machine.quickstart-windows-node[count.index].public_ip_address} --internal-address ${azurerm_windows_virtual_machine.quickstart-windows-node[count.index].private_ip_address} --worker | iex}",
   )
 )}
     }

@@ -38,6 +38,12 @@ variable "instance_type" {
   default     = "t3a.medium"
 }
 
+variable "windows_instance_type" {
+  type        = string
+  description = "Instance type used for all EC2 windows instances"
+  default     = "t3a.large"
+}
+
 variable "docker_version" {
   type        = string
   description = "Docker version to install on nodes"
