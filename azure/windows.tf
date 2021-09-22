@@ -84,3 +84,7 @@ resource "azurerm_virtual_machine_extension" "join-rancher" {
     }
 SETTINGS
 }
+
+output "windows-workload-ips" {
+  value = azurerm_windows_virtual_machine.quickstart-windows-node[*].public_ip_address
+}

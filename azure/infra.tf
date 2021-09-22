@@ -94,8 +94,8 @@ resource "azurerm_linux_virtual_machine" "rancher_server" {
 
   source_image_reference {
     publisher = "SUSE"
-    offer     = "SLES"
-    sku       = "15"
+    offer     = "sles-15-sp2"
+    sku       = "gen2"
     version   = "latest"
   }
 
@@ -205,8 +205,8 @@ resource "azurerm_linux_virtual_machine" "quickstart-node" {
 
   source_image_reference {
     publisher = "SUSE"
-    offer     = "SLES"
-    sku       = "15"
+    offer     = "sles-15-sp2"
+    sku       = "gen2"
     version   = "latest"
   }
 
