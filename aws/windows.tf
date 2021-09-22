@@ -3,9 +3,9 @@ resource "aws_instance" "quickstart_node_win" {
   ami           = data.aws_ami.windows.id
   instance_type = var.windows_instance_type
 
-  key_name        = aws_key_pair.quickstart_key_pair.key_name
-  security_groups = [aws_security_group.rancher_sg_allowall.name]
-  get_password_data           = true
+  key_name          = aws_key_pair.quickstart_key_pair.key_name
+  security_groups   = [aws_security_group.rancher_sg_allowall.name]
+  get_password_data = true
 
   user_data = templatefile(
     join("/", [path.module, "files/userdata_quickstart_windows.template"]),
@@ -27,10 +27,10 @@ resource "aws_instance" "quickstart_node_win" {
 
 output "windows_password" {
   description = "Returns the decrypted AWS generated windows password"
-  sensitive = true
+  sensitive   = true
   value = [
-    for instance in aws_instance.quickstart_node_win:
-      rsadecrypt(instance.password_data, tls_private_key.global_key.private_key_pem)
+    for instance in aws_instance.quickstart_node_win :
+    rsadecrypt(instance.password_data, tls_private_key.global_key.private_key_pem)
   ]
 }
 
