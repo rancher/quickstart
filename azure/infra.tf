@@ -106,7 +106,7 @@ resource "azurerm_linux_virtual_machine" "rancher_server" {
 
   os_disk {
     caching              = "ReadWrite"
-    storage_account_type = "Standard_LRS"
+    storage_account_type = "Premium_LRS"
   }
 
   tags = {
@@ -217,7 +217,7 @@ resource "azurerm_linux_virtual_machine" "quickstart-node" {
 
   os_disk {
     caching              = "ReadWrite"
-    storage_account_type = "Standard_LRS"
+    storage_account_type = "Premium_LRS"
   }
 
   tags = {
