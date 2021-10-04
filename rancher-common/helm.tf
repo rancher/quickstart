@@ -2,16 +2,18 @@
 
 # Install cert-manager helm chart
 resource "helm_release" "cert_manager" {
-  depends_on = [
-    k8s_manifest.cert_manager_crds,
-  ]
-
   repository       = "https://charts.jetstack.io"
   name             = "cert-manager"
   chart            = "cert-manager"
   version          = "v${var.cert_manager_version}"
   namespace        = "cert-manager"
   create_namespace = true
+  wait             = true
+
+  set {
+    name  = "installCRDs"
+    value = "true"
+  }
 }
 
 # Install Rancher helm chart
@@ -26,6 +28,7 @@ resource "helm_release" "rancher_server" {
   version          = var.rancher_version
   namespace        = "cattle-system"
   create_namespace = true
+  wait             = true
 
   set {
     name  = "hostname"
@@ -33,7 +36,12 @@ resource "helm_release" "rancher_server" {
   }
 
   set {
-    name  = "certmanager.version"
-    value = var.cert_manager_version
+    name  = "replicas"
+    value = "1"
+  }
+
+  set {
+    name  = "bootstrapPassword"
+    value = "admin" # TODO: change this once the terraform provider has been updated with the new pw bootstrap logic
   }
 }

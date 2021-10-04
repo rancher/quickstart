@@ -17,6 +17,12 @@ azure_tenant_id = ""
 # Password used to log in to the `admin` account on the new Rancher server
 rancher_server_admin_password = ""
 
+# Add a windows node to the workload cluster
+add_windows_node = false
+
+# Admin password to use for the Windows VM
+windows_admin_password = ""
+
 # Optional variables, uncomment to customize the quickstart
 # ----------------------------------------------------------
 
@@ -35,7 +41,7 @@ rancher_server_admin_password = ""
 
 # Kubernetes version used for creating management server cluster
 # - Must be supported by RKE terraform provider 1.0.1
-# rke_kubernetes_version = ""
+# rancher_kubernetes_version = ""
 
 # Kubernetes version used for creating workload cluster
 # - Must be supported by RKE terraform provider 1.0.1

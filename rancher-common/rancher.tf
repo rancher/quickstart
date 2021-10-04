@@ -12,6 +12,15 @@ resource "rancher2_bootstrap" "admin" {
   telemetry = true
 }
 
+locals {
+  rke_network_plugin = var.windows_prefered_cluster ? "flannel" : "canal"
+  rke_network_options = var.windows_prefered_cluster ? {
+    flannel_backend_port = "4789"
+    flannel_backend_type = "vxlan"
+    flannel_backend_vni  = "4096"
+  } : null
+}
+
 # Create custom managed cluster for quickstart
 resource "rancher2_cluster" "quickstart_workload" {
   provider = rancher2.admin
@@ -21,8 +30,8 @@ resource "rancher2_cluster" "quickstart_workload" {
 
   rke_config {
     network {
-      plugin  = var.rke_network_plugin
-      options = var.rke_network_options
+      plugin  = local.rke_network_plugin
+      options = local.rke_network_options
     }
     kubernetes_version = var.workload_kubernetes_version
   }

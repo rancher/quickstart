@@ -50,7 +50,7 @@ resource "google_compute_instance" "rancher_server" {
 
   boot_disk {
     initialize_params {
-      image = data.google_compute_image.ubuntu.self_link
+      image = data.google_compute_image.sles.self_link
     }
   }
 
@@ -62,21 +62,12 @@ resource "google_compute_instance" "rancher_server" {
   }
 
   metadata = {
-    ssh-keys = "ubuntu:${tls_private_key.global_key.public_key_openssh}"
-    user-data = templatefile(
-      join("/", [path.module, "../cloud-common/files/userdata_rancher_server.template"]),
-      {
-        docker_version = var.docker_version
-        username       = local.node_username
-      }
-    )
+    ssh-keys = "${local.node_username}:${tls_private_key.global_key.public_key_openssh}"
   }
 
   provisioner "remote-exec" {
     inline = [
-      "echo 'Waiting for cloud-init to complete...'",
-      "cloud-init status --wait > /dev/null",
-      "echo 'Completed cloud-init!'",
+      "echo 'SSH connection worked'",
     ]
 
     connection {
@@ -92,16 +83,16 @@ resource "google_compute_instance" "rancher_server" {
 module "rancher_common" {
   source = "../rancher-common"
 
-  node_public_ip         = google_compute_instance.rancher_server.network_interface.0.access_config.0.nat_ip
-  node_internal_ip       = google_compute_instance.rancher_server.network_interface.0.network_ip
-  node_username          = local.node_username
-  ssh_private_key_pem    = tls_private_key.global_key.private_key_pem
-  rke_kubernetes_version = var.rke_kubernetes_version
+  node_public_ip             = google_compute_instance.rancher_server.network_interface.0.access_config.0.nat_ip
+  node_internal_ip           = google_compute_instance.rancher_server.network_interface.0.network_ip
+  node_username              = local.node_username
+  ssh_private_key_pem        = tls_private_key.global_key.private_key_pem
+  rancher_kubernetes_version = var.rancher_kubernetes_version
 
   cert_manager_version = var.cert_manager_version
   rancher_version      = var.rancher_version
 
-  rancher_server_dns = join(".", ["rancher", google_compute_instance.rancher_server.network_interface.0.access_config.0.nat_ip, "nip.io"])
+  rancher_server_dns = join(".", ["rancher", google_compute_instance.rancher_server.network_interface.0.access_config.0.nat_ip, "sslip.io"])
   admin_password     = var.rancher_server_admin_password
 
   workload_kubernetes_version = var.workload_kubernetes_version
@@ -120,7 +111,7 @@ resource "google_compute_instance" "quickstart_node" {
 
   boot_disk {
     initialize_params {
-      image = data.google_compute_image.ubuntu.self_link
+      image = data.google_compute_image.sles.self_link
     }
   }
 
@@ -132,23 +123,22 @@ resource "google_compute_instance" "quickstart_node" {
   }
 
   metadata = {
-    ssh-keys = "ubuntu:${tls_private_key.global_key.public_key_openssh}"
-    user-data = templatefile(
-      join("/", [path.module, "files/userdata_quickstart_node.template"]),
-      {
-        docker_version   = var.docker_version
-        username         = local.node_username
-        register_command = module.rancher_common.custom_cluster_command
-        public_ip        = google_compute_address.quickstart_node_address.address
-      }
-    )
+    ssh-keys = "${local.node_username}:${tls_private_key.global_key.public_key_openssh}"
   }
+
+  metadata_startup_script = templatefile(
+    join("/", [path.module, "files/userdata_quickstart_node.template"]),
+    {
+      docker_version   = var.docker_version
+      username         = local.node_username
+      register_command = module.rancher_common.custom_cluster_command
+      public_ip        = google_compute_address.quickstart_node_address.address
+    }
+  )
 
   provisioner "remote-exec" {
     inline = [
-      "echo 'Waiting for cloud-init to complete...'",
-      "cloud-init status --wait > /dev/null",
-      "echo 'Completed cloud-init!'",
+      "echo 'SSH connection worked'",
     ]
 
     connection {
