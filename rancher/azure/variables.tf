@@ -38,12 +38,6 @@ variable "instance_type" {
   default     = "Standard_DS2_v2"
 }
 
-variable "docker_version" {
-  type        = string
-  description = "Docker version to install on nodes"
-  default     = "19.03"
-}
-
 variable "rancher_kubernetes_version" {
   type        = string
   description = "Kubernetes version to use for Rancher server cluster"
@@ -54,6 +48,7 @@ variable "workload_kubernetes_version" {
   type        = string
   description = "Kubernetes version to use for managed workload cluster"
   default     = "v1.22.9-rancher1-1"
+  default     = "v1.21.5+rke2r1"
 }
 
 variable "cert_manager_version" {

@@ -57,17 +57,11 @@ variable "admin_password" {
 variable "workload_kubernetes_version" {
   type        = string
   description = "Kubernetes version to use for managed workload cluster"
-  default     = "v1.22.9-rancher1-1"
+  default     = "v1.21.5+rke2r1"
 }
 
 # Required
 variable "workload_cluster_name" {
   type        = string
   description = "Name for created custom workload cluster"
-}
-
-variable "windows_prefered_cluster" {
-  type        = bool
-  description = "Activate windows supports for the custom workload cluster"
-  default     = false
 }

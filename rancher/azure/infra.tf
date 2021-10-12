@@ -148,8 +148,6 @@ module "rancher_common" {
 
   workload_kubernetes_version = var.workload_kubernetes_version
   workload_cluster_name       = "quickstart-azure-custom"
-
-  windows_prefered_cluster = var.add_windows_node
 }
 
 # Public IP of quickstart node
@@ -196,8 +194,6 @@ resource "azurerm_linux_virtual_machine" "quickstart-node" {
     templatefile(
       join("/", [path.module, "files/userdata_quickstart_node.template"]),
       {
-        docker_version   = var.docker_version
-        username         = local.node_username
         register_command = module.rancher_common.custom_cluster_command
       }
     )

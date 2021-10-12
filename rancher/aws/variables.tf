@@ -44,12 +44,6 @@ variable "windows_instance_type" {
   default     = "t3a.large"
 }
 
-variable "docker_version" {
-  type        = string
-  description = "Docker version to install on nodes"
-  default     = "19.03"
-}
-
 variable "rancher_kubernetes_version" {
   type        = string
   description = "Kubernetes version to use for Rancher server cluster"

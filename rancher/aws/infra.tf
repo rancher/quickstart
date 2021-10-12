@@ -98,8 +98,6 @@ module "rancher_common" {
 
   workload_kubernetes_version = var.workload_kubernetes_version
   workload_cluster_name       = "quickstart-aws-custom"
-
-  windows_prefered_cluster = var.add_windows_node
 }
 
 # AWS EC2 instance for creating a single node workload cluster
@@ -113,8 +111,6 @@ resource "aws_instance" "quickstart_node" {
   user_data = templatefile(
     join("/", [path.module, "files/userdata_quickstart_node.template"]),
     {
-      docker_version   = var.docker_version
-      username         = local.node_username
       register_command = module.rancher_common.custom_cluster_command
     }
   )
