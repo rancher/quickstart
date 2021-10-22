@@ -56,7 +56,7 @@ Admin password to use for Rancher server bootstrap
 Log in to the Rancher server using username `admin` and this password.
 
 ###### `workload_kubernetes_version`
-- Default: **`"v1.20.10-rancher1-2"`**
+- Default: **`"v1.20.11-rancher1-1"`**
 Kubernetes version to use for managed workload cluster
 
 Defaulted to one version behind most recent minor release to allow experimenting
