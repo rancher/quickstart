@@ -21,3 +21,6 @@ vagrant/local_config.yaml
 
 # MacOS junk
 .DS_Store
+
+# Terraform plan files
+*.tfplan
