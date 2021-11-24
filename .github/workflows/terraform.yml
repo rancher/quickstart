@@ -13,7 +13,7 @@ jobs:
     
     strategy:
       matrix:
-        provider: ['aws', 'azure', 'do', 'gcp']
+        provider: ['aws', 'azure', 'do', 'gcp', 'hcloud']
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
