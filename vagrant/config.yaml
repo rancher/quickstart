@@ -8,8 +8,8 @@ server:
   memory: 1500
 node:
   count: 1
-  cpus: 2
-  memory: 2400
+  cpus: 1
+  memory: 1500
 ip:
   master: 192.168.56.100
   server: 192.168.56.101
