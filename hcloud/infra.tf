@@ -39,7 +39,7 @@ resource "hcloud_server" "rancher_server" {
   name        = "${var.prefix}-rancher-server"
   image       = "ubuntu-20.04"
   server_type = var.instance_type
-  location    = var.hcloud_datacenter
+  location    = var.hcloud_location
   ssh_keys    = [hcloud_ssh_key.quickstart_ssh_key.id]
 
   network {
@@ -91,7 +91,7 @@ resource "hcloud_server" "quickstart_node" {
   name        = "${var.prefix}-worker"
   image       = "ubuntu-20.04"
   server_type = var.instance_type
-  location    = var.hcloud_datacenter
+  location    = var.hcloud_location
   ssh_keys    = [hcloud_ssh_key.quickstart_ssh_key.id]
 
   network {

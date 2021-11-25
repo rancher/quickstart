@@ -9,9 +9,9 @@ Both instances will be accessible over SSH using the auto-generated SSH keys `id
 - **Required**
 Hetzner Cloud API token used to create infrastructure
 
-###### `hcloud_datacenter`
-- Default: **`"fsn1-dc14"`**
-Hetzner Datacenter used for all resources
+###### `hcloud_location`
+- Default: **`"fsn1"`**
+Hetzner Location used for all resources
 
 ###### `network_zone`
 - Default: **`"eu-central"`**

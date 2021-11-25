@@ -5,9 +5,9 @@ variable "hcloud_token" {
   description = "Hetzner Cloud API token used to create infrastructure"
 }
 
-variable "hcloud_datacenter" {
+variable "hcloud_location" {
   type        = string
-  description = "Hetzner datacenter used for all resources"
+  description = "Hetzner location used for all resources"
   default     = "fsn1"
 }
 

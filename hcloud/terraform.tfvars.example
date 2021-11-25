@@ -13,8 +13,8 @@ rancher_server_admin_password = ""
 # - Uncomment variables to customize quickstart
 # ----------------------------------------------------------
 
-# Datacenter to use for all resources
-# hcloud_datacenter = ""
+# Location to use for all resources
+# hcloud_location = ""
 
 # Prefix for all resources created by quickstart
 # prefix = ""
