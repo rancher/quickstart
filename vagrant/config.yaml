@@ -11,9 +11,9 @@ node:
   cpus: 1
   memory: 1500
 ip:
-  master: 172.22.101.100
-  server: 172.22.101.101
-  node:   172.22.101.111
+  master: 192.168.56.100
+  server: 192.168.56.101
+  node:   192.168.56.111
 linked_clones: true
 net:
   private_nic_type: 82545EM

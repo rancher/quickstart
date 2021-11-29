@@ -1,5 +1,5 @@
 #!/bin/bash -x
-rancher_server_ip=${1:-172.22.101.101}
+rancher_server_ip=${1:-192.168.56.101}
 admin_password=${2:-password}
 curlimage="appropriate/curl"
 jqimage="stedolan/jq"
