@@ -45,7 +45,7 @@ This setup provides easy access to the core Rancher functionality while establis
 
 ### Requirements - Cloud
 
-- Terraform >=0.13.0
+- Terraform >=1.0.0
 - Credentials for the cloud provider used for the quickstart
 
 ### Deploy
