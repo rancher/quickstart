@@ -56,7 +56,7 @@ Version of cert-manager to install alongside Rancher (format: 0.0.0)
 See `rancher-common` module variable `cert_manager_version` for more details.
 
 ###### `rancher_version`
-- Default: **`"v2.6.0"`**
+- Default: **`"v2.6.2"`**
 Rancher server version (format v0.0.0)
 
 See `rancher-common` module variable `rancher_version` for more details.

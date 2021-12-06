@@ -30,7 +30,7 @@ rancher_server_admin_password = ""
 
 # Range to allocate IPs from.
 # - Must be a subnet of the ip_range of the Network and must not overlap with any other subnets or with any destinations in routes.
-network_ip_range     = ""
+# network_ip_range     = ""
 
 # Docker version installed on target hosts
 # - Must be a version supported by the Rancher install scripts

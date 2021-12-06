@@ -37,7 +37,7 @@ Available versions are found in `files/cert-manager`, where a supported version
 is indicated by the presence of `crds-${var.cert_manager_version}.yaml`.
 
 ###### `rancher_version`
-- Default: **`"v2.6.0"`**
+- Default: **`"v2.6.2"`**
 Rancher server version (format `v0.0.0`)
 
 ###### `rancher_server_dns`
@@ -56,7 +56,7 @@ Admin password to use for Rancher server bootstrap
 Log in to the Rancher server using username `admin` and this password.
 
 ###### `workload_kubernetes_version`
-- Default: **`"v1.20.12-rancher1-2"`**
+- Default: **`"v1.20.8-rancher1-1"`**
 Kubernetes version to use for managed workload cluster
 
 Defaulted to one version behind most recent minor release to allow experimenting
