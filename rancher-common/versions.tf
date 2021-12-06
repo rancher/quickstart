@@ -12,9 +12,9 @@ terraform {
       source  = "rancher/rancher2"
       version = "1.17.2"
     }
-    sshcommand = {
-      source  = "invidian/sshcommand"
-      version = "0.2.2"
+    ssh = {
+      source  = "loafoe/ssh"
+      version = "1.0.1"
     }
   }
   required_version = ">= 1.0.0"
