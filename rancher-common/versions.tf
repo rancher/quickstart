@@ -2,7 +2,7 @@ terraform {
   required_providers {
     helm = {
       source  = "hashicorp/helm"
-      version = "2.3.0"
+      version = "2.4.1"
     }
     local = {
       source  = "hashicorp/local"
@@ -10,7 +10,7 @@ terraform {
     }
     rancher2 = {
       source  = "rancher/rancher2"
-      version = "1.17.2"
+      version = "1.21.0"
     }
     ssh = {
       source  = "loafoe/ssh"
