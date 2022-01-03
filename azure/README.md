@@ -39,7 +39,7 @@ Instance type used for all linux virtual instances
 Docker version to install on nodes
 
 ###### `rancher_kubernetes_version`
-- Default: **`"v1.21.4+k3s1"`**
+- Default: **`"v1.21.8+k3s1"`**
 Kubernetes version to use for Rancher server cluster
 
 See `rancher-common` module variable `rancher_kubernetes_version` for more details.
@@ -57,7 +57,7 @@ Version of cert-manager to install alongside Rancher (format: 0.0.0)
 See `rancher-common` module variable `cert_manager_version` for more details.
 
 ###### `rancher_version`
-- Default: **`"v2.6.2"`**
+- Default: **`"v2.6.3"`**
 Rancher server version (format v0.0.0)
 
 See `rancher-common` module variable `rancher_version` for more details.

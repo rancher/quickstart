@@ -53,7 +53,7 @@ variable "docker_version" {
 variable "rancher_kubernetes_version" {
   type        = string
   description = "Kubernetes version to use for Rancher server cluster"
-  default     = "v1.21.4+k3s1"
+  default     = "v1.21.8+k3s1"
 }
 
 variable "workload_kubernetes_version" {
@@ -71,7 +71,7 @@ variable "cert_manager_version" {
 variable "rancher_version" {
   type        = string
   description = "Rancher server version (format: v0.0.0)"
-  default     = "v2.6.2"
+  default     = "v2.6.3"
 }
 
 # Required

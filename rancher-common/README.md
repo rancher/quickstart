@@ -26,7 +26,7 @@ Private key used for SSH access to the Rancher server cluster node
 Expected to be in PEM format.
 
 ###### `rancher_kubernetes_version`
-- Default: **`"v1.21.4+k3s1"`**
+- Default: **`"v1.21.8+k3s1"`**
 Kubernetes version to use for Rancher server cluster
 
 ###### `cert_manager_version`
@@ -37,7 +37,7 @@ Available versions are found in `files/cert-manager`, where a supported version
 is indicated by the presence of `crds-${var.cert_manager_version}.yaml`.
 
 ###### `rancher_version`
-- Default: **`"v2.6.2"`**
+- Default: **`"v2.6.3"`**
 Rancher server version (format `v0.0.0`)
 
 ###### `rancher_server_dns`
