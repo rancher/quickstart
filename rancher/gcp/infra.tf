@@ -129,7 +129,7 @@ resource "google_compute_instance" "quickstart_node" {
   }
 
   metadata_startup_script = templatefile(
-    join("/", [path.module, "files/userdata_quickstart_node.template"]),
+    "${path.module}/files/userdata_quickstart_node.template",
     {
       register_command = module.rancher_common.custom_cluster_command
       public_ip        = google_compute_address.quickstart_node_address.address

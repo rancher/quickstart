@@ -192,7 +192,7 @@ resource "azurerm_linux_virtual_machine" "quickstart-node" {
 
   custom_data = base64encode(
     templatefile(
-      join("/", [path.module, "files/userdata_quickstart_node.template"]),
+      "${path.module}/files/userdata_quickstart_node.template",
       {
         register_command = module.rancher_common.custom_cluster_command
       }

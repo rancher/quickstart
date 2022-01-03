@@ -109,7 +109,7 @@ resource "aws_instance" "quickstart_node" {
   vpc_security_group_ids = [aws_security_group.rancher_sg_allowall.id]
 
   user_data = templatefile(
-    join("/", [path.module, "files/userdata_quickstart_node.template"]),
+    "${path.module}/files/userdata_quickstart_node.template",
     {
       register_command = module.rancher_common.custom_cluster_command
     }

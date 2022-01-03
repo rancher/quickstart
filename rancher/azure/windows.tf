@@ -75,7 +75,7 @@ resource "azurerm_virtual_machine_extension" "join-rancher" {
   settings = <<SETTINGS
     {
         "commandToExecute": ${jsonencode(templatefile(
-          join("/", [path.module, "files/userdata_quickstart_windows.template"]),
+          "${path.module}/files/userdata_quickstart_windows.template",
           {
             register_command = module.rancher_common.custom_cluster_windows_command
             public_ip_address = azurerm_windows_virtual_machine.quickstart-windows-node[count.index].public_ip_address

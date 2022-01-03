@@ -75,7 +75,7 @@ resource "digitalocean_droplet" "quickstart_node" {
   ssh_keys = [digitalocean_ssh_key.quickstart_ssh_key.fingerprint]
 
   user_data = templatefile(
-    join("/", [path.module, "files/userdata_quickstart_node.template"]),
+    "${path.module}/files/userdata_quickstart_node.template",
     {
       register_command = module.rancher_common.custom_cluster_command
     }
