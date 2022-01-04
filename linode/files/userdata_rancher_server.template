@@ -1,4 +1,0 @@
-#!/bin/bash -x
-
-zypper up -y ca-certificates-mozilla
-zypper in -y apparmor-parser

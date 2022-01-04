@@ -22,25 +22,14 @@ resource "linode_sshkey" "quickstart_ssh_key" {
   ssh_key = replace(tls_private_key.global_key.public_key_openssh, "\n", "")
 }
 
-resource "linode_stackscript" "rancher_server" {
-  label       = "${var.prefix}-rancher-server"
-  description = "Rancher server launch script"
-  script      = templatefile("${path.module}/files/userdata_rancher_server.template", {})
-
-  images   = ["linode/opensuse15.3"]
-  rev_note = "initial version"
-}
-
 # Linode for creating a single node RKE cluster and installing the Rancher server
 resource "linode_instance" "rancher_server" {
   label           = "${var.prefix}-rancher-server"
-  image           = "linode/opensuse15.3"
+  image           = "linode/ubuntu20.04"
   region          = var.linode_region
   type            = var.linode_type
   private_ip      = true
   authorized_keys = [linode_sshkey.quickstart_ssh_key.ssh_key]
-
-  stackscript_id = linode_stackscript.rancher_server.id
 }
 
 # Rancher resources
@@ -76,14 +65,14 @@ resource "linode_stackscript" "quickstart_node" {
     }
   )
 
-  images   = ["linode/opensuse15.3"]
+  images   = ["linode/ubuntu20.04"]
   rev_note = "initial version"
 }
 
 # Linode for creating a single node workload cluster
 resource "linode_instance" "quickstart_node" {
   label           = "${var.prefix}-workload-node"
-  image           = "linode/opensuse15.3"
+  image           = "linode/ubuntu20.04"
   region          = var.linode_region
   type            = var.linode_type
   private_ip      = true
