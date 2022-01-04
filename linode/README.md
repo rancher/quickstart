@@ -25,26 +25,26 @@ Linode size used for all linode
 - Default: **`"19.03"`**
 Docker version to install on nodes
 
-###### `rke_kubernetes_version`
-- Default: **`"v1.19.3-rancher1-2"`**
-Kubernetes version to use for Rancher server RKE cluster
+###### `rancher_kubernetes_version`
+- Default: **`"v1.21.8+k3s1"`**
+Kubernetes version to use for Rancher server cluster
 
-See `rancher-common` module variable `rke_kubernetes_version` for more details.
+See `rancher-common` module variable `rancher_kubernetes_version` for more details.
 
 ###### `workload_kubernetes_version`
-- Default: **`"v1.17.11-rancher1-1"`**
+- Default: **`"v1.20.6-rancher1-1"`**
 Kubernetes version to use for managed workload cluster
 
 See `rancher-common` module variable `workload_kubernetes_version` for more details.
 
 ###### `cert_manager_version`
-- Default: **`"0.15.1"`**
+- Default: **`"1.5.3"`**
 Version of cert-manager to install alongside Rancher (format: 0.0.0)
 
 See `rancher-common` module variable `cert_manager_version` for more details.
 
 ###### `rancher_version`
-- Default: **`"v2.4.8"`**
+- Default: **`"v2.6.3"`**
 Rancher server version (format v0.0.0)
 
 See `rancher-common` module variable `rancher_version` for more details.

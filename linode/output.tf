@@ -1,4 +1,3 @@
-
 output "rancher_server_url" {
   value = module.rancher_common.rancher_url
 }

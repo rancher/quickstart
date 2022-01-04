@@ -23,26 +23,21 @@ resource "linode_sshkey" "quickstart_ssh_key" {
 }
 
 resource "linode_stackscript" "rancher_server" {
-  label       = "rancher-server"
+  label       = "${var.prefix}-rancher-server"
   description = "Rancher server launch script"
-  script = templatefile(
-    join("/", [path.module, "../cloud-common/files/userdata_rancher_server.template"]),
-    {
-      docker_version = var.docker_version
-      username       = local.node_username
-    }
-  )
+  script      = templatefile("${path.module}/files/userdata_rancher_server.template", {})
 
-  images   = ["linode/ubuntu18.04"]
+  images   = ["linode/opensuse15.3"]
   rev_note = "initial version"
 }
 
 # Linode for creating a single node RKE cluster and installing the Rancher server
 resource "linode_instance" "rancher_server" {
   label           = "${var.prefix}-rancher-server"
-  image           = "linode/ubuntu18.04"
+  image           = "linode/opensuse15.3"
   region          = var.linode_region
   type            = var.linode_type
+  private_ip      = true
   authorized_keys = [linode_sshkey.quickstart_ssh_key.ssh_key]
 
   stackscript_id = linode_stackscript.rancher_server.id
@@ -52,16 +47,16 @@ resource "linode_instance" "rancher_server" {
 module "rancher_common" {
   source = "../rancher-common"
 
-  node_public_ip         = linode_instance.rancher_server.ip_address
-  node_internal_ip       = linode_instance.rancher_server.private_ip_address
-  node_username          = local.node_username
-  ssh_private_key_pem    = tls_private_key.global_key.private_key_pem
-  rke_kubernetes_version = var.rke_kubernetes_version
+  node_public_ip             = linode_instance.rancher_server.ip_address
+  node_internal_ip           = linode_instance.rancher_server.private_ip_address
+  node_username              = local.node_username
+  ssh_private_key_pem        = tls_private_key.global_key.private_key_pem
+  rancher_kubernetes_version = var.rancher_kubernetes_version
 
   cert_manager_version = var.cert_manager_version
   rancher_version      = var.rancher_version
 
-  rancher_server_dns = join(".", ["rancher", linode_instance.rancher_server.ip_address, "xip.io"])
+  rancher_server_dns = join(".", ["rancher", linode_instance.rancher_server.ip_address, "sslip.io"])
   admin_password     = var.rancher_server_admin_password
 
   workload_kubernetes_version = var.workload_kubernetes_version
@@ -70,10 +65,10 @@ module "rancher_common" {
 
 # Linode stackscript to initialise node
 resource "linode_stackscript" "quickstart_node" {
-  label       = "workload-node"
+  label       = "${var.prefix}-workload-node"
   description = "Quickstart launch script"
   script = templatefile(
-    join("/", [path.module, "../cloud-common/files/userdata_quickstart_node.template"]),
+    "${path.module}/files/userdata_quickstart_node.template",
     {
       docker_version   = var.docker_version
       username         = local.node_username
@@ -81,16 +76,17 @@ resource "linode_stackscript" "quickstart_node" {
     }
   )
 
-  images   = ["linode/ubuntu18.04"]
+  images   = ["linode/opensuse15.3"]
   rev_note = "initial version"
 }
 
 # Linode for creating a single node workload cluster
 resource "linode_instance" "quickstart_node" {
   label           = "${var.prefix}-workload-node"
-  image           = "linode/ubuntu18.04"
+  image           = "linode/opensuse15.3"
   region          = var.linode_region
   type            = var.linode_type
+  private_ip      = true
   authorized_keys = [linode_sshkey.quickstart_ssh_key.ssh_key]
 
   stackscript_id = linode_stackscript.quickstart_node.id
