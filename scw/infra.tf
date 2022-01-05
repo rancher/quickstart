@@ -29,16 +29,6 @@ resource "scaleway_instance_server" "rancher_server" {
   type               = var.instance_type
   enable_dynamic_ip  = true
 
-  user_data = {
-    cloud-init = templatefile(
-      join("/", [path.module, "../cloud-common/files/userdata_rancher_server.template"]),
-      {
-        docker_version = var.docker_version
-        username       = local.node_username
-      }
-    )
-  }
-
   provisioner "remote-exec" {
     inline = [
       "echo 'Waiting for cloud-init to complete...'",
@@ -63,12 +53,12 @@ module "rancher_common" {
   node_internal_ip       = scaleway_instance_server.rancher_server.private_ip
   node_username          = local.node_username
   ssh_private_key_pem    = tls_private_key.global_key.private_key_pem
-  rke_kubernetes_version = var.rke_kubernetes_version
+  rancher_kubernetes_version = var.rancher_kubernetes_version
 
   cert_manager_version = var.cert_manager_version
   rancher_version      = var.rancher_version
 
-  rancher_server_dns = join(".", ["rancher", scaleway_instance_server.rancher_server.public_ip, "nip.io"])
+  rancher_server_dns = join(".", ["rancher", scaleway_instance_server.rancher_server.public_ip, "sslip.io"])
   admin_password     = var.rancher_server_admin_password
 
   workload_kubernetes_version = var.workload_kubernetes_version
@@ -84,7 +74,7 @@ resource "scaleway_instance_server" "quickstart_node" {
 
   user_data = {
     cloud-init = templatefile(
-      join("/", [path.module, "../cloud-common/files/userdata_quickstart_node.template"]),
+      join("/", [path.module, "files/userdata_quickstart_node.template"]),
       {
         docker_version   = var.docker_version
         username         = local.node_username
