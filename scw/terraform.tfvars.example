@@ -1,0 +1,50 @@
+# Required variables
+# - Fill in before beginning quickstart
+# ==========================================================
+
+# Scaleway project id
+scw_project_id = ""
+
+# Scaleway access key
+scw_access_key = ""
+
+# Scaleway secret key
+scw_secret_key = ""
+
+# Password used to log in to the `admin` account on the new Rancher server
+rancher_server_admin_password = ""
+
+
+# Optional variables
+# - Uncomment variables to customize quickstart
+# ----------------------------------------------------------
+
+# Scaleway zone for all resources
+# scw_zone = ""
+
+# Scaleway region for all resources
+# scw_region = ""
+
+# Prefix for all resources created by quickstart
+# prefix = ""
+
+# Type of all created instances
+# instance_type = ""
+
+# Docker version installed on target hosts
+# - Must be a version supported by the Rancher install scripts
+# docker_version = ""
+
+# Kubernetes version used for creating management server cluster
+# - Must be supported by RKE terraform provider 1.0.1
+# rancher_kubernetes_version = ""
+
+# Kubernetes version used for creating workload cluster
+# - Must be supported by RKE terraform provider 1.0.1
+# workload_kubernetes_version = ""
+
+# Version of cert-manager to install, used in case of older Rancher versions
+# cert_manager_version = ""
+
+# Version of Rancher to install
+# rancher_version = ""

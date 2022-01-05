@@ -38,6 +38,7 @@ Quickstarts are provided for:
 - [**Google Cloud Platform** (`gcp`)](./gcp)
 - [**Hetzner Cloud** (`hcloud`)](./hcloud)
 - [**Linode** (`linode`)](./linode)
+- [**Scaleway** (`scw`)](./scw)
 
 **You will be responsible for any and all infrastructure costs incurred by these resources.**
 
