@@ -24,10 +24,10 @@ resource "scaleway_account_ssh_key" "quickstart_ssh_key" {
 
 # Scaleway instance for creating a single node RKE cluster and installing the Rancher server
 resource "scaleway_instance_server" "rancher_server" {
-  name               = "${var.prefix}-rancher-server"
-  image              = "ubuntu_focal"
-  type               = var.instance_type
-  enable_dynamic_ip  = true
+  name              = "${var.prefix}-rancher-server"
+  image             = "ubuntu_focal"
+  type              = var.instance_type
+  enable_dynamic_ip = true
 
   provisioner "remote-exec" {
     inline = [
@@ -49,10 +49,10 @@ resource "scaleway_instance_server" "rancher_server" {
 module "rancher_common" {
   source = "../rancher-common"
 
-  node_public_ip         = scaleway_instance_server.rancher_server.public_ip
-  node_internal_ip       = scaleway_instance_server.rancher_server.private_ip
-  node_username          = local.node_username
-  ssh_private_key_pem    = tls_private_key.global_key.private_key_pem
+  node_public_ip             = scaleway_instance_server.rancher_server.public_ip
+  node_internal_ip           = scaleway_instance_server.rancher_server.private_ip
+  node_username              = local.node_username
+  ssh_private_key_pem        = tls_private_key.global_key.private_key_pem
   rancher_kubernetes_version = var.rancher_kubernetes_version
 
   cert_manager_version = var.cert_manager_version
@@ -67,10 +67,10 @@ module "rancher_common" {
 
 # Scaleway instance for creating a single node workload cluster
 resource "scaleway_instance_server" "quickstart_node" {
-  name               = "${var.prefix}-quickstart-node"
-  image              = "ubuntu_focal"
-  type               = var.instance_type
-  enable_dynamic_ip  = true
+  name              = "${var.prefix}-quickstart-node"
+  image             = "ubuntu_focal"
+  type              = var.instance_type
+  enable_dynamic_ip = true
 
   user_data = {
     cloud-init = templatefile(
