@@ -10,6 +10,7 @@ gcp_account_json = ""
 gcp_project = ""
 
 # Password used to log in to the `admin` account on the new Rancher server
+# - Must be at least 12 characters
 rancher_server_admin_password = ""
 
 # Optional variables, uncomment to customize the quickstart
