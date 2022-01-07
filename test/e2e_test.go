@@ -22,16 +22,24 @@ func TestE2E_Azure(t *testing.T) {
 	runTerraformAndVerify(t, "../azure")
 }
 
-func TestE2E_AzureWindows(t *testing.T) {
-	runTerraformAndVerify(t, "../azure-windows")
-}
-
 func TestE2E_Do(t *testing.T) {
 	runTerraformAndVerify(t, "../do")
 }
 
 func TestE2E_Gcp(t *testing.T) {
 	runTerraformAndVerify(t, "../gcp")
+}
+
+func TestE2E_Hcloud(t *testing.T) {
+	runTerraformAndVerify(t, "../hcloud")
+}
+
+func TestE2E_Linode(t *testing.T) {
+	runTerraformAndVerify(t, "../linode")
+}
+
+func TestE2E_Scw(t *testing.T) {
+	runTerraformAndVerify(t, "../scw")
 }
 
 func runTerraformAndVerify(t *testing.T, terraformDir string) {
