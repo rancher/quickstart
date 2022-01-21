@@ -1,0 +1,36 @@
+
+# Admin password to use for Rancher server bootstrap
+admin_password = ""
+
+# Public IP of compute node for Rancher cluster
+node_public_ip = ""
+
+# Username used for SSH access to the Rancher server cluster node
+node_username = ""
+
+# DNS host name of the Rancher server
+rancher_server_dns = ""
+
+# Private key used for SSH access to the Rancher server cluster node
+ssh_private_key_pem = ""
+
+# Name for created custom workload cluster
+workload_cluster_name = ""
+
+# Version of cert-manager to install alongside Rancher (format: 0.0.0)
+cert_manager_version = "1.5.3"
+
+# Internal IP of compute node for Rancher cluster
+node_internal_ip = ""
+
+# Kubernetes version to use for Rancher server cluster
+rancher_kubernetes_version = "v1.21.8+k3s1"
+
+# Rancher server version (format v0.0.0)
+rancher_version = "v2.6.3"
+
+# Activate windows supports for the custom workload cluster
+windows_prefered_cluster = false
+
+# Kubernetes version to use for managed workload cluster
+workload_kubernetes_version = "v1.20.6-rancher1-1"

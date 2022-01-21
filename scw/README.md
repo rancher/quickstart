@@ -3,79 +3,64 @@
 Two single-node RKE Kubernetes clusters will be created from two instances running Ubuntu 20.04 (Focal Fossa) and Docker.
 Both instances will be accessible over SSH using the SSH keys `id_rsa` and `id_rsa.pub`.
 
-## Variables
+<!-- BEGIN_TF_DOCS -->
+## Requirements
 
-###### `scw_project_id`
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
+| <a name="requirement_local"></a> [local](#requirement\_local) | 2.1.0 |
+| <a name="requirement_scaleway"></a> [scaleway](#requirement\_scaleway) | 2.2.0 |
+| <a name="requirement_tls"></a> [tls](#requirement\_tls) | 3.1.0 |
 
-- **Required**
-Scaleway project id used to create infrastructure
+## Providers
 
-###### `scw_access_key`
+| Name | Version |
+|------|---------|
+| <a name="provider_local"></a> [local](#provider\_local) | 2.1.0 |
+| <a name="provider_scaleway"></a> [scaleway](#provider\_scaleway) | 2.2.0 |
+| <a name="provider_tls"></a> [tls](#provider\_tls) | 3.1.0 |
 
-- **Required**
-Scaleway access key used to create infrastructure
+## Modules
 
-###### `scw_secret_key`
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_rancher_common"></a> [rancher\_common](#module\_rancher\_common) | ../rancher-common | n/a |
 
-- **Required**
-Scaleway secret key used to create infrastructure
+## Resources
 
-###### `scw_zone`
+| Name | Type |
+|------|------|
+| [local_file.ssh_private_key_pem](https://registry.terraform.io/providers/hashicorp/local/2.1.0/docs/resources/file) | resource |
+| [local_file.ssh_public_key_openssh](https://registry.terraform.io/providers/hashicorp/local/2.1.0/docs/resources/file) | resource |
+| [scaleway_account_ssh_key.quickstart_ssh_key](https://registry.terraform.io/providers/scaleway/scaleway/2.2.0/docs/resources/account_ssh_key) | resource |
+| [scaleway_instance_server.quickstart_node](https://registry.terraform.io/providers/scaleway/scaleway/2.2.0/docs/resources/instance_server) | resource |
+| [scaleway_instance_server.rancher_server](https://registry.terraform.io/providers/scaleway/scaleway/2.2.0/docs/resources/instance_server) | resource |
+| [tls_private_key.global_key](https://registry.terraform.io/providers/hashicorp/tls/3.1.0/docs/resources/private_key) | resource |
 
-- Default: **`"fr-par-1"`**
-Scaleway zone used for all resources
+## Inputs
 
-###### `scw_region`
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_rancher_server_admin_password"></a> [rancher\_server\_admin\_password](#input\_rancher\_server\_admin\_password) | Admin password to use for Rancher server bootstrap | `string` | n/a | yes |
+| <a name="input_scw_access_key"></a> [scw\_access\_key](#input\_scw\_access\_key) | Scaleway access key used to create infrastructure | `string` | n/a | yes |
+| <a name="input_scw_project_id"></a> [scw\_project\_id](#input\_scw\_project\_id) | Scaleway project id used to create infrastructure | `string` | n/a | yes |
+| <a name="input_scw_secret_key"></a> [scw\_secret\_key](#input\_scw\_secret\_key) | Scaleway secret key used to create infrastructure | `string` | n/a | yes |
+| <a name="input_cert_manager_version"></a> [cert\_manager\_version](#input\_cert\_manager\_version) | Version of cert-manager to install alongside Rancher (format: 0.0.0) | `string` | `"1.5.3"` | no |
+| <a name="input_docker_version"></a> [docker\_version](#input\_docker\_version) | Docker version to install on nodes | `string` | `"19.03"` | no |
+| <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Instance type used for all instances | `string` | `"DEV1-M"` | no |
+| <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix added to names of all resources | `string` | `"quickstart"` | no |
+| <a name="input_rancher_kubernetes_version"></a> [rancher\_kubernetes\_version](#input\_rancher\_kubernetes\_version) | Kubernetes version to use for Rancher server cluster | `string` | `"v1.21.8+k3s1"` | no |
+| <a name="input_rancher_version"></a> [rancher\_version](#input\_rancher\_version) | Rancher server version (format: v0.0.0) | `string` | `"v2.6.3"` | no |
+| <a name="input_scw_region"></a> [scw\_region](#input\_scw\_region) | Scaleway region used for all resources | `string` | `"fr-par"` | no |
+| <a name="input_scw_zone"></a> [scw\_zone](#input\_scw\_zone) | Scaleway zone used for all resources | `string` | `"fr-par-1"` | no |
+| <a name="input_workload_kubernetes_version"></a> [workload\_kubernetes\_version](#input\_workload\_kubernetes\_version) | Kubernetes version to use for managed workload cluster | `string` | `"v1.20.6-rancher1-1"` | no |
 
-- Default: **`"fr-par"`**
-Scaleway region used for all resources
+## Outputs
 
-###### `prefix`
-
-- Default: **`"quickstart"`**
-Prefix added to names of all resources
-
-###### `instance_type`
-
-- Default: **`"DEV1-M"`**
-Droplet size used for all droplets
-
-###### `docker_version`
-
-- Default: **`"19.03"`**
-Docker version to install on nodes
-
-###### `rke_kubernetes_version`
-
-- Default: **`"v1.20.4-rancher1-1"`**
-Kubernetes version to use for Rancher server RKE cluster
-
-See `rancher-common` module variable `rke_kubernetes_version` for more details.
-
-###### `workload_kubernetes_version`
-
-- Default: **`"v1.19.8-rancher1-1"`**
-Kubernetes version to use for managed workload cluster
-
-See `rancher-common` module variable `workload_kubernetes_version` for more details.
-
-###### `cert_manager_version`
-
-- Default: **`"1.0.4"`**
-Version of cert-manager to install alongside Rancher (format: 0.0.0)
-
-See `rancher-common` module variable `cert_manager_version` for more details.
-
-###### `rancher_version`
-
-- Default: **`"v2.5.7"`**
-Rancher server version (format v0.0.0)
-
-See `rancher-common` module variable `rancher_version` for more details.
-
-###### `rancher_server_admin_password`
-
-- **Required**
-Admin password to use for Rancher server bootstrap
-
-See `rancher-common` module variable `admin_password` for more details.
+| Name | Description |
+|------|-------------|
+| <a name="output_rancher_node_ip"></a> [rancher\_node\_ip](#output\_rancher\_node\_ip) | n/a |
+| <a name="output_rancher_server_url"></a> [rancher\_server\_url](#output\_rancher\_server\_url) | n/a |
+| <a name="output_workload_node_ip"></a> [workload\_node\_ip](#output\_workload\_node\_ip) | n/a |
+<!-- END_TF_DOCS -->

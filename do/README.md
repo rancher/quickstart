@@ -3,55 +3,61 @@
 Two single-node RKE Kubernetes clusters will be created from two droplets running Ubuntu 20.04 and Docker.
 Both instances will be accessible over SSH using the SSH keys `id_rsa` and `id_rsa.pub`.
 
-## Variables
+<!-- BEGIN_TF_DOCS -->
+## Requirements
 
-###### `do_token`
-- **Required**
-DigitalOcean API token used to create infrastructure
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
+| <a name="requirement_digitalocean"></a> [digitalocean](#requirement\_digitalocean) | 2.16.0 |
+| <a name="requirement_local"></a> [local](#requirement\_local) | 2.1.0 |
+| <a name="requirement_tls"></a> [tls](#requirement\_tls) | 3.1.0 |
 
-###### `do_region`
-- Default: **`"nyc1"`**
-DigitalOcean region used for all resources
+## Providers
 
-###### `prefix`
-- Default: **`"quickstart"`**
-Prefix added to names of all resources
+| Name | Version |
+|------|---------|
+| <a name="provider_digitalocean"></a> [digitalocean](#provider\_digitalocean) | 2.16.0 |
+| <a name="provider_local"></a> [local](#provider\_local) | 2.1.0 |
+| <a name="provider_tls"></a> [tls](#provider\_tls) | 3.1.0 |
 
-###### `droplet_size`
-- Default: **`"s-2vcpu-4gb"`**
-Droplet size used for all droplets
+## Modules
 
-###### `docker_version`
-- Default: **`"19.03"`**
-Docker version to install on nodes
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_rancher_common"></a> [rancher\_common](#module\_rancher\_common) | ../rancher-common | n/a |
 
-###### `rancher_kubernetes_version`
-- Default: **`"v1.21.8+k3s1"`**
-Kubernetes version to use for Rancher server cluster
+## Resources
 
-See `rancher-common` module variable `rancher_kubernetes_version` for more details.
+| Name | Type |
+|------|------|
+| [digitalocean_droplet.quickstart_node](https://registry.terraform.io/providers/digitalocean/digitalocean/2.16.0/docs/resources/droplet) | resource |
+| [digitalocean_droplet.rancher_server](https://registry.terraform.io/providers/digitalocean/digitalocean/2.16.0/docs/resources/droplet) | resource |
+| [digitalocean_ssh_key.quickstart_ssh_key](https://registry.terraform.io/providers/digitalocean/digitalocean/2.16.0/docs/resources/ssh_key) | resource |
+| [local_file.ssh_private_key_pem](https://registry.terraform.io/providers/hashicorp/local/2.1.0/docs/resources/file) | resource |
+| [local_file.ssh_public_key_openssh](https://registry.terraform.io/providers/hashicorp/local/2.1.0/docs/resources/file) | resource |
+| [tls_private_key.global_key](https://registry.terraform.io/providers/hashicorp/tls/3.1.0/docs/resources/private_key) | resource |
 
-###### `workload_kubernetes_version`
-- Default: **`"v1.20.6-rancher1-1"`**
-Kubernetes version to use for managed workload cluster
+## Inputs
 
-See `rancher-common` module variable `workload_kubernetes_version` for more details.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_do_token"></a> [do\_token](#input\_do\_token) | DigitalOcean API token used to create infrastructure | `string` | n/a | yes |
+| <a name="input_rancher_server_admin_password"></a> [rancher\_server\_admin\_password](#input\_rancher\_server\_admin\_password) | Admin password to use for Rancher server bootstrap | `string` | n/a | yes |
+| <a name="input_cert_manager_version"></a> [cert\_manager\_version](#input\_cert\_manager\_version) | Version of cert-manager to install alongside Rancher (format: 0.0.0) | `string` | `"1.5.3"` | no |
+| <a name="input_do_region"></a> [do\_region](#input\_do\_region) | DigitalOcean region used for all resources | `string` | `"nyc1"` | no |
+| <a name="input_docker_version"></a> [docker\_version](#input\_docker\_version) | Docker version to install on nodes | `string` | `"19.03"` | no |
+| <a name="input_droplet_size"></a> [droplet\_size](#input\_droplet\_size) | Droplet size used for all droplets | `string` | `"s-2vcpu-4gb"` | no |
+| <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix added to names of all resources | `string` | `"quickstart"` | no |
+| <a name="input_rancher_kubernetes_version"></a> [rancher\_kubernetes\_version](#input\_rancher\_kubernetes\_version) | Kubernetes version to use for Rancher server cluster | `string` | `"v1.21.8+k3s1"` | no |
+| <a name="input_rancher_version"></a> [rancher\_version](#input\_rancher\_version) | Rancher server version (format: v0.0.0) | `string` | `"v2.6.3"` | no |
+| <a name="input_workload_kubernetes_version"></a> [workload\_kubernetes\_version](#input\_workload\_kubernetes\_version) | Kubernetes version to use for managed workload cluster | `string` | `"v1.20.6-rancher1-1"` | no |
 
-###### `cert_manager_version`
-- Default: **`"1.5.3"`**
-Version of cert-manager to install alongside Rancher (format: 0.0.0)
+## Outputs
 
-See `rancher-common` module variable `cert_manager_version` for more details.
-
-###### `rancher_version`
-- Default: **`"v2.6.3"`**
-Rancher server version (format v0.0.0)
-
-See `rancher-common` module variable `rancher_version` for more details.
-
-###### `rancher_server_admin_password`
-- **Required**
-Admin password to use for Rancher server bootstrap
-
-See `rancher-common` module variable `admin_password` for more details.
-
+| Name | Description |
+|------|-------------|
+| <a name="output_rancher_node_ip"></a> [rancher\_node\_ip](#output\_rancher\_node\_ip) | n/a |
+| <a name="output_rancher_server_url"></a> [rancher\_server\_url](#output\_rancher\_server\_url) | n/a |
+| <a name="output_workload_node_ip"></a> [workload\_node\_ip](#output\_workload\_node\_ip) | n/a |
+<!-- END_TF_DOCS -->

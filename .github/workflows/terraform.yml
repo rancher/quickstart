@@ -41,3 +41,17 @@ jobs:
     # Validates the Terraform configuration files
     - name: Terraform Validate
       run: terraform validate
+
+    - name: Setup go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17.6
+
+    - name: Setup terraform-docs
+      run: go install github.com/terraform-docs/terraform-docs@v0.16.0
+
+    - name: Validate if terraform-docs generated README.md is up to date
+      run: terraform-docs -c ../.terraform-docs-readme.yml . --output-check
+
+    - name: Validate if terraform-docs generated terraform.tfvars.example is up to date
+      run: terraform-docs -c ../.terraform-docs-tfvars.yml . --output-check

@@ -1,42 +1,30 @@
-# Required variables
-# - Fill in before beginning quickstart
-# ==========================================================
 
-# DigitalOcean API token
+# DigitalOcean API token used to create infrastructure
 do_token = ""
 
-# Password used to log in to the `admin` account on the new Rancher server
-# - Must be at least 12 characters
+# Admin password to use for Rancher server bootstrap
 rancher_server_admin_password = ""
 
+# Version of cert-manager to install alongside Rancher (format: 0.0.0)
+cert_manager_version = "1.5.3"
 
-# Optional variables
-# - Uncomment variables to customize quickstart
-# ----------------------------------------------------------
+# DigitalOcean region used for all resources
+do_region = "nyc1"
 
-# DigitalOcean region for all resources
-# do_region = ""
+# Docker version to install on nodes
+docker_version = "19.03"
 
-# Prefix for all resources created by quickstart
-# prefix = ""
+# Droplet size used for all droplets
+droplet_size = "s-2vcpu-4gb"
 
-# Size of all created droplets
-# droplet_size = ""
+# Prefix added to names of all resources
+prefix = "quickstart"
 
-# Docker version installed on target hosts
-# - Must be a version supported by the Rancher install scripts
-# docker_version = ""
+# Kubernetes version to use for Rancher server cluster
+rancher_kubernetes_version = "v1.21.8+k3s1"
 
-# Kubernetes version used for creating management server cluster
-# - Must be supported by RKE terraform provider 1.0.1
-# rancher_kubernetes_version = ""
+# Rancher server version (format: v0.0.0)
+rancher_version = "v2.6.3"
 
-# Kubernetes version used for creating workload cluster
-# - Must be supported by RKE terraform provider 1.0.1
-# workload_kubernetes_version = ""
-
-# Version of cert-manager to install, used in case of older Rancher versions
-# cert_manager_version = ""
-
-# Version of Rancher to install
-# rancher_version = ""
+# Kubernetes version to use for managed workload cluster
+workload_kubernetes_version = "v1.20.6-rancher1-1"
