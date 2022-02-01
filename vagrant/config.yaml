@@ -1,4 +1,4 @@
-admin_password: admin
+admin_password: adminPassword
 rancher_version: v2.6.3
 ROS_version: 1.5.1
 # Empty defaults to latest non-experimental available

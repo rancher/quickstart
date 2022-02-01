@@ -14,7 +14,7 @@ This folder contains Vagrant code to stand up a single Rancher server instance w
 0. Run `vagrant up`
 
 When provisioning is finished the Rancher UI will become accessible on [192.168.56.101](http://192.168.56.101).
-The default password is `admin`, but this can be updated in the config.yaml file.
+The default password is `adminPassword`, but this can be updated in the config.yaml file (must be at least 12 characters).
 
 If you want to keep the configuration changes outside the git repository you can copy the config.yaml file to local_config.yaml and make changes there.
 
