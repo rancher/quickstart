@@ -1,56 +1,45 @@
-# Required variables
-# - Fill in before beginning quickstart
-# ==========================================================
 
-# Azure Subscription ID
-azure_subscription_id = ""
-
-# Azure Client ID
+# Azure client id used to create resources
 azure_client_id = ""
 
-# Azure Client Secret
+# Client secret used to authenticate with Azure apis
 azure_client_secret = ""
 
-# Azure Tenant ID
+# Azure subscription id under which resources will be provisioned
+azure_subscription_id = ""
+
+# Azure tenant id used to create resources
 azure_tenant_id = ""
 
-# Password used to log in to the `admin` account on the new Rancher server
-# - Must be at least 12 characters
+# Admin password to use for Rancher server bootstrap
 rancher_server_admin_password = ""
-
-# Add a windows node to the workload cluster
-add_windows_node = false
 
 # Admin password to use for the Windows VM
 windows_admin_password = ""
 
-# Optional variables, uncomment to customize the quickstart
-# ----------------------------------------------------------
+# Add a windows node to the workload cluster
+add_windows_node = false
 
-# Azure location for all resources
-# azure_location = ""
+# Azure location used for all resources
+azure_location = "East US"
 
-# Prefix for all resources created by quickstart
-# prefix = ""
+# Version of cert-manager to install alongside Rancher (format: 0.0.0)
+cert_manager_version = "1.5.3"
 
-# Azure virtual machine instance size of all created instances
-# instance_type = ""
+# Docker version to install on nodes
+docker_version = "19.03"
 
-# Docker version installed on target hosts
-# - Must be a version supported by the Rancher install scripts
-# docker_version = ""
+# Instance type used for all linux virtual machines
+instance_type = "Standard_DS2_v2"
 
-# Kubernetes version used for creating management server cluster
-# - Must be supported by RKE terraform provider 1.0.1
-# rancher_kubernetes_version = ""
+# Prefix added to names of all resources
+prefix = "quickstart"
 
-# Kubernetes version used for creating workload cluster
-# - Must be supported by RKE terraform provider 1.0.1
-# workload_kubernetes_version = ""
+# Kubernetes version to use for Rancher server cluster
+rancher_kubernetes_version = "v1.21.8+k3s1"
 
-# Version of cert-manager to install, used in case of older Rancher versions
-# cert_manager_version = ""
+# Rancher server version (format: v0.0.0)
+rancher_version = "v2.6.3"
 
-# Version of Rancher to install
-# rancher_version = ""
-
+# Kubernetes version to use for managed workload cluster
+workload_kubernetes_version = "v1.20.6-rancher1-1"

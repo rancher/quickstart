@@ -1,51 +1,39 @@
-# Required variables
-# - Fill in before beginning quickstart
-# ==========================================================
 
-# Scaleway project id
-scw_project_id = ""
-
-# Scaleway access key
-scw_access_key = ""
-
-# Scaleway secret key
-scw_secret_key = ""
-
-# Password used to log in to the `admin` account on the new Rancher server
-# - Must be at least 12 characters
+# Admin password to use for Rancher server bootstrap
 rancher_server_admin_password = ""
 
+# Scaleway access key used to create infrastructure
+scw_access_key = ""
 
-# Optional variables
-# - Uncomment variables to customize quickstart
-# ----------------------------------------------------------
+# Scaleway project id used to create infrastructure
+scw_project_id = ""
 
-# Scaleway zone for all resources
-# scw_zone = ""
+# Scaleway secret key used to create infrastructure
+scw_secret_key = ""
 
-# Scaleway region for all resources
-# scw_region = ""
+# Version of cert-manager to install alongside Rancher (format: 0.0.0)
+cert_manager_version = "1.5.3"
 
-# Prefix for all resources created by quickstart
-# prefix = ""
+# Docker version to install on nodes
+docker_version = "19.03"
 
-# Type of all created instances
-# instance_type = ""
+# Instance type used for all instances
+instance_type = "DEV1-M"
 
-# Docker version installed on target hosts
-# - Must be a version supported by the Rancher install scripts
-# docker_version = ""
+# Prefix added to names of all resources
+prefix = "quickstart"
 
-# Kubernetes version used for creating management server cluster
-# - Must be supported by RKE terraform provider 1.0.1
-# rancher_kubernetes_version = ""
+# Kubernetes version to use for Rancher server cluster
+rancher_kubernetes_version = "v1.21.8+k3s1"
 
-# Kubernetes version used for creating workload cluster
-# - Must be supported by RKE terraform provider 1.0.1
-# workload_kubernetes_version = ""
+# Rancher server version (format: v0.0.0)
+rancher_version = "v2.6.3"
 
-# Version of cert-manager to install, used in case of older Rancher versions
-# cert_manager_version = ""
+# Scaleway region used for all resources
+scw_region = "fr-par"
 
-# Version of Rancher to install
-# rancher_version = ""
+# Scaleway zone used for all resources
+scw_zone = "fr-par-1"
+
+# Kubernetes version to use for managed workload cluster
+workload_kubernetes_version = "v1.20.6-rancher1-1"

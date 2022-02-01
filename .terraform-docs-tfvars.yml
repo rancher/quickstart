@@ -1,0 +1,13 @@
+formatter: tfvars hcl
+
+output:
+  file: terraform.tfvars.example
+  mode: replace
+  template: |-
+    {{ .Content }}
+
+sort:
+  by: required
+
+settings:
+  description: true
