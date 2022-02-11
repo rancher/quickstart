@@ -19,29 +19,29 @@ resource "local_file" "ssh_public_key_openssh" {
 # Temporary key pair used for SSH accesss
 resource "outscale_keypair" "quickstart_key_pair" {
   keypair_name = "${var.prefix}-rancher-quickstart"
-  public_key      = tls_private_key.global_key.public_key_openssh
+  public_key   = tls_private_key.global_key.public_key_openssh
 }
 
 # Security group to allow all traffic
 resource "outscale_security_group" "rancher_sg_allowall" {
-  security_group_name        = "${var.prefix}-rancher-allowall"
-  description = "Rancher quickstart - allow all traffic"
+  security_group_name = "${var.prefix}-rancher-allowall"
+  description         = "Rancher quickstart - allow all traffic"
 
   tags {
-    key = "creator"
+    key   = "creator"
     value = "rancher-quickstart"
   }
 }
 
 resource "outscale_security_group_rule" "security_group_rule01" {
-    flow              = "Inbound"
-    security_group_id = outscale_security_group.rancher_sg_allowall.id
-    rules {
-      from_port_range   = "0"
-      to_port_range     = "0"
-      ip_protocol       = "-1"
-      ip_ranges          = ["0.0.0.0/0"]
-    }
+  flow              = "Inbound"
+  security_group_id = outscale_security_group.rancher_sg_allowall.id
+  rules {
+    from_port_range = "0"
+    to_port_range   = "0"
+    ip_protocol     = "-1"
+    ip_ranges       = ["0.0.0.0/0"]
+  }
 
 }
 
@@ -54,10 +54,10 @@ resource "outscale_public_ip_link" "rancher_server" {
 
 # Instance for creating a single node RKE cluster and installing the Rancher server
 resource "outscale_vm" "rancher_server" {
-  image_id           = var.omi
-  vm_type = var.instance_type
+  image_id = var.omi
+  vm_type  = var.instance_type
 
-  keypair_name        = outscale_keypair.quickstart_key_pair.keypair_name
+  keypair_name       = outscale_keypair.quickstart_key_pair.keypair_name
   security_group_ids = [outscale_security_group.rancher_sg_allowall.security_group_id]
 
   user_data = filebase64(join("/", [path.module, "files/userdata_rancher_server"]))
@@ -86,12 +86,12 @@ resource "outscale_vm" "rancher_server" {
   }
 
   tags {
-    key    = "name"
-    value  =  "${var.prefix}-rancher-server"
+    key   = "name"
+    value = "${var.prefix}-rancher-server"
   }
 
   tags {
-    key = "creator"
+    key   = "creator"
     value = "rancher-quickstart"
   }
 
@@ -100,8 +100,8 @@ resource "outscale_vm" "rancher_server" {
     value = outscale_public_ip.rancher_server.public_ip
   }
 
-  
-  
+
+
 }
 
 // This looks strange but it apply dependency between rancher module and outscale cloud
@@ -110,7 +110,7 @@ data "outscale_public_ip" "rancher_server" {
     name   = "public_ips"
     values = [outscale_public_ip.rancher_server.public_ip]
   }
-  public_ip = outscale_public_ip.rancher_server.public_ip
+  public_ip  = outscale_public_ip.rancher_server.public_ip
   depends_on = [outscale_public_ip_link.rancher_server, outscale_security_group_rule.security_group_rule01]
 }
 
@@ -145,10 +145,10 @@ resource "outscale_public_ip_link" "quickstart_node" {
 
 # Instance for creating a single node workload cluster
 resource "outscale_vm" "quickstart_node" {
-  image_id           = var.omi
-  vm_type = var.instance_type
+  image_id = var.omi
+  vm_type  = var.instance_type
 
-  keypair_name        = outscale_keypair.quickstart_key_pair.keypair_name
+  keypair_name       = outscale_keypair.quickstart_key_pair.keypair_name
   security_group_ids = [outscale_security_group.rancher_sg_allowall.security_group_id]
 
   user_data = base64encode(templatefile(
@@ -176,12 +176,12 @@ resource "outscale_vm" "quickstart_node" {
   }
 
   tags {
-    key    = "name"
-    value  =  "${var.prefix}-quickstart-node"
+    key   = "name"
+    value = "${var.prefix}-quickstart-node"
   }
 
   tags {
-    key = "creator"
+    key   = "creator"
     value = "rancher-quickstart"
   }
 

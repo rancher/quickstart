@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     outscale = {
-      source  = "outscale-dev/outscale"
+      source = "outscale-dev/outscale"
     }
     local = {
       source  = "hashicorp/local"
