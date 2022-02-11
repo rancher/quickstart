@@ -1,0 +1,3 @@
+#!/bin/bash -x
+
+sudo apt install -y curl

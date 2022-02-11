@@ -1,0 +1,5 @@
+#!/bin/bash -x
+
+sudo apt install -y docker.io
+
+${register_command} --etcd --controlplane --worker

@@ -21,6 +21,7 @@ Rancher Management Server Quickstarts are provided for:
 - [**Hetzner Cloud** (`hcloud`)](./rancher/hcloud)
 - [**Linode** (`linode`)](./rancher/linode)
 - [**Scaleway** (`scw`)](./rancher/scw)
+- [**Outscale** (`outscale`)](./rancher/outscale)
 
 **You will be responsible for any and all infrastructure costs incurred by these resources.**
 
