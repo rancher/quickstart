@@ -50,6 +50,21 @@ resource "outscale_public_ip" "rancher_server" {}
 resource "outscale_public_ip_link" "rancher_server" {
   vm_id     = outscale_vm.rancher_server.vm_id
   public_ip = outscale_public_ip.rancher_server.public_ip
+
+  provisioner "remote-exec" {
+    inline = [
+      "echo 'Waiting for cloud-init to complete...'",
+      "cloud-init status --wait > /dev/null",
+      "echo 'Completed cloud-init!'",
+    ]
+
+    connection {
+      type        = "ssh"
+      host        = outscale_public_ip.rancher_server.public_ip
+      user        = local.node_username
+      private_key = tls_private_key.global_key.private_key_pem
+    }
+  }
 }
 
 # Instance for creating a single node RKE cluster and installing the Rancher server
@@ -67,21 +82,6 @@ resource "outscale_vm" "rancher_server" {
     bsu {
       volume_size = 15
       volume_type = "gp2"
-    }
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-      "echo 'Waiting for cloud-init to complete...'",
-      "cloud-init status --wait > /dev/null",
-      "echo 'Completed cloud-init!'",
-    ]
-
-    connection {
-      type        = "ssh"
-      host        = outscale_public_ip.rancher_server.public_ip
-      user        = local.node_username
-      private_key = tls_private_key.global_key.private_key_pem
     }
   }
 
@@ -141,6 +141,21 @@ resource "outscale_public_ip" "quickstart_node" {}
 resource "outscale_public_ip_link" "quickstart_node" {
   vm_id     = outscale_vm.quickstart_node.vm_id
   public_ip = outscale_public_ip.quickstart_node.public_ip
+
+  provisioner "remote-exec" {
+    inline = [
+      "echo 'Waiting for cloud-init to complete...'",
+      "cloud-init status --wait > /dev/null",
+      "echo 'Completed cloud-init!'",
+    ]
+
+    connection {
+      type        = "ssh"
+      host        = outscale_public_ip.quickstart_node.public_ip
+      user        = local.node_username
+      private_key = tls_private_key.global_key.private_key_pem
+    }
+  }
 }
 
 # Instance for creating a single node workload cluster
@@ -159,21 +174,6 @@ resource "outscale_vm" "quickstart_node" {
       register_command = module.rancher_common.custom_cluster_command
     }
   ))
-
-  provisioner "remote-exec" {
-    inline = [
-      "echo 'Waiting for cloud-init to complete...'",
-      "cloud-init status --wait > /dev/null",
-      "echo 'Completed cloud-init!'",
-    ]
-
-    connection {
-      type        = "ssh"
-      host        = outscale_public_ip.quickstart_node.public_ip
-      user        = local.node_username
-      private_key = tls_private_key.global_key.private_key_pem
-    }
-  }
 
   tags {
     key   = "name"
