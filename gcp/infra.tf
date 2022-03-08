@@ -63,7 +63,7 @@ resource "google_compute_instance" "rancher_server" {
 
   metadata = {
     ssh-keys = "${local.node_username}:${tls_private_key.global_key.public_key_openssh}"
-    enable-oslogin = FALSE
+    enable-oslogin = "FALSE"
   }
 
   provisioner "remote-exec" {
