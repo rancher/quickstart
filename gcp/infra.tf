@@ -63,6 +63,7 @@ resource "google_compute_instance" "rancher_server" {
 
   metadata = {
     ssh-keys = "${local.node_username}:${tls_private_key.global_key.public_key_openssh}"
+    enable-oslogin = "FALSE"
   }
 
   provisioner "remote-exec" {
@@ -124,6 +125,7 @@ resource "google_compute_instance" "quickstart_node" {
 
   metadata = {
     ssh-keys = "${local.node_username}:${tls_private_key.global_key.public_key_openssh}"
+    enable-oslogin = "FALSE"
   }
 
   metadata_startup_script = templatefile(
