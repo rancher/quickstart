@@ -6,7 +6,7 @@ do_token = ""
 rancher_server_admin_password = ""
 
 # Version of cert-manager to install alongside Rancher (format: 0.0.0)
-cert_manager_version = "1.5.3"
+cert_manager_version = "1.7.1"
 
 # DigitalOcean region used for all resources
 do_region = "nyc1"
@@ -21,10 +21,10 @@ droplet_size = "s-2vcpu-4gb"
 prefix = "quickstart"
 
 # Kubernetes version to use for Rancher server cluster
-rancher_kubernetes_version = "v1.21.8+k3s1"
+rancher_kubernetes_version = "v1.21.11+k3s1"
 
 # Rancher server version (format: v0.0.0)
-rancher_version = "v2.6.3"
+rancher_version = "v2.6.4"
 
 # Kubernetes version to use for managed workload cluster
-workload_kubernetes_version = "v1.20.6-rancher1-1"
+workload_kubernetes_version = "v1.21.10-rancher1-1"

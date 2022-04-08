@@ -3,9 +3,9 @@ resource "aws_instance" "quickstart_node_win" {
   ami           = data.aws_ami.windows.id
   instance_type = var.windows_instance_type
 
-  key_name          = aws_key_pair.quickstart_key_pair.key_name
-  security_groups   = [aws_security_group.rancher_sg_allowall.name]
-  get_password_data = true
+  key_name               = aws_key_pair.quickstart_key_pair.key_name
+  vpc_security_group_ids = [aws_security_group.rancher_sg_allowall.id]
+  get_password_data      = true
 
   user_data = templatefile(
     join("/", [path.module, "files/userdata_quickstart_windows.template"]),

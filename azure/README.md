@@ -10,16 +10,16 @@ Both instances will have wide-open security groups and will be accessible over S
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 2.88.1 |
-| <a name="requirement_local"></a> [local](#requirement\_local) | 2.1.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 3.0.2 |
+| <a name="requirement_local"></a> [local](#requirement\_local) | 2.2.2 |
 | <a name="requirement_tls"></a> [tls](#requirement\_tls) | 3.1.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 2.88.1 |
-| <a name="provider_local"></a> [local](#provider\_local) | 2.1.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.0.2 |
+| <a name="provider_local"></a> [local](#provider\_local) | 2.2.2 |
 | <a name="provider_tls"></a> [tls](#provider\_tls) | 3.1.0 |
 
 ## Modules
@@ -32,21 +32,21 @@ Both instances will have wide-open security groups and will be accessible over S
 
 | Name | Type |
 |------|------|
-| [azurerm_linux_virtual_machine.quickstart-node](https://registry.terraform.io/providers/hashicorp/azurerm/2.88.1/docs/resources/linux_virtual_machine) | resource |
-| [azurerm_linux_virtual_machine.rancher_server](https://registry.terraform.io/providers/hashicorp/azurerm/2.88.1/docs/resources/linux_virtual_machine) | resource |
-| [azurerm_network_interface.quickstart-node-interface](https://registry.terraform.io/providers/hashicorp/azurerm/2.88.1/docs/resources/network_interface) | resource |
-| [azurerm_network_interface.quickstart-windows-node-interface](https://registry.terraform.io/providers/hashicorp/azurerm/2.88.1/docs/resources/network_interface) | resource |
-| [azurerm_network_interface.rancher-server-interface](https://registry.terraform.io/providers/hashicorp/azurerm/2.88.1/docs/resources/network_interface) | resource |
-| [azurerm_public_ip.quickstart-node-pip](https://registry.terraform.io/providers/hashicorp/azurerm/2.88.1/docs/resources/public_ip) | resource |
-| [azurerm_public_ip.quickstart-windows-node-pip](https://registry.terraform.io/providers/hashicorp/azurerm/2.88.1/docs/resources/public_ip) | resource |
-| [azurerm_public_ip.rancher-server-pip](https://registry.terraform.io/providers/hashicorp/azurerm/2.88.1/docs/resources/public_ip) | resource |
-| [azurerm_resource_group.rancher-quickstart](https://registry.terraform.io/providers/hashicorp/azurerm/2.88.1/docs/resources/resource_group) | resource |
-| [azurerm_subnet.rancher-quickstart-internal](https://registry.terraform.io/providers/hashicorp/azurerm/2.88.1/docs/resources/subnet) | resource |
-| [azurerm_virtual_machine_extension.join-rancher](https://registry.terraform.io/providers/hashicorp/azurerm/2.88.1/docs/resources/virtual_machine_extension) | resource |
-| [azurerm_virtual_network.rancher-quickstart](https://registry.terraform.io/providers/hashicorp/azurerm/2.88.1/docs/resources/virtual_network) | resource |
-| [azurerm_windows_virtual_machine.quickstart-windows-node](https://registry.terraform.io/providers/hashicorp/azurerm/2.88.1/docs/resources/windows_virtual_machine) | resource |
-| [local_file.ssh_private_key_pem](https://registry.terraform.io/providers/hashicorp/local/2.1.0/docs/resources/file) | resource |
-| [local_file.ssh_public_key_openssh](https://registry.terraform.io/providers/hashicorp/local/2.1.0/docs/resources/file) | resource |
+| [azurerm_linux_virtual_machine.quickstart-node](https://registry.terraform.io/providers/hashicorp/azurerm/3.0.2/docs/resources/linux_virtual_machine) | resource |
+| [azurerm_linux_virtual_machine.rancher_server](https://registry.terraform.io/providers/hashicorp/azurerm/3.0.2/docs/resources/linux_virtual_machine) | resource |
+| [azurerm_network_interface.quickstart-node-interface](https://registry.terraform.io/providers/hashicorp/azurerm/3.0.2/docs/resources/network_interface) | resource |
+| [azurerm_network_interface.quickstart-windows-node-interface](https://registry.terraform.io/providers/hashicorp/azurerm/3.0.2/docs/resources/network_interface) | resource |
+| [azurerm_network_interface.rancher-server-interface](https://registry.terraform.io/providers/hashicorp/azurerm/3.0.2/docs/resources/network_interface) | resource |
+| [azurerm_public_ip.quickstart-node-pip](https://registry.terraform.io/providers/hashicorp/azurerm/3.0.2/docs/resources/public_ip) | resource |
+| [azurerm_public_ip.quickstart-windows-node-pip](https://registry.terraform.io/providers/hashicorp/azurerm/3.0.2/docs/resources/public_ip) | resource |
+| [azurerm_public_ip.rancher-server-pip](https://registry.terraform.io/providers/hashicorp/azurerm/3.0.2/docs/resources/public_ip) | resource |
+| [azurerm_resource_group.rancher-quickstart](https://registry.terraform.io/providers/hashicorp/azurerm/3.0.2/docs/resources/resource_group) | resource |
+| [azurerm_subnet.rancher-quickstart-internal](https://registry.terraform.io/providers/hashicorp/azurerm/3.0.2/docs/resources/subnet) | resource |
+| [azurerm_virtual_machine_extension.join-rancher](https://registry.terraform.io/providers/hashicorp/azurerm/3.0.2/docs/resources/virtual_machine_extension) | resource |
+| [azurerm_virtual_network.rancher-quickstart](https://registry.terraform.io/providers/hashicorp/azurerm/3.0.2/docs/resources/virtual_network) | resource |
+| [azurerm_windows_virtual_machine.quickstart-windows-node](https://registry.terraform.io/providers/hashicorp/azurerm/3.0.2/docs/resources/windows_virtual_machine) | resource |
+| [local_file.ssh_public_key_openssh](https://registry.terraform.io/providers/hashicorp/local/2.2.2/docs/resources/file) | resource |
+| [local_sensitive_file.ssh_private_key_pem](https://registry.terraform.io/providers/hashicorp/local/2.2.2/docs/resources/sensitive_file) | resource |
 | [tls_private_key.global_key](https://registry.terraform.io/providers/hashicorp/tls/3.1.0/docs/resources/private_key) | resource |
 
 ## Inputs
@@ -61,13 +61,13 @@ Both instances will have wide-open security groups and will be accessible over S
 | <a name="input_windows_admin_password"></a> [windows\_admin\_password](#input\_windows\_admin\_password) | Admin password to use for the Windows VM | `string` | n/a | yes |
 | <a name="input_add_windows_node"></a> [add\_windows\_node](#input\_add\_windows\_node) | Add a windows node to the workload cluster | `bool` | `false` | no |
 | <a name="input_azure_location"></a> [azure\_location](#input\_azure\_location) | Azure location used for all resources | `string` | `"East US"` | no |
-| <a name="input_cert_manager_version"></a> [cert\_manager\_version](#input\_cert\_manager\_version) | Version of cert-manager to install alongside Rancher (format: 0.0.0) | `string` | `"1.5.3"` | no |
+| <a name="input_cert_manager_version"></a> [cert\_manager\_version](#input\_cert\_manager\_version) | Version of cert-manager to install alongside Rancher (format: 0.0.0) | `string` | `"1.7.1"` | no |
 | <a name="input_docker_version"></a> [docker\_version](#input\_docker\_version) | Docker version to install on nodes | `string` | `"19.03"` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Instance type used for all linux virtual machines | `string` | `"Standard_DS2_v2"` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix added to names of all resources | `string` | `"quickstart"` | no |
-| <a name="input_rancher_kubernetes_version"></a> [rancher\_kubernetes\_version](#input\_rancher\_kubernetes\_version) | Kubernetes version to use for Rancher server cluster | `string` | `"v1.21.8+k3s1"` | no |
-| <a name="input_rancher_version"></a> [rancher\_version](#input\_rancher\_version) | Rancher server version (format: v0.0.0) | `string` | `"v2.6.3"` | no |
-| <a name="input_workload_kubernetes_version"></a> [workload\_kubernetes\_version](#input\_workload\_kubernetes\_version) | Kubernetes version to use for managed workload cluster | `string` | `"v1.20.6-rancher1-1"` | no |
+| <a name="input_rancher_kubernetes_version"></a> [rancher\_kubernetes\_version](#input\_rancher\_kubernetes\_version) | Kubernetes version to use for Rancher server cluster | `string` | `"v1.21.11+k3s1"` | no |
+| <a name="input_rancher_version"></a> [rancher\_version](#input\_rancher\_version) | Rancher server version (format: v0.0.0) | `string` | `"v2.6.4"` | no |
+| <a name="input_workload_kubernetes_version"></a> [workload\_kubernetes\_version](#input\_workload\_kubernetes\_version) | Kubernetes version to use for managed workload cluster | `string` | `"v1.21.10-rancher1-1"` | no |
 
 ## Outputs
 

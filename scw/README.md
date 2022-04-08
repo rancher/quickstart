@@ -9,7 +9,7 @@ Both instances will be accessible over SSH using the SSH keys `id_rsa` and `id_r
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_local"></a> [local](#requirement\_local) | 2.1.0 |
+| <a name="requirement_local"></a> [local](#requirement\_local) | 2.2.2 |
 | <a name="requirement_scaleway"></a> [scaleway](#requirement\_scaleway) | 2.2.0 |
 | <a name="requirement_tls"></a> [tls](#requirement\_tls) | 3.1.0 |
 
@@ -17,7 +17,7 @@ Both instances will be accessible over SSH using the SSH keys `id_rsa` and `id_r
 
 | Name | Version |
 |------|---------|
-| <a name="provider_local"></a> [local](#provider\_local) | 2.1.0 |
+| <a name="provider_local"></a> [local](#provider\_local) | 2.2.2 |
 | <a name="provider_scaleway"></a> [scaleway](#provider\_scaleway) | 2.2.0 |
 | <a name="provider_tls"></a> [tls](#provider\_tls) | 3.1.0 |
 
@@ -31,8 +31,8 @@ Both instances will be accessible over SSH using the SSH keys `id_rsa` and `id_r
 
 | Name | Type |
 |------|------|
-| [local_file.ssh_private_key_pem](https://registry.terraform.io/providers/hashicorp/local/2.1.0/docs/resources/file) | resource |
-| [local_file.ssh_public_key_openssh](https://registry.terraform.io/providers/hashicorp/local/2.1.0/docs/resources/file) | resource |
+| [local_file.ssh_public_key_openssh](https://registry.terraform.io/providers/hashicorp/local/2.2.2/docs/resources/file) | resource |
+| [local_sensitive_file.ssh_private_key_pem](https://registry.terraform.io/providers/hashicorp/local/2.2.2/docs/resources/sensitive_file) | resource |
 | [scaleway_account_ssh_key.quickstart_ssh_key](https://registry.terraform.io/providers/scaleway/scaleway/2.2.0/docs/resources/account_ssh_key) | resource |
 | [scaleway_instance_server.quickstart_node](https://registry.terraform.io/providers/scaleway/scaleway/2.2.0/docs/resources/instance_server) | resource |
 | [scaleway_instance_server.rancher_server](https://registry.terraform.io/providers/scaleway/scaleway/2.2.0/docs/resources/instance_server) | resource |
@@ -46,15 +46,15 @@ Both instances will be accessible over SSH using the SSH keys `id_rsa` and `id_r
 | <a name="input_scw_access_key"></a> [scw\_access\_key](#input\_scw\_access\_key) | Scaleway access key used to create infrastructure | `string` | n/a | yes |
 | <a name="input_scw_project_id"></a> [scw\_project\_id](#input\_scw\_project\_id) | Scaleway project id used to create infrastructure | `string` | n/a | yes |
 | <a name="input_scw_secret_key"></a> [scw\_secret\_key](#input\_scw\_secret\_key) | Scaleway secret key used to create infrastructure | `string` | n/a | yes |
-| <a name="input_cert_manager_version"></a> [cert\_manager\_version](#input\_cert\_manager\_version) | Version of cert-manager to install alongside Rancher (format: 0.0.0) | `string` | `"1.5.3"` | no |
+| <a name="input_cert_manager_version"></a> [cert\_manager\_version](#input\_cert\_manager\_version) | Version of cert-manager to install alongside Rancher (format: 0.0.0) | `string` | `"1.7.1"` | no |
 | <a name="input_docker_version"></a> [docker\_version](#input\_docker\_version) | Docker version to install on nodes | `string` | `"19.03"` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Instance type used for all instances | `string` | `"DEV1-M"` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix added to names of all resources | `string` | `"quickstart"` | no |
-| <a name="input_rancher_kubernetes_version"></a> [rancher\_kubernetes\_version](#input\_rancher\_kubernetes\_version) | Kubernetes version to use for Rancher server cluster | `string` | `"v1.21.8+k3s1"` | no |
-| <a name="input_rancher_version"></a> [rancher\_version](#input\_rancher\_version) | Rancher server version (format: v0.0.0) | `string` | `"v2.6.3"` | no |
+| <a name="input_rancher_kubernetes_version"></a> [rancher\_kubernetes\_version](#input\_rancher\_kubernetes\_version) | Kubernetes version to use for Rancher server cluster | `string` | `"v1.21.11+k3s1"` | no |
+| <a name="input_rancher_version"></a> [rancher\_version](#input\_rancher\_version) | Rancher server version (format: v0.0.0) | `string` | `"v2.6.4"` | no |
 | <a name="input_scw_region"></a> [scw\_region](#input\_scw\_region) | Scaleway region used for all resources | `string` | `"fr-par"` | no |
 | <a name="input_scw_zone"></a> [scw\_zone](#input\_scw\_zone) | Scaleway zone used for all resources | `string` | `"fr-par-1"` | no |
-| <a name="input_workload_kubernetes_version"></a> [workload\_kubernetes\_version](#input\_workload\_kubernetes\_version) | Kubernetes version to use for managed workload cluster | `string` | `"v1.20.6-rancher1-1"` | no |
+| <a name="input_workload_kubernetes_version"></a> [workload\_kubernetes\_version](#input\_workload\_kubernetes\_version) | Kubernetes version to use for managed workload cluster | `string` | `"v1.21.10-rancher1-1"` | no |
 
 ## Outputs
 

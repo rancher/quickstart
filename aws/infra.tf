@@ -5,10 +5,10 @@ resource "tls_private_key" "global_key" {
   rsa_bits  = 2048
 }
 
-resource "local_file" "ssh_private_key_pem" {
-  filename          = "${path.module}/id_rsa"
-  sensitive_content = tls_private_key.global_key.private_key_pem
-  file_permission   = "0600"
+resource "local_sensitive_file" "ssh_private_key_pem" {
+  filename        = "${path.module}/id_rsa"
+  content         = tls_private_key.global_key.private_key_pem
+  file_permission = "0600"
 }
 
 resource "local_file" "ssh_public_key_openssh" {
@@ -51,8 +51,8 @@ resource "aws_instance" "rancher_server" {
   ami           = data.aws_ami.sles.id
   instance_type = var.instance_type
 
-  key_name        = aws_key_pair.quickstart_key_pair.key_name
-  security_groups = [aws_security_group.rancher_sg_allowall.name]
+  key_name               = aws_key_pair.quickstart_key_pair.key_name
+  vpc_security_group_ids = [aws_security_group.rancher_sg_allowall.id]
 
   root_block_device {
     volume_size = 16
@@ -107,8 +107,8 @@ resource "aws_instance" "quickstart_node" {
   ami           = data.aws_ami.sles.id
   instance_type = var.instance_type
 
-  key_name        = aws_key_pair.quickstart_key_pair.key_name
-  security_groups = [aws_security_group.rancher_sg_allowall.name]
+  key_name               = aws_key_pair.quickstart_key_pair.key_name
+  vpc_security_group_ids = [aws_security_group.rancher_sg_allowall.id]
 
   user_data = templatefile(
     join("/", [path.module, "files/userdata_quickstart_node.template"]),
