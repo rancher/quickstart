@@ -39,7 +39,7 @@ prefix = "quickstart"
 rancher_kubernetes_version = "v1.21.11+k3s1"
 
 # Rancher server version (format: v0.0.0)
-rancher_version = "v2.6.4"
+rancher_version = "2.6.4"
 
 # Kubernetes version to use for managed workload cluster
 workload_kubernetes_version = "v1.21.10-rancher1-1"
