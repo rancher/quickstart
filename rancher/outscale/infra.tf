@@ -81,7 +81,8 @@ resource "outscale_vm" "rancher_server" {
     device_name = "/dev/sda1"
     bsu {
       volume_size = 15
-      volume_type = "gp2"
+      volume_type = "io1"
+      iops = 1500
     }
   }
 
@@ -174,6 +175,15 @@ resource "outscale_vm" "quickstart_node" {
       register_command = module.rancher_common.custom_cluster_command
     }
   ))
+
+  block_device_mappings {
+    device_name = "/dev/sda1"
+    bsu {
+      volume_size = 15
+      volume_type = "io1"
+      iops = 1500
+    }
+  }
 
   tags {
     key   = "name"
