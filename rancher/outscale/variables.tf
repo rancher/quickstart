@@ -33,25 +33,25 @@ variable "docker_version" {
 variable "rancher_kubernetes_version" {
   type        = string
   description = "Kubernetes version to use for Rancher server cluster"
-  default     = "v1.21.8+k3s1"
+  default     = "v1.22.9+k3s1"
 }
 
 variable "workload_kubernetes_version" {
   type        = string
   description = "Kubernetes version to use for managed workload cluster"
-  default     = "v1.20.6-rancher1-1"
+  default     = "v1.22.9-rancher1-1"
 }
 
 variable "cert_manager_version" {
   type        = string
   description = "Version of cert-manager to install alongside Rancher (format: 0.0.0)"
-  default     = "1.5.3"
+  default     = "1.7.1"
 }
 
 variable "rancher_version" {
   type        = string
-  description = "Rancher server version (format: v0.0.0)"
-  default     = "v2.6.3"
+  description = "Rancher server version (format: 0.0.0)"
+  default     = "2.6.5"
 }
 
 variable "prefix" {
@@ -70,7 +70,7 @@ variable "omi" {
 # Required
 variable "rancher_server_admin_password" {
   type        = string
-  description = "Admin password to use for Rancher server bootstrap"
+  description = "Admin password to use for Rancher server bootstrap, min. 12 characters"
 }
 
 # Local variables used to reduce repetition

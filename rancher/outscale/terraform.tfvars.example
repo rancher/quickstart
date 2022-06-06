@@ -2,14 +2,14 @@
 # Outscale access key
 access_key_id = ""
 
-# Admin password to use for Rancher server bootstrap
+# Admin password to use for Rancher server bootstrap, min. 12 characters
 rancher_server_admin_password = ""
 
 # Outscale secret key
 secret_key_id = ""
 
 # Version of cert-manager to install alongside Rancher (format: 0.0.0)
-cert_manager_version = "1.5.3"
+cert_manager_version = "1.7.1"
 
 # Docker version to install on nodes
 docker_version = "19.03"
@@ -24,13 +24,13 @@ omi = "ami-504e6b16"
 prefix = "quickstart"
 
 # Kubernetes version to use for Rancher server cluster
-rancher_kubernetes_version = "v1.21.8+k3s1"
+rancher_kubernetes_version = "v1.22.9+k3s1"
 
-# Rancher server version (format: v0.0.0)
-rancher_version = "v2.6.3"
+# Rancher server version (format: 0.0.0)
+rancher_version = "2.6.5"
 
 # Outscale region
 region = "eu-west-2"
 
 # Kubernetes version to use for managed workload cluster
-workload_kubernetes_version = "v1.20.6-rancher1-1"
+workload_kubernetes_version = "v1.22.9-rancher1-1"
