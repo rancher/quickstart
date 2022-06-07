@@ -13,7 +13,7 @@ jobs:
     
     strategy:
       matrix:
-       provider: ['aws', 'azure', 'do', 'gcp', 'hcloud', 'linode', 'scw']
+       provider: ['rancher/aws', 'rancher/azure', 'rancher/do', 'rancher/gcp', 'rancher/hcloud', 'rancher/linode', 'rancher/scw', 'neuvector/aws']
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -51,7 +51,7 @@ jobs:
       run: go install github.com/terraform-docs/terraform-docs@v0.16.0
 
     - name: Validate if terraform-docs generated README.md is up to date
-      run: terraform-docs -c ../.terraform-docs-readme.yml . --output-check
+      run: terraform-docs -c ../../.terraform-docs-readme.yml . --output-check
 
     - name: Validate if terraform-docs generated terraform.tfvars.example is up to date
-      run: terraform-docs -c ../.terraform-docs-tfvars.yml . --output-check
+      run: terraform-docs -c ../../.terraform-docs-tfvars.yml . --output-check

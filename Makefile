@@ -1,5 +1,5 @@
-PROVIDERS = rancher-common aws azure do gcp hcloud linode scw
-CLOUD_PROVIDERS = aws azure do gcp hcloud linode scw
+PROVIDERS = rancher/rancher-common rancher/aws rancher/azure rancher/do rancher/gcp rancher/hcloud rancher/linode rancher/scw neuvector/aws
+CLOUD_PROVIDERS = rancher/aws rancher/azure rancher/do rancher/gcp rancher/hcloud rancher/linode rancher/scw neuvector/aws
 
 upgrade-targets = $(addprefix upgrade-, $(PROVIDERS))
 docs-targets = $(addprefix docs-, $(PROVIDERS))
@@ -14,11 +14,11 @@ $(upgrade-targets): upgrade-%: %
 
 docs: $(docs-targets)
 $(docs-targets): docs-%: %
-	cd $< && terraform-docs -c ../.terraform-docs-readme.yml .
+	cd $< && terraform-docs -c ../../.terraform-docs-readme.yml .
 
 tfvars: $(tfvars-targets)
 $(tfvars-targets): tfvars-%: %
-	cd $< && terraform-docs -c ../.terraform-docs-tfvars.yml .
+	cd $< && terraform-docs -c ../../.terraform-docs-tfvars.yml .
 
 fmt: $(fmt-targets)
 $(fmt-targets): fmt-%: %
@@ -38,4 +38,4 @@ test:
 
 .PHONY: clean
 clean:
-	rm */terraform.tfstate.backup
+	rm */*/terraform.tfstate.backup
