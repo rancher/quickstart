@@ -14,32 +14,36 @@ import (
 	"k8s.io/apimachinery/pkg/util/rand"
 )
 
-func TestE2E_Aws(t *testing.T) {
-	runTerraformAndVerify(t, "../aws")
+func TestE2E_RancherAws(t *testing.T) {
+	runTerraformAndVerify(t, "../rancher/aws")
 }
 
-func TestE2E_Azure(t *testing.T) {
-	runTerraformAndVerify(t, "../azure")
+func TestE2E_RancherAzure(t *testing.T) {
+	runTerraformAndVerify(t, "../rancher/azure")
 }
 
-func TestE2E_Do(t *testing.T) {
-	runTerraformAndVerify(t, "../do")
+func TestE2E_RancherDo(t *testing.T) {
+	runTerraformAndVerify(t, "../rancher/do")
 }
 
-func TestE2E_Gcp(t *testing.T) {
-	runTerraformAndVerify(t, "../gcp")
+func TestE2E_RancherGcp(t *testing.T) {
+	runTerraformAndVerify(t, "../rancher/gcp")
 }
 
-func TestE2E_Hcloud(t *testing.T) {
-	runTerraformAndVerify(t, "../hcloud")
+func TestE2E_RancherHcloud(t *testing.T) {
+	runTerraformAndVerify(t, "../rancher/hcloud")
 }
 
-func TestE2E_Linode(t *testing.T) {
-	runTerraformAndVerify(t, "../linode")
+func TestE2E_RancherLinode(t *testing.T) {
+	runTerraformAndVerify(t, "../rancher/linode")
 }
 
-func TestE2E_Scw(t *testing.T) {
-	runTerraformAndVerify(t, "../scw")
+func TestE2E_RancherScw(t *testing.T) {
+	runTerraformAndVerify(t, "../rancher/scw")
+}
+
+func TestE2E_NeuVectorAws(t *testing.T) {
+	runTerraformAndVerify(t, "../neuvector/aws")
 }
 
 func runTerraformAndVerify(t *testing.T, terraformDir string) {

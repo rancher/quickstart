@@ -1,0 +1,39 @@
+
+# AWS access key used to create infrastructure
+aws_access_key = ""
+
+# AWS secret key used to create AWS infrastructure
+aws_secret_key = ""
+
+# Admin password for NeuVector
+neuvector_admin_password = ""
+
+# AWS region used for all resources
+aws_region = "us-east-1"
+
+# AWS session token used to create AWS infrastructure
+aws_session_token = ""
+
+# Version of cert-manager to install alongside NeuVector (format: 0.0.0)
+cert_manager_version = "1.7.1"
+
+# Also install Rancher and setup SSO for NeuVector
+install_rancher = false
+
+# Instance type used for all EC2 instances
+instance_type = "t3a.xlarge"
+
+# Kubernetes version to use
+kubernetes_version = "v1.22.10-rc2+rke2r1"
+
+# NeuVector helm chart version
+neuvector_chart_version = "2.2.0"
+
+# Prefix added to names of all resources
+prefix = "neuvector-quickstart"
+
+# Admin password to use for Rancher server bootstrap
+rancher_server_admin_password = "adminadminadmin"
+
+# Rancher version
+rancher_version = "2.6.5"
