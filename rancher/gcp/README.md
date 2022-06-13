@@ -10,9 +10,9 @@ Both instances will have wide-open security groups and will be accessible over S
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_google"></a> [google](#requirement\_google) | 4.15.0 |
-| <a name="requirement_local"></a> [local](#requirement\_local) | 2.2.2 |
-| <a name="requirement_tls"></a> [tls](#requirement\_tls) | 3.1.0 |
+| <a name="requirement_google"></a> [google](#requirement\_google) | 4.24.0 |
+| <a name="requirement_local"></a> [local](#requirement\_local) | 2.2.3 |
+| <a name="requirement_tls"></a> [tls](#requirement\_tls) | 3.4.0 |
 
 ## Providers
 
@@ -32,15 +32,15 @@ Both instances will have wide-open security groups and will be accessible over S
 
 | Name | Type |
 |------|------|
-| [google_compute_address.quickstart_node_address](https://registry.terraform.io/providers/hashicorp/google/4.15.0/docs/resources/compute_address) | resource |
-| [google_compute_address.rancher_server_address](https://registry.terraform.io/providers/hashicorp/google/4.15.0/docs/resources/compute_address) | resource |
-| [google_compute_firewall.rancher_fw_allowall](https://registry.terraform.io/providers/hashicorp/google/4.15.0/docs/resources/compute_firewall) | resource |
-| [google_compute_instance.quickstart_node](https://registry.terraform.io/providers/hashicorp/google/4.15.0/docs/resources/compute_instance) | resource |
-| [google_compute_instance.rancher_server](https://registry.terraform.io/providers/hashicorp/google/4.15.0/docs/resources/compute_instance) | resource |
-| [local_file.ssh_public_key_openssh](https://registry.terraform.io/providers/hashicorp/local/2.2.2/docs/resources/file) | resource |
-| [local_sensitive_file.ssh_private_key_pem](https://registry.terraform.io/providers/hashicorp/local/2.2.2/docs/resources/sensitive_file) | resource |
-| [tls_private_key.global_key](https://registry.terraform.io/providers/hashicorp/tls/3.1.0/docs/resources/private_key) | resource |
-| [google_compute_image.sles](https://registry.terraform.io/providers/hashicorp/google/4.15.0/docs/data-sources/compute_image) | data source |
+| [google_compute_address.quickstart_node_address](https://registry.terraform.io/providers/hashicorp/google/4.24.0/docs/resources/compute_address) | resource |
+| [google_compute_address.rancher_server_address](https://registry.terraform.io/providers/hashicorp/google/4.24.0/docs/resources/compute_address) | resource |
+| [google_compute_firewall.rancher_fw_allowall](https://registry.terraform.io/providers/hashicorp/google/4.24.0/docs/resources/compute_firewall) | resource |
+| [google_compute_instance.quickstart_node](https://registry.terraform.io/providers/hashicorp/google/4.24.0/docs/resources/compute_instance) | resource |
+| [google_compute_instance.rancher_server](https://registry.terraform.io/providers/hashicorp/google/4.24.0/docs/resources/compute_instance) | resource |
+| [local_file.ssh_public_key_openssh](https://registry.terraform.io/providers/hashicorp/local/2.2.3/docs/resources/file) | resource |
+| [local_sensitive_file.ssh_private_key_pem](https://registry.terraform.io/providers/hashicorp/local/2.2.3/docs/resources/sensitive_file) | resource |
+| [tls_private_key.global_key](https://registry.terraform.io/providers/hashicorp/tls/3.4.0/docs/resources/private_key) | resource |
+| [google_compute_image.sles](https://registry.terraform.io/providers/hashicorp/google/4.24.0/docs/data-sources/compute_image) | data source |
 
 ## Inputs
 
@@ -55,9 +55,9 @@ Both instances will have wide-open security groups and will be accessible over S
 | <a name="input_gcp_zone"></a> [gcp\_zone](#input\_gcp\_zone) | GCP zone used for all resources. | `string` | `"us-east4-a"` | no |
 | <a name="input_machine_type"></a> [machine\_type](#input\_machine\_type) | Machine type used for all compute instances | `string` | `"n1-standard-2"` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix added to names of all resources | `string` | `"quickstart"` | no |
-| <a name="input_rancher_kubernetes_version"></a> [rancher\_kubernetes\_version](#input\_rancher\_kubernetes\_version) | Kubernetes version to use for Rancher server cluster | `string` | `"v1.21.11+k3s1"` | no |
-| <a name="input_rancher_version"></a> [rancher\_version](#input\_rancher\_version) | Rancher server version (format: v0.0.0) | `string` | `"2.6.4"` | no |
-| <a name="input_workload_kubernetes_version"></a> [workload\_kubernetes\_version](#input\_workload\_kubernetes\_version) | Kubernetes version to use for managed workload cluster | `string` | `"v1.21.10-rancher1-1"` | no |
+| <a name="input_rancher_kubernetes_version"></a> [rancher\_kubernetes\_version](#input\_rancher\_kubernetes\_version) | Kubernetes version to use for Rancher server cluster | `string` | `"v1.22.9+k3s1"` | no |
+| <a name="input_rancher_version"></a> [rancher\_version](#input\_rancher\_version) | Rancher server version (format: v0.0.0) | `string` | `"2.6.5"` | no |
+| <a name="input_workload_kubernetes_version"></a> [workload\_kubernetes\_version](#input\_workload\_kubernetes\_version) | Kubernetes version to use for managed workload cluster | `string` | `"v1.22.9-rancher1-1"` | no |
 
 ## Outputs
 

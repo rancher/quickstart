@@ -9,9 +9,9 @@ Both instances will be accessible over SSH using the SSH keys `id_rsa` and `id_r
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_digitalocean"></a> [digitalocean](#requirement\_digitalocean) | 2.19.0 |
-| <a name="requirement_local"></a> [local](#requirement\_local) | 2.2.2 |
-| <a name="requirement_tls"></a> [tls](#requirement\_tls) | 3.1.0 |
+| <a name="requirement_digitalocean"></a> [digitalocean](#requirement\_digitalocean) | 2.20.0 |
+| <a name="requirement_local"></a> [local](#requirement\_local) | 2.2.3 |
+| <a name="requirement_tls"></a> [tls](#requirement\_tls) | 3.4.0 |
 
 ## Providers
 
@@ -31,12 +31,12 @@ Both instances will be accessible over SSH using the SSH keys `id_rsa` and `id_r
 
 | Name | Type |
 |------|------|
-| [digitalocean_droplet.quickstart_node](https://registry.terraform.io/providers/digitalocean/digitalocean/2.19.0/docs/resources/droplet) | resource |
-| [digitalocean_droplet.rancher_server](https://registry.terraform.io/providers/digitalocean/digitalocean/2.19.0/docs/resources/droplet) | resource |
-| [digitalocean_ssh_key.quickstart_ssh_key](https://registry.terraform.io/providers/digitalocean/digitalocean/2.19.0/docs/resources/ssh_key) | resource |
-| [local_file.ssh_public_key_openssh](https://registry.terraform.io/providers/hashicorp/local/2.2.2/docs/resources/file) | resource |
-| [local_sensitive_file.ssh_private_key_pem](https://registry.terraform.io/providers/hashicorp/local/2.2.2/docs/resources/sensitive_file) | resource |
-| [tls_private_key.global_key](https://registry.terraform.io/providers/hashicorp/tls/3.1.0/docs/resources/private_key) | resource |
+| [digitalocean_droplet.quickstart_node](https://registry.terraform.io/providers/digitalocean/digitalocean/2.20.0/docs/resources/droplet) | resource |
+| [digitalocean_droplet.rancher_server](https://registry.terraform.io/providers/digitalocean/digitalocean/2.20.0/docs/resources/droplet) | resource |
+| [digitalocean_ssh_key.quickstart_ssh_key](https://registry.terraform.io/providers/digitalocean/digitalocean/2.20.0/docs/resources/ssh_key) | resource |
+| [local_file.ssh_public_key_openssh](https://registry.terraform.io/providers/hashicorp/local/2.2.3/docs/resources/file) | resource |
+| [local_sensitive_file.ssh_private_key_pem](https://registry.terraform.io/providers/hashicorp/local/2.2.3/docs/resources/sensitive_file) | resource |
+| [tls_private_key.global_key](https://registry.terraform.io/providers/hashicorp/tls/3.4.0/docs/resources/private_key) | resource |
 
 ## Inputs
 
@@ -49,9 +49,9 @@ Both instances will be accessible over SSH using the SSH keys `id_rsa` and `id_r
 | <a name="input_docker_version"></a> [docker\_version](#input\_docker\_version) | Docker version to install on nodes | `string` | `"19.03"` | no |
 | <a name="input_droplet_size"></a> [droplet\_size](#input\_droplet\_size) | Droplet size used for all droplets | `string` | `"s-2vcpu-4gb"` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix added to names of all resources | `string` | `"quickstart"` | no |
-| <a name="input_rancher_kubernetes_version"></a> [rancher\_kubernetes\_version](#input\_rancher\_kubernetes\_version) | Kubernetes version to use for Rancher server cluster | `string` | `"v1.21.11+k3s1"` | no |
-| <a name="input_rancher_version"></a> [rancher\_version](#input\_rancher\_version) | Rancher server version (format: v0.0.0) | `string` | `"2.6.4"` | no |
-| <a name="input_workload_kubernetes_version"></a> [workload\_kubernetes\_version](#input\_workload\_kubernetes\_version) | Kubernetes version to use for managed workload cluster | `string` | `"v1.21.10-rancher1-1"` | no |
+| <a name="input_rancher_kubernetes_version"></a> [rancher\_kubernetes\_version](#input\_rancher\_kubernetes\_version) | Kubernetes version to use for Rancher server cluster | `string` | `"v1.22.9+k3s1"` | no |
+| <a name="input_rancher_version"></a> [rancher\_version](#input\_rancher\_version) | Rancher server version (format: v0.0.0) | `string` | `"2.6.5"` | no |
+| <a name="input_workload_kubernetes_version"></a> [workload\_kubernetes\_version](#input\_workload\_kubernetes\_version) | Kubernetes version to use for managed workload cluster | `string` | `"v1.22.9-rancher1-1"` | no |
 
 ## Outputs
 

@@ -10,9 +10,9 @@ Both instances will have wide-open security groups and will be accessible over S
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 4.8.0 |
-| <a name="requirement_local"></a> [local](#requirement\_local) | 2.2.2 |
-| <a name="requirement_tls"></a> [tls](#requirement\_tls) | 3.1.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 4.18.0 |
+| <a name="requirement_local"></a> [local](#requirement\_local) | 2.2.3 |
+| <a name="requirement_tls"></a> [tls](#requirement\_tls) | 3.4.0 |
 
 ## Providers
 
@@ -32,16 +32,16 @@ Both instances will have wide-open security groups and will be accessible over S
 
 | Name | Type |
 |------|------|
-| [aws_instance.quickstart_node](https://registry.terraform.io/providers/hashicorp/aws/4.8.0/docs/resources/instance) | resource |
-| [aws_instance.quickstart_node_win](https://registry.terraform.io/providers/hashicorp/aws/4.8.0/docs/resources/instance) | resource |
-| [aws_instance.rancher_server](https://registry.terraform.io/providers/hashicorp/aws/4.8.0/docs/resources/instance) | resource |
-| [aws_key_pair.quickstart_key_pair](https://registry.terraform.io/providers/hashicorp/aws/4.8.0/docs/resources/key_pair) | resource |
-| [aws_security_group.rancher_sg_allowall](https://registry.terraform.io/providers/hashicorp/aws/4.8.0/docs/resources/security_group) | resource |
-| [local_file.ssh_public_key_openssh](https://registry.terraform.io/providers/hashicorp/local/2.2.2/docs/resources/file) | resource |
-| [local_sensitive_file.ssh_private_key_pem](https://registry.terraform.io/providers/hashicorp/local/2.2.2/docs/resources/sensitive_file) | resource |
-| [tls_private_key.global_key](https://registry.terraform.io/providers/hashicorp/tls/3.1.0/docs/resources/private_key) | resource |
-| [aws_ami.sles](https://registry.terraform.io/providers/hashicorp/aws/4.8.0/docs/data-sources/ami) | data source |
-| [aws_ami.windows](https://registry.terraform.io/providers/hashicorp/aws/4.8.0/docs/data-sources/ami) | data source |
+| [aws_instance.quickstart_node](https://registry.terraform.io/providers/hashicorp/aws/4.18.0/docs/resources/instance) | resource |
+| [aws_instance.quickstart_node_win](https://registry.terraform.io/providers/hashicorp/aws/4.18.0/docs/resources/instance) | resource |
+| [aws_instance.rancher_server](https://registry.terraform.io/providers/hashicorp/aws/4.18.0/docs/resources/instance) | resource |
+| [aws_key_pair.quickstart_key_pair](https://registry.terraform.io/providers/hashicorp/aws/4.18.0/docs/resources/key_pair) | resource |
+| [aws_security_group.rancher_sg_allowall](https://registry.terraform.io/providers/hashicorp/aws/4.18.0/docs/resources/security_group) | resource |
+| [local_file.ssh_public_key_openssh](https://registry.terraform.io/providers/hashicorp/local/2.2.3/docs/resources/file) | resource |
+| [local_sensitive_file.ssh_private_key_pem](https://registry.terraform.io/providers/hashicorp/local/2.2.3/docs/resources/sensitive_file) | resource |
+| [tls_private_key.global_key](https://registry.terraform.io/providers/hashicorp/tls/3.4.0/docs/resources/private_key) | resource |
+| [aws_ami.sles](https://registry.terraform.io/providers/hashicorp/aws/4.18.0/docs/data-sources/ami) | data source |
+| [aws_ami.windows](https://registry.terraform.io/providers/hashicorp/aws/4.18.0/docs/data-sources/ami) | data source |
 
 ## Inputs
 
@@ -57,10 +57,10 @@ Both instances will have wide-open security groups and will be accessible over S
 | <a name="input_docker_version"></a> [docker\_version](#input\_docker\_version) | Docker version to install on nodes | `string` | `"19.03"` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Instance type used for all EC2 instances | `string` | `"t3a.medium"` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix added to names of all resources | `string` | `"quickstart"` | no |
-| <a name="input_rancher_kubernetes_version"></a> [rancher\_kubernetes\_version](#input\_rancher\_kubernetes\_version) | Kubernetes version to use for Rancher server cluster | `string` | `"v1.21.11+k3s1"` | no |
-| <a name="input_rancher_version"></a> [rancher\_version](#input\_rancher\_version) | Rancher server version (format: v0.0.0) | `string` | `"2.6.4"` | no |
+| <a name="input_rancher_kubernetes_version"></a> [rancher\_kubernetes\_version](#input\_rancher\_kubernetes\_version) | Kubernetes version to use for Rancher server cluster | `string` | `"v1.22.9+k3s1"` | no |
+| <a name="input_rancher_version"></a> [rancher\_version](#input\_rancher\_version) | Rancher server version (format: v0.0.0) | `string` | `"2.6.5"` | no |
 | <a name="input_windows_instance_type"></a> [windows\_instance\_type](#input\_windows\_instance\_type) | Instance type used for all EC2 windows instances | `string` | `"t3a.large"` | no |
-| <a name="input_workload_kubernetes_version"></a> [workload\_kubernetes\_version](#input\_workload\_kubernetes\_version) | Kubernetes version to use for managed workload cluster | `string` | `"v1.21.10-rancher1-1"` | no |
+| <a name="input_workload_kubernetes_version"></a> [workload\_kubernetes\_version](#input\_workload\_kubernetes\_version) | Kubernetes version to use for managed workload cluster | `string` | `"v1.22.9-rancher1-1"` | no |
 
 ## Outputs
 

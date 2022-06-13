@@ -9,9 +9,9 @@ Both instances will be accessible over SSH using the auto-generated SSH keys `id
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_hcloud"></a> [hcloud](#requirement\_hcloud) | 1.33.1 |
-| <a name="requirement_local"></a> [local](#requirement\_local) | 2.2.2 |
-| <a name="requirement_tls"></a> [tls](#requirement\_tls) | 3.1.0 |
+| <a name="requirement_hcloud"></a> [hcloud](#requirement\_hcloud) | 1.33.2 |
+| <a name="requirement_local"></a> [local](#requirement\_local) | 2.2.3 |
+| <a name="requirement_tls"></a> [tls](#requirement\_tls) | 3.4.0 |
 
 ## Providers
 
@@ -31,14 +31,14 @@ Both instances will be accessible over SSH using the auto-generated SSH keys `id
 
 | Name | Type |
 |------|------|
-| [hcloud_network.private](https://registry.terraform.io/providers/hetznercloud/hcloud/1.33.1/docs/resources/network) | resource |
-| [hcloud_network_subnet.private](https://registry.terraform.io/providers/hetznercloud/hcloud/1.33.1/docs/resources/network_subnet) | resource |
-| [hcloud_server.quickstart_node](https://registry.terraform.io/providers/hetznercloud/hcloud/1.33.1/docs/resources/server) | resource |
-| [hcloud_server.rancher_server](https://registry.terraform.io/providers/hetznercloud/hcloud/1.33.1/docs/resources/server) | resource |
-| [hcloud_ssh_key.quickstart_ssh_key](https://registry.terraform.io/providers/hetznercloud/hcloud/1.33.1/docs/resources/ssh_key) | resource |
-| [local_file.ssh_public_key_openssh](https://registry.terraform.io/providers/hashicorp/local/2.2.2/docs/resources/file) | resource |
-| [local_sensitive_file.ssh_private_key_pem](https://registry.terraform.io/providers/hashicorp/local/2.2.2/docs/resources/sensitive_file) | resource |
-| [tls_private_key.global_key](https://registry.terraform.io/providers/hashicorp/tls/3.1.0/docs/resources/private_key) | resource |
+| [hcloud_network.private](https://registry.terraform.io/providers/hetznercloud/hcloud/1.33.2/docs/resources/network) | resource |
+| [hcloud_network_subnet.private](https://registry.terraform.io/providers/hetznercloud/hcloud/1.33.2/docs/resources/network_subnet) | resource |
+| [hcloud_server.quickstart_node](https://registry.terraform.io/providers/hetznercloud/hcloud/1.33.2/docs/resources/server) | resource |
+| [hcloud_server.rancher_server](https://registry.terraform.io/providers/hetznercloud/hcloud/1.33.2/docs/resources/server) | resource |
+| [hcloud_ssh_key.quickstart_ssh_key](https://registry.terraform.io/providers/hetznercloud/hcloud/1.33.2/docs/resources/ssh_key) | resource |
+| [local_file.ssh_public_key_openssh](https://registry.terraform.io/providers/hashicorp/local/2.2.3/docs/resources/file) | resource |
+| [local_sensitive_file.ssh_private_key_pem](https://registry.terraform.io/providers/hashicorp/local/2.2.3/docs/resources/sensitive_file) | resource |
+| [tls_private_key.global_key](https://registry.terraform.io/providers/hashicorp/tls/3.4.0/docs/resources/private_key) | resource |
 
 ## Inputs
 
@@ -54,9 +54,9 @@ Both instances will be accessible over SSH using the auto-generated SSH keys `id
 | <a name="input_network_ip_range"></a> [network\_ip\_range](#input\_network\_ip\_range) | Subnet to create for private communication. Must be part of the CIDR defined in `network_cidr`. | `string` | `"10.0.1.0/24"` | no |
 | <a name="input_network_zone"></a> [network\_zone](#input\_network\_zone) | Zone to create the network in | `string` | `"eu-central"` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix added to names of all resources | `string` | `"quickstart"` | no |
-| <a name="input_rancher_kubernetes_version"></a> [rancher\_kubernetes\_version](#input\_rancher\_kubernetes\_version) | Kubernetes version to use for Rancher server cluster | `string` | `"v1.21.11+k3s1"` | no |
-| <a name="input_rancher_version"></a> [rancher\_version](#input\_rancher\_version) | Rancher server version (format: v0.0.0) | `string` | `"2.6.4"` | no |
-| <a name="input_workload_kubernetes_version"></a> [workload\_kubernetes\_version](#input\_workload\_kubernetes\_version) | Kubernetes version to use for managed workload cluster | `string` | `"v1.21.10-rancher1-1"` | no |
+| <a name="input_rancher_kubernetes_version"></a> [rancher\_kubernetes\_version](#input\_rancher\_kubernetes\_version) | Kubernetes version to use for Rancher server cluster | `string` | `"v1.22.9+k3s1"` | no |
+| <a name="input_rancher_version"></a> [rancher\_version](#input\_rancher\_version) | Rancher server version (format: v0.0.0) | `string` | `"2.6.5"` | no |
+| <a name="input_workload_kubernetes_version"></a> [workload\_kubernetes\_version](#input\_workload\_kubernetes\_version) | Kubernetes version to use for managed workload cluster | `string` | `"v1.22.9-rancher1-1"` | no |
 
 ## Outputs
 
