@@ -18,9 +18,9 @@ Both instances will have wide-open security groups and will be accessible over S
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 4.15.0 |
-| <a name="provider_local"></a> [local](#provider\_local) | 2.2.2 |
-| <a name="provider_tls"></a> [tls](#provider\_tls) | 3.1.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | 4.24.0 |
+| <a name="provider_local"></a> [local](#provider\_local) | 2.2.3 |
+| <a name="provider_tls"></a> [tls](#provider\_tls) | 3.4.0 |
 
 ## Modules
 
@@ -48,7 +48,7 @@ Both instances will have wide-open security groups and will be accessible over S
 |------|-------------|------|---------|:--------:|
 | <a name="input_gcp_account_json"></a> [gcp\_account\_json](#input\_gcp\_account\_json) | File path and name of service account access token file. | `string` | n/a | yes |
 | <a name="input_gcp_project"></a> [gcp\_project](#input\_gcp\_project) | GCP project in which the quickstart will be deployed. | `string` | n/a | yes |
-| <a name="input_rancher_server_admin_password"></a> [rancher\_server\_admin\_password](#input\_rancher\_server\_admin\_password) | Admin password to use for Rancher server bootstrap | `string` | n/a | yes |
+| <a name="input_rancher_server_admin_password"></a> [rancher\_server\_admin\_password](#input\_rancher\_server\_admin\_password) | Admin password to use for Rancher server bootstrap, min. 12 characters | `string` | n/a | yes |
 | <a name="input_cert_manager_version"></a> [cert\_manager\_version](#input\_cert\_manager\_version) | Version of cert-manager to install alongside Rancher (format: 0.0.0) | `string` | `"1.7.1"` | no |
 | <a name="input_docker_version"></a> [docker\_version](#input\_docker\_version) | Docker version to install on nodes | `string` | `"19.03"` | no |
 | <a name="input_gcp_region"></a> [gcp\_region](#input\_gcp\_region) | GCP region used for all resources. | `string` | `"us-east4"` | no |

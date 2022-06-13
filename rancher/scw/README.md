@@ -17,9 +17,9 @@ Both instances will be accessible over SSH using the SSH keys `id_rsa` and `id_r
 
 | Name | Version |
 |------|---------|
-| <a name="provider_local"></a> [local](#provider\_local) | 2.2.2 |
-| <a name="provider_scaleway"></a> [scaleway](#provider\_scaleway) | 2.2.0 |
-| <a name="provider_tls"></a> [tls](#provider\_tls) | 3.1.0 |
+| <a name="provider_local"></a> [local](#provider\_local) | 2.2.3 |
+| <a name="provider_scaleway"></a> [scaleway](#provider\_scaleway) | 2.2.1 |
+| <a name="provider_tls"></a> [tls](#provider\_tls) | 3.4.0 |
 
 ## Modules
 
@@ -42,7 +42,7 @@ Both instances will be accessible over SSH using the SSH keys `id_rsa` and `id_r
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_rancher_server_admin_password"></a> [rancher\_server\_admin\_password](#input\_rancher\_server\_admin\_password) | Admin password to use for Rancher server bootstrap | `string` | n/a | yes |
+| <a name="input_rancher_server_admin_password"></a> [rancher\_server\_admin\_password](#input\_rancher\_server\_admin\_password) | Admin password to use for Rancher server bootstrap, min. 12 characters | `string` | n/a | yes |
 | <a name="input_scw_access_key"></a> [scw\_access\_key](#input\_scw\_access\_key) | Scaleway access key used to create infrastructure | `string` | n/a | yes |
 | <a name="input_scw_project_id"></a> [scw\_project\_id](#input\_scw\_project\_id) | Scaleway project id used to create infrastructure | `string` | n/a | yes |
 | <a name="input_scw_secret_key"></a> [scw\_secret\_key](#input\_scw\_secret\_key) | Scaleway secret key used to create infrastructure | `string` | n/a | yes |

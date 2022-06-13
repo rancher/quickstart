@@ -11,7 +11,7 @@ azure_subscription_id = ""
 # Azure tenant id used to create resources
 azure_tenant_id = ""
 
-# Admin password to use for Rancher server bootstrap
+# Admin password to use for Rancher server bootstrap, min. 12 characters
 rancher_server_admin_password = ""
 
 # Admin password to use for the Windows VM

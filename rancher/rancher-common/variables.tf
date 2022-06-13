@@ -51,7 +51,7 @@ variable "rancher_server_dns" {
 # Required
 variable "admin_password" {
   type        = string
-  description = "Admin password to use for Rancher server bootstrap"
+  description = "Admin password to use for Rancher server bootstrap, min. 12 characters"
 }
 
 variable "workload_kubernetes_version" {

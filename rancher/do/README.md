@@ -17,9 +17,9 @@ Both instances will be accessible over SSH using the SSH keys `id_rsa` and `id_r
 
 | Name | Version |
 |------|---------|
-| <a name="provider_digitalocean"></a> [digitalocean](#provider\_digitalocean) | 2.19.0 |
-| <a name="provider_local"></a> [local](#provider\_local) | 2.2.2 |
-| <a name="provider_tls"></a> [tls](#provider\_tls) | 3.1.0 |
+| <a name="provider_digitalocean"></a> [digitalocean](#provider\_digitalocean) | 2.20.0 |
+| <a name="provider_local"></a> [local](#provider\_local) | 2.2.3 |
+| <a name="provider_tls"></a> [tls](#provider\_tls) | 3.4.0 |
 
 ## Modules
 
@@ -43,7 +43,7 @@ Both instances will be accessible over SSH using the SSH keys `id_rsa` and `id_r
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_do_token"></a> [do\_token](#input\_do\_token) | DigitalOcean API token used to create infrastructure | `string` | n/a | yes |
-| <a name="input_rancher_server_admin_password"></a> [rancher\_server\_admin\_password](#input\_rancher\_server\_admin\_password) | Admin password to use for Rancher server bootstrap | `string` | n/a | yes |
+| <a name="input_rancher_server_admin_password"></a> [rancher\_server\_admin\_password](#input\_rancher\_server\_admin\_password) | Admin password to use for Rancher server bootstrap, min. 12 characters | `string` | n/a | yes |
 | <a name="input_cert_manager_version"></a> [cert\_manager\_version](#input\_cert\_manager\_version) | Version of cert-manager to install alongside Rancher (format: 0.0.0) | `string` | `"1.7.1"` | no |
 | <a name="input_do_region"></a> [do\_region](#input\_do\_region) | DigitalOcean region used for all resources | `string` | `"nyc1"` | no |
 | <a name="input_docker_version"></a> [docker\_version](#input\_docker\_version) | Docker version to install on nodes | `string` | `"19.03"` | no |

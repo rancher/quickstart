@@ -5,7 +5,7 @@ aws_access_key = ""
 # AWS secret key used to create AWS infrastructure
 aws_secret_key = ""
 
-# Admin password to use for Rancher server bootstrap
+# Admin password to use for Rancher server bootstrap, min. 12 characters
 rancher_server_admin_password = ""
 
 # Add a windows node to the workload cluster

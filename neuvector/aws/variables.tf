@@ -24,7 +24,7 @@ variable "install_rancher" {
 
 variable "rancher_server_admin_password" {
   type        = string
-  description = "Admin password to use for Rancher server bootstrap"
+  description = "Admin password to use for Rancher server bootstrap, min. 12 characters"
   default     = "adminadminadmin"
 }
 

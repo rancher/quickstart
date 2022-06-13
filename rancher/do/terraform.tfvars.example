@@ -2,7 +2,7 @@
 # DigitalOcean API token used to create infrastructure
 do_token = ""
 
-# Admin password to use for Rancher server bootstrap
+# Admin password to use for Rancher server bootstrap, min. 12 characters
 rancher_server_admin_password = ""
 
 # Version of cert-manager to install alongside Rancher (format: 0.0.0)

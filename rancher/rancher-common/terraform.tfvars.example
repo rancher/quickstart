@@ -1,5 +1,5 @@
 
-# Admin password to use for Rancher server bootstrap
+# Admin password to use for Rancher server bootstrap, min. 12 characters
 admin_password = ""
 
 # Public IP of compute node for Rancher cluster
