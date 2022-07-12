@@ -27,7 +27,7 @@ prefix = "quickstart"
 rancher_kubernetes_version = "v1.22.9+k3s1"
 
 # Rancher server version (format: v0.0.0)
-rancher_version = "2.6.5"
+rancher_version = "2.6.6"
 
 # Scaleway region used for all resources
 scw_region = "fr-par"
