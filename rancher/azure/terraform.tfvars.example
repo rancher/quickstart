@@ -26,9 +26,6 @@ azure_location = "East US"
 # Version of cert-manager to install alongside Rancher (format: 0.0.0)
 cert_manager_version = "1.7.1"
 
-# Docker version to install on nodes
-docker_version = "19.03"
-
 # Instance type used for all linux virtual machines
 instance_type = "Standard_DS2_v2"
 
@@ -36,10 +33,10 @@ instance_type = "Standard_DS2_v2"
 prefix = "quickstart"
 
 # Kubernetes version to use for Rancher server cluster
-rancher_kubernetes_version = "v1.22.9+k3s1"
+rancher_kubernetes_version = "v1.22.10+k3s1"
 
 # Rancher server version (format: v0.0.0)
 rancher_version = "2.6.6"
 
 # Kubernetes version to use for managed workload cluster
-workload_kubernetes_version = "v1.22.9-rancher1-1"
+workload_kubernetes_version = "v1.22.10-rke2r2"

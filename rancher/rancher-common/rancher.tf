@@ -16,6 +16,6 @@ resource "rancher2_bootstrap" "admin" {
 resource "rancher2_cluster_v2" "quickstart_workload" {
   provider = rancher2.admin
 
-  name        = var.workload_cluster_name
+  name               = var.workload_cluster_name
   kubernetes_version = var.workload_kubernetes_version
 }

@@ -1,6 +1,6 @@
 # Scaleway Rancher Quickstart
 
-Two single-node RKE Kubernetes clusters will be created from two instances running Ubuntu 20.04 (Focal Fossa) and Docker.
+Two single-node Kubernetes clusters will be created from two instances running Ubuntu 20.04 (Focal Fossa) and Docker.
 Both instances will be accessible over SSH using the SSH keys `id_rsa` and `id_rsa.pub`.
 
 <!-- BEGIN_TF_DOCS -->
@@ -47,14 +47,13 @@ Both instances will be accessible over SSH using the SSH keys `id_rsa` and `id_r
 | <a name="input_scw_project_id"></a> [scw\_project\_id](#input\_scw\_project\_id) | Scaleway project id used to create infrastructure | `string` | n/a | yes |
 | <a name="input_scw_secret_key"></a> [scw\_secret\_key](#input\_scw\_secret\_key) | Scaleway secret key used to create infrastructure | `string` | n/a | yes |
 | <a name="input_cert_manager_version"></a> [cert\_manager\_version](#input\_cert\_manager\_version) | Version of cert-manager to install alongside Rancher (format: 0.0.0) | `string` | `"1.7.1"` | no |
-| <a name="input_docker_version"></a> [docker\_version](#input\_docker\_version) | Docker version to install on nodes | `string` | `"19.03"` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Instance type used for all instances | `string` | `"DEV1-M"` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix added to names of all resources | `string` | `"quickstart"` | no |
-| <a name="input_rancher_kubernetes_version"></a> [rancher\_kubernetes\_version](#input\_rancher\_kubernetes\_version) | Kubernetes version to use for Rancher server cluster | `string` | `"v1.22.9+k3s1"` | no |
+| <a name="input_rancher_kubernetes_version"></a> [rancher\_kubernetes\_version](#input\_rancher\_kubernetes\_version) | Kubernetes version to use for Rancher server cluster | `string` | `"v1.22.10+k3s1"` | no |
 | <a name="input_rancher_version"></a> [rancher\_version](#input\_rancher\_version) | Rancher server version (format: v0.0.0) | `string` | `"2.6.6"` | no |
 | <a name="input_scw_region"></a> [scw\_region](#input\_scw\_region) | Scaleway region used for all resources | `string` | `"fr-par"` | no |
 | <a name="input_scw_zone"></a> [scw\_zone](#input\_scw\_zone) | Scaleway zone used for all resources | `string` | `"fr-par-1"` | no |
-| <a name="input_workload_kubernetes_version"></a> [workload\_kubernetes\_version](#input\_workload\_kubernetes\_version) | Kubernetes version to use for managed workload cluster | `string` | `"v1.22.9-rancher1-1"` | no |
+| <a name="input_workload_kubernetes_version"></a> [workload\_kubernetes\_version](#input\_workload\_kubernetes\_version) | Kubernetes version to use for managed workload cluster | `string` | `"v1.22.10-rke2r2"` | no |
 
 ## Outputs
 

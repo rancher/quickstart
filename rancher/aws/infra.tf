@@ -55,7 +55,7 @@ resource "aws_instance" "rancher_server" {
   vpc_security_group_ids = [aws_security_group.rancher_sg_allowall.id]
 
   root_block_device {
-    volume_size = 16
+    volume_size = 40
   }
 
   provisioner "remote-exec" {
@@ -107,6 +107,10 @@ resource "aws_instance" "quickstart_node" {
 
   key_name               = aws_key_pair.quickstart_key_pair.key_name
   vpc_security_group_ids = [aws_security_group.rancher_sg_allowall.id]
+
+  root_block_device {
+    volume_size = 40
+  }
 
   user_data = templatefile(
     "${path.module}/files/userdata_quickstart_node.template",
