@@ -27,7 +27,7 @@ instance_type = "t3a.xlarge"
 kubernetes_version = "v1.22.10-rc2+rke2r1"
 
 # NeuVector helm chart version
-neuvector_chart_version = "2.2.0"
+neuvector_chart_version = "2.2.2"
 
 # Prefix added to names of all resources
 prefix = "neuvector-quickstart"

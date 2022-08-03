@@ -70,7 +70,7 @@ No modules.
 | <a name="input_install_rancher"></a> [install\_rancher](#input\_install\_rancher) | Also install Rancher and setup SSO for NeuVector | `bool` | `false` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Instance type used for all EC2 instances | `string` | `"t3a.xlarge"` | no |
 | <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | Kubernetes version to use | `string` | `"v1.22.10-rc2+rke2r1"` | no |
-| <a name="input_neuvector_chart_version"></a> [neuvector\_chart\_version](#input\_neuvector\_chart\_version) | NeuVector helm chart version | `string` | `"2.2.0"` | no |
+| <a name="input_neuvector_chart_version"></a> [neuvector\_chart\_version](#input\_neuvector\_chart\_version) | NeuVector helm chart version | `string` | `"2.2.2"` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix added to names of all resources | `string` | `"neuvector-quickstart"` | no |
 | <a name="input_rancher_server_admin_password"></a> [rancher\_server\_admin\_password](#input\_rancher\_server\_admin\_password) | Admin password to use for Rancher server bootstrap, min. 12 characters | `string` | `"adminadminadmin"` | no |
 | <a name="input_rancher_version"></a> [rancher\_version](#input\_rancher\_version) | Rancher version | `string` | `"2.6.6"` | no |
