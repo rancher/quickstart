@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
 sudo apt update
-sudo apt install -y docker.io
+sudo apt install -y curl
 
 ${register_command} --etcd --controlplane --worker

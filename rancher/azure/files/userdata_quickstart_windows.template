@@ -1,0 +1,1 @@
+PowerShell -NoLogo -NonInteractive -Command "${register_command} -Address ${public_ip_address} -InternalAddress ${private_ip_address}"

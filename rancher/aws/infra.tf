@@ -55,7 +55,7 @@ resource "aws_instance" "rancher_server" {
   vpc_security_group_ids = [aws_security_group.rancher_sg_allowall.id]
 
   root_block_device {
-    volume_size = 16
+    volume_size = 40
   }
 
   provisioner "remote-exec" {
@@ -98,8 +98,6 @@ module "rancher_common" {
 
   workload_kubernetes_version = var.workload_kubernetes_version
   workload_cluster_name       = "quickstart-aws-custom"
-
-  windows_prefered_cluster = var.add_windows_node
 }
 
 # AWS EC2 instance for creating a single node workload cluster
@@ -110,11 +108,13 @@ resource "aws_instance" "quickstart_node" {
   key_name               = aws_key_pair.quickstart_key_pair.key_name
   vpc_security_group_ids = [aws_security_group.rancher_sg_allowall.id]
 
+  root_block_device {
+    volume_size = 40
+  }
+
   user_data = templatefile(
-    join("/", [path.module, "files/userdata_quickstart_node.template"]),
+    "${path.module}/files/userdata_quickstart_node.template",
     {
-      docker_version   = var.docker_version
-      username         = local.node_username
       register_command = module.rancher_common.custom_cluster_command
     }
   )

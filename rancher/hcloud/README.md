@@ -1,6 +1,6 @@
 # Hetzner Cloud Rancher Quickstart
 
-Two single-node RKE Kubernetes clusters will be created from two instances running Ubuntu 20.04 and Docker.
+Two single-node Kubernetes clusters will be created from two instances running Ubuntu 20.04 and Docker.
 Both instances will be accessible over SSH using the auto-generated SSH keys `id_rsa` and `id_rsa.pub`.
 
 <!-- BEGIN_TF_DOCS -->
@@ -47,16 +47,15 @@ Both instances will be accessible over SSH using the auto-generated SSH keys `id
 | <a name="input_hcloud_token"></a> [hcloud\_token](#input\_hcloud\_token) | Hetzner Cloud API token used to create infrastructure | `string` | n/a | yes |
 | <a name="input_rancher_server_admin_password"></a> [rancher\_server\_admin\_password](#input\_rancher\_server\_admin\_password) | Admin password to use for Rancher server bootstrap, min. 12 characters | `string` | n/a | yes |
 | <a name="input_cert_manager_version"></a> [cert\_manager\_version](#input\_cert\_manager\_version) | Version of cert-manager to install alongside Rancher (format: 0.0.0) | `string` | `"1.7.1"` | no |
-| <a name="input_docker_version"></a> [docker\_version](#input\_docker\_version) | Docker version to install on nodes | `string` | `"19.03"` | no |
 | <a name="input_hcloud_location"></a> [hcloud\_location](#input\_hcloud\_location) | Hetzner location used for all resources | `string` | `"fsn1"` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Type of instance to be used for all instances | `string` | `"cx21"` | no |
 | <a name="input_network_cidr"></a> [network\_cidr](#input\_network\_cidr) | Network to create for private communication | `string` | `"10.0.0.0/8"` | no |
 | <a name="input_network_ip_range"></a> [network\_ip\_range](#input\_network\_ip\_range) | Subnet to create for private communication. Must be part of the CIDR defined in `network_cidr`. | `string` | `"10.0.1.0/24"` | no |
 | <a name="input_network_zone"></a> [network\_zone](#input\_network\_zone) | Zone to create the network in | `string` | `"eu-central"` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix added to names of all resources | `string` | `"quickstart"` | no |
-| <a name="input_rancher_kubernetes_version"></a> [rancher\_kubernetes\_version](#input\_rancher\_kubernetes\_version) | Kubernetes version to use for Rancher server cluster | `string` | `"v1.22.9+k3s1"` | no |
+| <a name="input_rancher_kubernetes_version"></a> [rancher\_kubernetes\_version](#input\_rancher\_kubernetes\_version) | Kubernetes version to use for Rancher server cluster | `string` | `"v1.22.10+k3s1"` | no |
 | <a name="input_rancher_version"></a> [rancher\_version](#input\_rancher\_version) | Rancher server version (format: v0.0.0) | `string` | `"2.6.6"` | no |
-| <a name="input_workload_kubernetes_version"></a> [workload\_kubernetes\_version](#input\_workload\_kubernetes\_version) | Kubernetes version to use for managed workload cluster | `string` | `"v1.22.9-rancher1-1"` | no |
+| <a name="input_workload_kubernetes_version"></a> [workload\_kubernetes\_version](#input\_workload\_kubernetes\_version) | Kubernetes version to use for managed workload cluster | `string` | `"v1.22.10-rke2r2"` | no |
 
 ## Outputs
 

@@ -25,7 +25,7 @@ Rancher Management Server Quickstarts are provided for:
 
 **You will be responsible for any and all infrastructure costs incurred by these resources.**
 
-Each quickstart will install Rancher on a single-node K3s cluster, then will provision another single-node workload cluster using a Custom cluster in Rancher.
+Each quickstart will install Rancher on a single-node K3s cluster, then will provision another single-node RKE2 workload cluster using a Custom cluster in Rancher.
 This setup provides easy access to the core Rancher functionality while establishing a foundation that can be easily expanded to a full HA Rancher server.
 
 ### Local quickstart
@@ -74,7 +74,7 @@ To begin with any quickstart, perform the following steps:
 
 When provisioning has finished, terraform will output the URL to connect to the Rancher server.
 Two sets of Kubernetes configurations will also be generated:
-- `kube_config_server.yaml` contains credentials to access the RKE cluster supporting the Rancher server
+- `kube_config_server.yaml` contains credentials to access the cluster supporting the Rancher server
 - `kube_config_workload.yaml` contains credentials to access the provisioned workload cluster
 
 For more details on each cloud provider, refer to the documentation in their respective folders.

@@ -8,7 +8,7 @@ resource "aws_instance" "quickstart_node_win" {
   get_password_data      = true
 
   user_data = templatefile(
-    join("/", [path.module, "files/userdata_quickstart_windows.template"]),
+    "${path.module}/files/userdata_quickstart_windows.template",
     {
       register_command = module.rancher_common.custom_cluster_windows_command
     }

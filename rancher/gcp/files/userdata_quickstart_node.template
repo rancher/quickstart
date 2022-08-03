@@ -1,12 +1,11 @@
 #!/bin/bash -x
 
-if docker ps; then
+if [[ -f /etc/startup_was_launched ]]; then
     exit 0
 fi
-
-systemctl enable docker
-systemctl start docker
 
 privateIP=$(curl -H 'Metadata-Flavor: Google' http://metadata.google.internal/computeMetadata/v1/instance/network-interfaces/0/ip)
 
 ${register_command} --address ${public_ip} --internal-address $privateIP --etcd --controlplane --worker
+
+touch /etc/startup_was_launched

@@ -170,7 +170,6 @@ resource "outscale_vm" "quickstart_node" {
   user_data = base64encode(templatefile(
     join("/", [path.module, "files/userdata_quickstart_node.template"]),
     {
-      docker_version   = var.docker_version
       username         = local.node_username
       register_command = module.rancher_common.custom_cluster_command
     }
