@@ -24,7 +24,7 @@ install_rancher = false
 instance_type = "t3a.xlarge"
 
 # Kubernetes version to use
-kubernetes_version = "v1.22.10-rc2+rke2r1"
+kubernetes_version = "v1.23.9+rke2r1"
 
 # NeuVector helm chart version
 neuvector_chart_version = "2.2.2"
@@ -36,4 +36,4 @@ prefix = "neuvector-quickstart"
 rancher_server_admin_password = "adminadminadmin"
 
 # Rancher version
-rancher_version = "2.6.6"
+rancher_version = "2.6.7"

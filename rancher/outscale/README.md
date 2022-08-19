@@ -50,10 +50,10 @@
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Instance type used for all VM | `string` | `"tinav3.c4r8p2"` | no |
 | <a name="input_omi"></a> [omi](#input\_omi) | Outscale machine Image to use for all instances | `string` | `"ami-504e6b16"` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix added to names of all resources | `string` | `"quickstart"` | no |
-| <a name="input_rancher_kubernetes_version"></a> [rancher\_kubernetes\_version](#input\_rancher\_kubernetes\_version) | Kubernetes version to use for Rancher server cluster | `string` | `"v1.22.10+k3s1"` | no |
-| <a name="input_rancher_version"></a> [rancher\_version](#input\_rancher\_version) | Rancher server version (format: 0.0.0) | `string` | `"2.6.6"` | no |
+| <a name="input_rancher_kubernetes_version"></a> [rancher\_kubernetes\_version](#input\_rancher\_kubernetes\_version) | Kubernetes version to use for Rancher server cluster | `string` | `"v1.23.9+k3s1"` | no |
+| <a name="input_rancher_version"></a> [rancher\_version](#input\_rancher\_version) | Rancher server version (format: 0.0.0) | `string` | `"2.6.7"` | no |
 | <a name="input_region"></a> [region](#input\_region) | Outscale region | `string` | `"eu-west-2"` | no |
-| <a name="input_workload_kubernetes_version"></a> [workload\_kubernetes\_version](#input\_workload\_kubernetes\_version) | Kubernetes version to use for managed workload cluster | `string` | `"v1.22.10-rke2r2"` | no |
+| <a name="input_workload_kubernetes_version"></a> [workload\_kubernetes\_version](#input\_workload\_kubernetes\_version) | Kubernetes version to use for managed workload cluster | `string` | `"v1.23.9+rke2r1"` | no |
 
 ## Outputs
 

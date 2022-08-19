@@ -26,13 +26,13 @@ variable "droplet_size" {
 variable "rancher_kubernetes_version" {
   type        = string
   description = "Kubernetes version to use for Rancher server cluster"
-  default     = "v1.22.10+k3s1"
+  default     = "v1.23.9+k3s1"
 }
 
 variable "workload_kubernetes_version" {
   type        = string
   description = "Kubernetes version to use for managed workload cluster"
-  default     = "v1.22.10-rke2r2"
+  default     = "v1.23.9+rke2r1"
 }
 
 variable "cert_manager_version" {
@@ -44,7 +44,7 @@ variable "cert_manager_version" {
 variable "rancher_version" {
   type        = string
   description = "Rancher server version (format: v0.0.0)"
-  default     = "2.6.6"
+  default     = "2.6.7"
 }
 
 variable "rancher_server_admin_password" {

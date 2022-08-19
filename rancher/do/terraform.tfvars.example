@@ -18,10 +18,10 @@ droplet_size = "s-2vcpu-4gb"
 prefix = "quickstart"
 
 # Kubernetes version to use for Rancher server cluster
-rancher_kubernetes_version = "v1.22.10+k3s1"
+rancher_kubernetes_version = "v1.23.9+k3s1"
 
 # Rancher server version (format: v0.0.0)
-rancher_version = "2.6.6"
+rancher_version = "2.6.7"
 
 # Kubernetes version to use for managed workload cluster
-workload_kubernetes_version = "v1.22.10-rke2r2"
+workload_kubernetes_version = "v1.23.9+rke2r1"
