@@ -9,3 +9,7 @@ output "rancher_url" {
 output "node_ip" {
   value = aws_instance.neuvector_server.public_ip
 }
+
+output "neuvector_provided_admin_password" {
+  value = var.neuvector_admin_password
+}
