@@ -35,8 +35,13 @@ Both instances will have wide-open security groups and will be accessible over S
 | [aws_instance.quickstart_node](https://registry.terraform.io/providers/hashicorp/aws/4.18.0/docs/resources/instance) | resource |
 | [aws_instance.quickstart_node_win](https://registry.terraform.io/providers/hashicorp/aws/4.18.0/docs/resources/instance) | resource |
 | [aws_instance.rancher_server](https://registry.terraform.io/providers/hashicorp/aws/4.18.0/docs/resources/instance) | resource |
+| [aws_internet_gateway.rancher_gateway](https://registry.terraform.io/providers/hashicorp/aws/4.18.0/docs/resources/internet_gateway) | resource |
 | [aws_key_pair.quickstart_key_pair](https://registry.terraform.io/providers/hashicorp/aws/4.18.0/docs/resources/key_pair) | resource |
+| [aws_route_table.rancher_route_table](https://registry.terraform.io/providers/hashicorp/aws/4.18.0/docs/resources/route_table) | resource |
+| [aws_route_table_association.rancher_route_table_association](https://registry.terraform.io/providers/hashicorp/aws/4.18.0/docs/resources/route_table_association) | resource |
 | [aws_security_group.rancher_sg_allowall](https://registry.terraform.io/providers/hashicorp/aws/4.18.0/docs/resources/security_group) | resource |
+| [aws_subnet.rancher_subnet](https://registry.terraform.io/providers/hashicorp/aws/4.18.0/docs/resources/subnet) | resource |
+| [aws_vpc.rancher_vpc](https://registry.terraform.io/providers/hashicorp/aws/4.18.0/docs/resources/vpc) | resource |
 | [local_file.ssh_public_key_openssh](https://registry.terraform.io/providers/hashicorp/local/2.2.3/docs/resources/file) | resource |
 | [local_sensitive_file.ssh_private_key_pem](https://registry.terraform.io/providers/hashicorp/local/2.2.3/docs/resources/sensitive_file) | resource |
 | [tls_private_key.global_key](https://registry.terraform.io/providers/hashicorp/tls/3.4.0/docs/resources/private_key) | resource |
@@ -53,6 +58,7 @@ Both instances will have wide-open security groups and will be accessible over S
 | <a name="input_add_windows_node"></a> [add\_windows\_node](#input\_add\_windows\_node) | Add a windows node to the workload cluster | `bool` | `false` | no |
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | AWS region used for all resources | `string` | `"us-east-1"` | no |
 | <a name="input_aws_session_token"></a> [aws\_session\_token](#input\_aws\_session\_token) | AWS session token used to create AWS infrastructure | `string` | `""` | no |
+| <a name="input_aws_zone"></a> [aws\_zone](#input\_aws\_zone) | AWS zone used for all resources | `string` | `"us-east-1b"` | no |
 | <a name="input_cert_manager_version"></a> [cert\_manager\_version](#input\_cert\_manager\_version) | Version of cert-manager to install alongside Rancher (format: 0.0.0) | `string` | `"1.7.1"` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Instance type used for all EC2 instances | `string` | `"t3a.medium"` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix added to names of all resources | `string` | `"quickstart"` | no |

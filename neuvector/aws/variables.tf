@@ -47,6 +47,12 @@ variable "prefix" {
   default     = "neuvector-quickstart"
 }
 
+variable "aws_zone" {
+  type        = string
+  description = "AWS zone used for all resources"
+  default     = "us-east-1b"
+}
+
 variable "instance_type" {
   type        = string
   description = "Instance type used for all EC2 instances"

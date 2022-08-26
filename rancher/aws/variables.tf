@@ -26,6 +26,12 @@ variable "aws_region" {
   default     = "us-east-1"
 }
 
+variable "aws_zone" {
+  type        = string
+  description = "AWS zone used for all resources"
+  default     = "us-east-1b"
+}
+
 variable "prefix" {
   type        = string
   description = "Prefix added to names of all resources"

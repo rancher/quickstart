@@ -42,8 +42,13 @@ No modules.
 | Name | Type |
 |------|------|
 | [aws_instance.neuvector_server](https://registry.terraform.io/providers/hashicorp/aws/4.17.0/docs/resources/instance) | resource |
+| [aws_internet_gateway.neuvector_gateway](https://registry.terraform.io/providers/hashicorp/aws/4.17.0/docs/resources/internet_gateway) | resource |
 | [aws_key_pair.quickstart_key_pair](https://registry.terraform.io/providers/hashicorp/aws/4.17.0/docs/resources/key_pair) | resource |
+| [aws_route_table.neuvector_route_table](https://registry.terraform.io/providers/hashicorp/aws/4.17.0/docs/resources/route_table) | resource |
+| [aws_route_table_association.neuvector_route_table_association](https://registry.terraform.io/providers/hashicorp/aws/4.17.0/docs/resources/route_table_association) | resource |
 | [aws_security_group.neuvector_sg_allowall](https://registry.terraform.io/providers/hashicorp/aws/4.17.0/docs/resources/security_group) | resource |
+| [aws_subnet.neuvector_subnet](https://registry.terraform.io/providers/hashicorp/aws/4.17.0/docs/resources/subnet) | resource |
+| [aws_vpc.neuvector_vpc](https://registry.terraform.io/providers/hashicorp/aws/4.17.0/docs/resources/vpc) | resource |
 | [helm_release.cert_manager](https://registry.terraform.io/providers/hashicorp/helm/2.5.1/docs/resources/release) | resource |
 | [helm_release.cluster_issuer](https://registry.terraform.io/providers/hashicorp/helm/2.5.1/docs/resources/release) | resource |
 | [helm_release.neuvector](https://registry.terraform.io/providers/hashicorp/helm/2.5.1/docs/resources/release) | resource |
@@ -68,6 +73,7 @@ No modules.
 | <a name="input_neuvector_admin_password"></a> [neuvector\_admin\_password](#input\_neuvector\_admin\_password) | Admin password for NeuVector | `string` | n/a | yes |
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | AWS region used for all resources | `string` | `"us-east-1"` | no |
 | <a name="input_aws_session_token"></a> [aws\_session\_token](#input\_aws\_session\_token) | AWS session token used to create AWS infrastructure | `string` | `""` | no |
+| <a name="input_aws_zone"></a> [aws\_zone](#input\_aws\_zone) | AWS zone used for all resources | `string` | `"us-east-1b"` | no |
 | <a name="input_cert_manager_version"></a> [cert\_manager\_version](#input\_cert\_manager\_version) | Version of cert-manager to install alongside NeuVector (format: 0.0.0) | `string` | `"1.7.1"` | no |
 | <a name="input_install_rancher"></a> [install\_rancher](#input\_install\_rancher) | Also install Rancher and setup SSO for NeuVector | `bool` | `false` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Instance type used for all EC2 instances | `string` | `"t3a.xlarge"` | no |
