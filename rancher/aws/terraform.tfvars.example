@@ -33,7 +33,7 @@ prefix = "quickstart"
 rancher_kubernetes_version = "v1.23.9+k3s1"
 
 # Rancher server version (format: v0.0.0)
-rancher_version = "2.6.7"
+rancher_version = "2.6.8"
 
 # Instance type used for all EC2 windows instances
 windows_instance_type = "t3a.large"

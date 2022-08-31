@@ -39,4 +39,4 @@ prefix = "neuvector-quickstart"
 rancher_server_admin_password = "adminadminadmin"
 
 # Rancher version
-rancher_version = "2.6.7"
+rancher_version = "2.6.8"

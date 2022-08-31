@@ -80,7 +80,7 @@ variable "cert_manager_version" {
 variable "rancher_version" {
   type        = string
   description = "Rancher version"
-  default     = "2.6.7"
+  default     = "2.6.8"
 }
 
 # Local variables used to reduce repetition
