@@ -3,6 +3,7 @@ rancher_server_ip=${1:-192.168.56.101}
 admin_password=${2:-password}
 curlimage="appropriate/curl"
 jqimage="stedolan/jq"
+enabled_iscsi=${3:-"disabled"}
 
 agent_ip=`ip addr show eth1 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1`
 echo $agent_ip `hostname` >> /etc/hosts
@@ -78,3 +79,13 @@ done
 # Show the command
 COMPLETECMD="$AGENTCMD $ROLEFLAGS --internal-address $agent_ip --address $agent_ip "
 $COMPLETECMD
+
+if [ "$enabled_iscsi" = "enabled" ] ; then
+# Enable iscsi, stat and flock
+  sudo wget https://busybox.net/downloads/binaries/1.31.0-i686-uclibc/busybox_STAT -O /bin/stat
+  sudo wget https://busybox.net/downloads/binaries/1.31.0-i686-uclibc/busybox_FLOCK -O /bin/flock
+  sudo chmod +x /bin/stat
+  sudo chmod +x /bin/flock
+  sudo ros s enable open-iscsi
+  sudo ros s up open-iscsi
+fi

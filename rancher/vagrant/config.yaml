@@ -10,6 +10,7 @@ node:
   count: 1
   cpus: 1
   memory: 1500
+  open-iscsi: disabled
 ip:
   master: 192.168.56.100
   server: 192.168.56.101
