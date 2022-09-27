@@ -16,6 +16,8 @@ This folder contains Vagrant code to stand up a single Rancher server instance w
 When provisioning is finished the Rancher UI will become accessible on [192.168.56.101](http://192.168.56.101).
 The default password is `adminPassword`, but this can be updated in the config.yaml file (must be at least 12 characters).
 
+If you want to enable open-iscsi (to enable longhorn) you can set `node.open-iscsi: enabled` in config.yaml or local_config.yaml.
+
 If you want to keep the configuration changes outside the git repository you can copy the config.yaml file to local_config.yaml and make changes there.
 
 ## Remove
