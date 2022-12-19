@@ -61,7 +61,7 @@ data "harvester_network" "rancher" {
   namespace = "default"
 }
 
-resource "harvester_virtualmachine" "ubuntu20" {
+resource "harvester_virtualmachine" "rancher_server" {
   name                 = "ubuntu20"
   namespace            = "default"
   restart_after_update = true
@@ -134,8 +134,8 @@ resource "harvester_virtualmachine" "ubuntu20" {
 module "rancher_common" {
   source = "../rancher-common"
 
-  node_public_ip             = digitalocean_droplet.rancher_server.ipv4_address
-  node_internal_ip           = digitalocean_droplet.rancher_server.ipv4_address_private
+  node_public_ip             = harvester_virtualmachine.rancher_server.network_interface[0].ip_address
+  node_internal_ip           = harvester_virtualmachine.rancher_server.network_interface[0].ip_address
   node_username              = local.node_username
   ssh_private_key_pem        = tls_private_key.global_key.private_key_pem
   rancher_kubernetes_version = var.rancher_kubernetes_version
@@ -143,7 +143,7 @@ module "rancher_common" {
   cert_manager_version = var.cert_manager_version
   rancher_version      = var.rancher_version
 
-  rancher_server_dns = join(".", ["rancher", digitalocean_droplet.rancher_server.ipv4_address, "sslip.io"])
+  rancher_server_dns = join(".", ["rancher", harvester_virtualmachine.rancher_server.network_interface[0].ip_address, "sslip.io"])
   admin_password     = var.rancher_server_admin_password
 
   workload_kubernetes_version = var.workload_kubernetes_version

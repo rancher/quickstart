@@ -4,9 +4,9 @@ output "rancher_server_url" {
 }
 
 output "rancher_node_ip" {
-  value = digitalocean_droplet.rancher_server.ipv4_address
+  value = harvester_virtualmachine.rancher_server.network_interface[0].ip_address
 }
 
-output "workload_node_ip" {
-  value = digitalocean_droplet.quickstart_node.ipv4_address
-}
+# output "workload_node_ip" {
+#   value = harvester_virtualmachine.quickstart_node.network_interface[0].ip_address
+# }
