@@ -1,0 +1,3 @@
+#!/bin/bash -x
+
+${register_command} --etcd --controlplane --worker

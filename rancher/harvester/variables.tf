@@ -1,0 +1,47 @@
+# Variables for DO infrastructure module
+
+variable "prefix" {
+  type        = string
+  description = "Prefix added to names of all resources"
+  default     = "quickstart"
+}
+
+# variable "droplet_size" {
+#   type        = string
+#   description = "Droplet size used for all droplets"
+#   default     = "s-2vcpu-4gb"
+# }
+
+variable "rancher_kubernetes_version" {
+  type        = string
+  description = "Kubernetes version to use for Rancher server cluster"
+  default     = "v1.23.14+k3s1"
+}
+
+variable "workload_kubernetes_version" {
+  type        = string
+  description = "Kubernetes version to use for managed workload cluster"
+  default     = "v1.23.14+rke2r1"
+}
+
+variable "cert_manager_version" {
+  type        = string
+  description = "Version of cert-manager to install alongside Rancher (format: 0.0.0)"
+  default     = "1.10.0"
+}
+
+variable "rancher_version" {
+  type        = string
+  description = "Rancher server version (format: v0.0.0)"
+  default     = "2.7.0"
+}
+
+variable "rancher_server_admin_password" {
+  type        = string
+  description = "Admin password to use for Rancher server bootstrap, min. 12 characters"
+}
+
+# Local variables used to reduce repetition
+locals {
+  node_username = "ubuntu"
+}
