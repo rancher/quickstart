@@ -5,9 +5,6 @@ aws_access_key = ""
 # AWS secret key used to create AWS infrastructure
 aws_secret_key = ""
 
-# Admin password for NeuVector
-neuvector_admin_password = ""
-
 # AWS region used for all resources
 aws_region = "us-east-1"
 
@@ -29,8 +26,11 @@ instance_type = "t3a.xlarge"
 # Kubernetes version to use
 kubernetes_version = "v1.23.14+rke2r1"
 
+# Admin password for NeuVector
+neuvector_admin_password = "AI2zSYMFuCZ3HUeyNNMj1urUpCSEfgE0"
+
 # NeuVector helm chart version
-neuvector_chart_version = "2.2.4"
+neuvector_chart_version = "2.4.0"
 
 # Prefix added to names of all resources
 prefix = "neuvector-quickstart"
