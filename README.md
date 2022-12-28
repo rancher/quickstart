@@ -18,6 +18,7 @@ Rancher Management Server Quickstarts are provided for:
 - [**Microsoft Azure Cloud** (`azure`)](./rancher/azure)
 - [**DigitalOcean** (`do`)](./rancher/do)
 - [**Google Cloud Platform** (`gcp`)](./rancher/gcp)
+- [**Harvester** (`harvester`)](./rancher/harvester)
 - [**Hetzner Cloud** (`hcloud`)](./rancher/hcloud)
 - [**Linode** (`linode`)](./rancher/linode)
 - [**Scaleway** (`scw`)](./rancher/scw)
