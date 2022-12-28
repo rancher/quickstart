@@ -1,14 +1,14 @@
 
-# kubeconfig file path to connect to the harvester cluster
+# Kubeconfig file path to connect to the Harvester cluster
 kubeconfig_path = ""
 
-# name of the kubernetes context to use to the harvester cluster
+# Name of the kubernetes context to use to the Harvester cluster
 kubecontext = ""
 
-# the namespace in which to deploy the VMs
+# Harvester namespace to deploy the VMs into
 namespace = "default"
 
-# the network to use for the VMs
+# Name of the Harvester network to deploy the VMs into
 network_name = ""
 
 # Admin password to use for Rancher server bootstrap, min. 12 characters

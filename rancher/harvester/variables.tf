@@ -2,12 +2,12 @@
 
 variable "kubeconfig_path" {
   type        = string
-  description = "kubeconfig file path to connect to the harvester cluster"
+  description = "Kubeconfig file path to connect to the Harvester cluster"
 }
 
 variable "kubecontext" {
   type        = string
-  description = "name of the kubernetes context to use to the harvester cluster"
+  description = "Name of the kubernetes context to use to the Harvester cluster"
 }
 
 variable "prefix" {
@@ -24,7 +24,7 @@ variable "namespace" {
 
 variable "network_name" {
   type        = string
-  description = "Name of the harvester network to deploy the VMs into"
+  description = "Name of the Harvester network to deploy the VMs into"
 }
 
 variable "rancher_kubernetes_version" {
