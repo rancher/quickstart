@@ -1,16 +1,31 @@
 # Variables for DO infrastructure module
 
+variable "kubeconfig_path" {
+  type        = string
+  description = "kubeconfig file path to connect to the harvester cluster"
+}
+
+variable "kubecontext" {
+  type        = string
+  description = "name of the kubernetes context to use to the harvester cluster"
+}
+
 variable "prefix" {
   type        = string
   description = "Prefix added to names of all resources"
   default     = "quickstart"
 }
 
-# variable "droplet_size" {
-#   type        = string
-#   description = "Droplet size used for all droplets"
-#   default     = "s-2vcpu-4gb"
-# }
+variable "namespace" {
+  type        = string
+  description = "Harvester namespace to deploy the VMs into"
+  default     = "default"
+}
+
+variable "network_name" {
+  type        = string
+  description = "Name of the harvester network to deploy the VMs into"
+}
 
 variable "rancher_kubernetes_version" {
   type        = string
@@ -44,4 +59,10 @@ variable "rancher_server_admin_password" {
 # Local variables used to reduce repetition
 locals {
   node_username = "ubuntu"
+  cluster_node_command        = templatefile(
+    "${path.module}/files/userdata_quickstart_node.template",
+    {
+      register_command = module.rancher_common.custom_cluster_command
+    }
+  )
 }

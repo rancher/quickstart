@@ -1,4 +1,4 @@
-# DO infrastructure resources
+# Harvester infrastructure resources
 
 resource "tls_private_key" "global_key" {
   algorithm = "RSA"
@@ -18,13 +18,13 @@ resource "local_file" "ssh_public_key_openssh" {
 
 # Temporary key pair used for SSH accesss
 resource "harvester_ssh_key" "quickstart_ssh_key" {
-  name       = "${var.prefix}-droplet-ssh-key"
+  name       = "${var.prefix}-vm-ssh-key"
   public_key = trimspace(tls_private_key.global_key.public_key_openssh)
 }
 
 # Ubuntu image used for Rancher server
 resource "harvester_image" "ubuntu20" {
-  name      = "ubuntu20"
+  name      = "${var.prefix}-ubuntu20"
   namespace = "harvester-public"
 
   display_name = "ubuntu-20.04-server-cloudimg-amd64.img"
@@ -32,41 +32,17 @@ resource "harvester_image" "ubuntu20" {
   url          = "http://cloud-images.ubuntu.com/releases/focal/release/ubuntu-20.04-server-cloudimg-amd64.img"
 }
 
-# DO droplet for creating a single node RKE cluster and installing the Rancher server
-# resource "harvester_virtualmachine" "rancher_server" {
-#   name     = "${var.prefix}-rancher-server"
-#   image    = "ubuntu-20-04-x64"
-#   region   = var.do_region
-#   size     = var.droplet_size
-#   ssh_keys = [harvester_ssh_key.quickstart_ssh_key.fingerprint]
-
-#   provisioner "remote-exec" {
-#     inline = [
-#       "echo 'Waiting for cloud-init to complete...'",
-#       "cloud-init status --wait > /dev/null",
-#       "echo 'Completed cloud-init!'",
-#     ]
-
-#     connection {
-#       type        = "ssh"
-#       host        = self.ipv4_address
-#       user        = local.node_username
-#       private_key = tls_private_key.global_key.private_key_pem
-#     }
-#   }
-# }
-
 data "harvester_network" "rancher" {
   name      = "vms"
-  namespace = "default"
+  namespace = var.namespace
 }
 
 resource "harvester_virtualmachine" "rancher_server" {
-  name                 = "ubuntu20"
-  namespace            = "default"
+  name                 = "${var.prefix}-rancher-server"
+  namespace            = var.namespace
   restart_after_update = true
 
-  description = "test ubuntu20 raw image"
+  description = "Rancher server"
   tags = {
     ssh-user = "ubuntu"
   }
@@ -78,7 +54,7 @@ resource "harvester_virtualmachine" "rancher_server" {
   secure_boot = true
 
   run_strategy = "RerunOnFailure"
-  hostname     = "ubuntu20"
+  hostname     = "${var.prefix}-rancher-server"
   machine_type = "q35"
 
   ssh_keys = [
@@ -102,14 +78,6 @@ resource "harvester_virtualmachine" "rancher_server" {
     auto_delete = true
   }
 
-  # disk {
-  #   name        = "emptydisk"
-  #   type        = "disk"
-  #   size        = "20Gi"
-  #   bus         = "virtio"
-  #   auto_delete = true
-  # }
-
   cloudinit {
     user_data    = <<-EOF
       #cloud-config
@@ -125,7 +93,6 @@ resource "harvester_virtualmachine" "rancher_server" {
       ssh_authorized_keys:
         - ${harvester_ssh_key.quickstart_ssh_key.public_key}
       EOF
-    network_data = ""
   }
 
   provisioner "remote-exec" {
@@ -161,36 +128,80 @@ module "rancher_common" {
   admin_password     = var.rancher_server_admin_password
 
   workload_kubernetes_version = var.workload_kubernetes_version
-  workload_cluster_name       = "quickstart-do-custom"
+  workload_cluster_name       = "quickstart-harvester-custom"
 }
 
-# DO droplet for creating a single node workload cluster
-# resource "digitalocean_droplet" "quickstart_node" {
-#   name     = "${var.prefix}-quickstart-node"
-#   image    = "ubuntu-20-04-x64"
-#   region   = var.do_region
-#   size     = var.droplet_size
-#   ssh_keys = [digitalocean_ssh_key.quickstart_ssh_key.fingerprint]
+resource "harvester_virtualmachine" "quickstart_node" {
+  name                 = "${var.prefix}-quickstart-node"
+  namespace            = "default"
+  restart_after_update = true
 
-#   user_data = templatefile(
-#     "${path.module}/files/userdata_quickstart_node.template",
-#     {
-#       register_command = module.rancher_common.custom_cluster_command
-#     }
-#   )
+  description = "rancher quickstart node"
+  tags = {
+    ssh-user = "ubuntu"
+  }
 
-#   provisioner "remote-exec" {
-#     inline = [
-#       "echo 'Waiting for cloud-init to complete...'",
-#       "cloud-init status --wait > /dev/null",
-#       "echo 'Completed cloud-init!'",
-#     ]
+  cpu    = 2
+  memory = "4Gi"
 
-#     connection {
-#       type        = "ssh"
-#       host        = self.ipv4_address
-#       user        = local.node_username
-#       private_key = tls_private_key.global_key.private_key_pem
-#     }
-#   }
-# }
+  efi         = true
+  secure_boot = true
+
+  run_strategy = "RerunOnFailure"
+  hostname     = "${var.prefix}-quickstart-node"
+  machine_type = "q35"
+
+  ssh_keys = [
+    harvester_ssh_key.quickstart_ssh_key.id
+  ]
+
+  network_interface {
+    name           = "nic-1"
+    network_name = data.harvester_network.rancher.id
+    wait_for_lease = true
+  }
+
+  disk {
+    name       = "rootdisk"
+    type       = "disk"
+    size       = "10Gi"
+    bus        = "virtio"
+    boot_order = 1
+
+    image       = harvester_image.ubuntu20.id
+    auto_delete = true
+  }
+
+  cloudinit {
+    user_data    = <<-EOF
+      #cloud-config
+      ssh_pwauth: true
+      package_update: true
+      packages:
+        - qemu-guest-agent
+      runcmd:
+        - - systemctl
+          - enable
+          - '--now'
+          - qemu-guest-agent
+        - ${local.cluster_node_command}
+      ssh_authorized_keys:
+        - ${harvester_ssh_key.quickstart_ssh_key.public_key}
+      EOF
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "echo 'Waiting for cloud-init to complete...'",
+      "cloud-init status --wait > /dev/null",
+      "echo 'Completed cloud-init!'",
+    ]
+
+    connection {
+      type        = "ssh"
+      host        = self.network_interface[0].ip_address
+      user        = local.node_username
+      private_key = tls_private_key.global_key.private_key_pem
+    }
+  }
+}

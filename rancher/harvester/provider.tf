@@ -17,4 +17,6 @@ terraform {
 }
 
 provider "harvester" {
+  kubeconfig  = var.kubeconfig_path
+  kubecontext = var.kubecontext
 }
