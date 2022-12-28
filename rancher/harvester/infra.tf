@@ -19,7 +19,7 @@ resource "local_file" "ssh_public_key_openssh" {
 # Temporary key pair used for SSH accesss
 resource "harvester_ssh_key" "quickstart_ssh_key" {
   name       = "${var.prefix}-droplet-ssh-key"
-  public_key = tls_private_key.global_key.public_key_openssh
+  public_key = trimspace(tls_private_key.global_key.public_key_openssh)
 }
 
 # Ubuntu image used for Rancher server
@@ -72,7 +72,7 @@ resource "harvester_virtualmachine" "rancher_server" {
   }
 
   cpu    = 2
-  memory = "2Gi"
+  memory = "4Gi"
 
   efi         = true
   secure_boot = true
@@ -82,7 +82,7 @@ resource "harvester_virtualmachine" "rancher_server" {
   machine_type = "q35"
 
   ssh_keys = [
-    harvester_ssh_key.quickstart_ssh_key.fingerprint
+    harvester_ssh_key.quickstart_ssh_key.id
   ]
 
   network_interface {
@@ -110,24 +110,38 @@ resource "harvester_virtualmachine" "rancher_server" {
   #   auto_delete = true
   # }
 
-  # cloudinit {
-  #   user_data    = <<-EOF
-  #     #cloud-config
-  #     password: 123456
-  #     chpasswd:
-  #       expire: false
-  #     ssh_pwauth: true
-  #     package_update: true
-  #     packages:
-  #       - qemu-guest-agent
-  #     runcmd:
-  #       - - systemctl
-  #         - enable
-  #         - '--now'
-  #         - qemu-guest-agent
-  #     EOF
-  #   network_data = ""
-  # }
+  cloudinit {
+    user_data    = <<-EOF
+      #cloud-config
+      ssh_pwauth: true
+      package_update: true
+      packages:
+        - qemu-guest-agent
+      runcmd:
+        - - systemctl
+          - enable
+          - '--now'
+          - qemu-guest-agent
+      ssh_authorized_keys:
+        - ${harvester_ssh_key.quickstart_ssh_key.public_key}
+      EOF
+    network_data = ""
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "echo 'Waiting for cloud-init to complete...'",
+      "cloud-init status --wait > /dev/null",
+      "echo 'Completed cloud-init!'",
+    ]
+
+    connection {
+      type        = "ssh"
+      host        = self.network_interface[0].ip_address
+      user        = local.node_username
+      private_key = tls_private_key.global_key.private_key_pem
+    }
+  }
 }
 
 # Rancher resources
