@@ -33,7 +33,7 @@ resource "harvester_image" "ubuntu20" {
 }
 
 data "harvester_network" "rancher" {
-  name      = "vms"
+  name      = var.network_name
   namespace = var.namespace
 }
 
