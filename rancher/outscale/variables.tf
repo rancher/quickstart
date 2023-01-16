@@ -48,6 +48,12 @@ variable "rancher_version" {
   default     = "2.7.0"
 }
 
+variable "rancher_helm_repository" {
+  type        = string
+  description = "The helm repository, where the Rancher helm chart is installed from"
+  default     = "https://releases.rancher.com/server-charts/latest"
+}
+
 variable "prefix" {
   type        = string
   description = "Prefix added to names of all resources"

@@ -76,8 +76,9 @@ module "rancher_common" {
   ssh_private_key_pem        = tls_private_key.global_key.private_key_pem
   rancher_kubernetes_version = var.rancher_kubernetes_version
 
-  cert_manager_version = var.cert_manager_version
-  rancher_version      = var.rancher_version
+  cert_manager_version    = var.cert_manager_version
+  rancher_version         = var.rancher_version
+  rancher_helm_repository = var.rancher_helm_repository
 
   rancher_server_dns = join(".", ["rancher", hcloud_server.rancher_server.ipv4_address, "sslip.io"])
   admin_password     = var.rancher_server_admin_password

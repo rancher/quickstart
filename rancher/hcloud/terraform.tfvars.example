@@ -26,6 +26,9 @@ network_zone = "eu-central"
 # Prefix added to names of all resources
 prefix = "quickstart"
 
+# The helm repository, where the Rancher helm chart is installed from
+rancher_helm_repository = "https://releases.rancher.com/server-charts/latest"
+
 # Kubernetes version to use for Rancher server cluster
 rancher_kubernetes_version = "v1.23.14+k3s1"
 
