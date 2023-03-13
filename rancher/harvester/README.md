@@ -52,7 +52,7 @@ Both instances will be accessible over SSH using the SSH keys `id_rsa` and `id_r
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | Harvester namespace to deploy the VMs into | `string` | `"default"` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix added to names of all resources | `string` | `"quickstart"` | no |
 | <a name="input_rancher_kubernetes_version"></a> [rancher\_kubernetes\_version](#input\_rancher\_kubernetes\_version) | Kubernetes version to use for Rancher server cluster | `string` | `"v1.23.14+k3s1"` | no |
-| <a name="input_rancher_version"></a> [rancher\_version](#input\_rancher\_version) | Rancher server version (format: v0.0.0) | `string` | `"2.7.0"` | no |
+| <a name="input_rancher_version"></a> [rancher\_version](#input\_rancher\_version) | Rancher server version (format: v0.0.0) | `string` | `"2.7.1"` | no |
 | <a name="input_workload_kubernetes_version"></a> [workload\_kubernetes\_version](#input\_workload\_kubernetes\_version) | Kubernetes version to use for managed workload cluster | `string` | `"v1.23.14+rke2r1"` | no |
 
 ## Outputs
