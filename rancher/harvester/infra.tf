@@ -63,14 +63,14 @@ resource "harvester_virtualmachine" "rancher_server" {
 
   network_interface {
     name           = "nic-1"
-    network_name = data.harvester_network.rancher.id
+    network_name   = data.harvester_network.rancher.id
     wait_for_lease = true
   }
 
   disk {
     name       = "rootdisk"
     type       = "disk"
-    size       = "10Gi"
+    size       = "40Gi"
     bus        = "virtio"
     boot_order = 1
 
@@ -79,7 +79,7 @@ resource "harvester_virtualmachine" "rancher_server" {
   }
 
   cloudinit {
-    user_data    = <<-EOF
+    user_data = <<-EOF
       #cloud-config
       ssh_pwauth: true
       package_update: true
@@ -157,14 +157,14 @@ resource "harvester_virtualmachine" "quickstart_node" {
 
   network_interface {
     name           = "nic-1"
-    network_name = data.harvester_network.rancher.id
+    network_name   = data.harvester_network.rancher.id
     wait_for_lease = true
   }
 
   disk {
     name       = "rootdisk"
     type       = "disk"
-    size       = "10Gi"
+    size       = "40Gi"
     bus        = "virtio"
     boot_order = 1
 
@@ -173,7 +173,7 @@ resource "harvester_virtualmachine" "quickstart_node" {
   }
 
   cloudinit {
-    user_data    = <<-EOF
+    user_data = <<-EOF
       #cloud-config
       ssh_pwauth: true
       package_update: true

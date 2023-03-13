@@ -59,7 +59,7 @@ variable "rancher_server_admin_password" {
 # Local variables used to reduce repetition
 locals {
   node_username = "ubuntu"
-  cluster_node_command        = templatefile(
+  cluster_node_command = templatefile(
     "${path.module}/files/userdata_quickstart_node.template",
     {
       register_command = module.rancher_common.custom_cluster_command
