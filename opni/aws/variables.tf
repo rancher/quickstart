@@ -61,7 +61,7 @@ variable "kubernetes_version" {
 variable "opni_version" {
   type        = string
   description = "Opni version"
-  default     = "0.8.3"
+  default     = "0.9.1"
 }
 
 variable "cert_manager_version" {
