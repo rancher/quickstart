@@ -1,0 +1,39 @@
+
+# AWS access key used to create infrastructure
+aws_access_key = ""
+
+# AWS secret key used to create AWS infrastructure
+aws_secret_key = ""
+
+# AWS region used for all resources
+aws_region = "us-east-1"
+
+# AWS session token used to create AWS infrastructure
+aws_session_token = ""
+
+# AWS zone used for all resources
+aws_zone = "us-east-1b"
+
+# Version of cert-manager to install alongside Rancher and Opni (format: 0.0.0)
+cert_manager_version = "1.10.0"
+
+# Instance type used for all EC2 instances
+instance_type = "t3a.2xlarge"
+
+# Kubernetes version to use
+kubernetes_version = "v1.23.14+rke2r1"
+
+# Opni version
+opni_version = "0.8.3"
+
+# Prefix added to names of all resources
+prefix = "opni-quickstart"
+
+# The helm repository, where the Rancher helm chart is installed from
+rancher_helm_repository = "https://releases.rancher.com/server-charts/latest"
+
+# Admin password to use for Rancher server bootstrap, min. 12 characters
+rancher_server_admin_password = "adminadminadmin"
+
+# Rancher version
+rancher_version = "2.7.1"

@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: opensearch
+  namespace: opni
+  annotations:
+    cert-manager.io/cluster-issuer: selfsigned-cluster-issuer
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+spec:
+  tls:
+    - hosts:
+        - {{ .Values.opensearchHostname }}
+      secretName: opensearch-tls-secret
+  rules:
+  - host: {{ .Values.opensearchHostname }}
+    http:
+      paths:
+      - backend:
+          service:
+            name: opni-opensearch-svc-dashboards
+            port:
+              number: 5601
+        path: /
+        pathType: Prefix

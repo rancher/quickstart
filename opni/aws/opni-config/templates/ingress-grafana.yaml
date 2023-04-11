@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grafana
+  namespace: opni
+  annotations:
+    cert-manager.io/cluster-issuer: selfsigned-cluster-issuer
+spec:
+  tls:
+    - hosts:
+        - {{ .Values.grafanaHostname }}
+      secretName: grafana-tls-secret
+  rules:
+  - host: {{ .Values.grafanaHostname }}
+    http:
+      paths:
+      - backend:
+          service:
+            name: grafana-service
+            port:
+              number: 3000
+        path: /
+        pathType: Prefix

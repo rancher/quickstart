@@ -1,0 +1,89 @@
+apiVersion: logging.opni.io/v1beta1
+kind: OpniOpensearch
+metadata:
+  name: opni
+  namespace: opni
+spec:
+  externalURL: {{ .Values.opensearchHostname }}
+  imageRepo: docker.io/rancher
+  indexRetention: 7d
+  natsCluster:
+    name: opni
+  opensearch:
+    dashboards:
+      additionalConfig:
+        opensearchDashboards.branding.applicationTitle: Opni Logging
+        opensearchDashboards.branding.faviconUrl: https://raw.githubusercontent.com/rancher/opni/main/branding/favicon.png
+        opensearchDashboards.branding.loadingLogo.darkModeUrl: https://raw.githubusercontent.com/rancher/opni/main/branding/opni-loading-dark.svg
+        opensearchDashboards.branding.loadingLogo.defaultUrl: https://raw.githubusercontent.com/rancher/opni/main/branding/opni-loading.svg
+        opensearchDashboards.branding.logo.defaultUrl: https://raw.githubusercontent.com/rancher/opni/main/branding/opni-logo-dark.svg
+        opensearchDashboards.branding.mark.defaultUrl: https://raw.githubusercontent.com/rancher/opni/main/branding/opni-mark.svg
+      enable: true
+      image: docker.io/rancher/opensearch-dashboards:2.4.0-0.8.3
+      opensearchCredentialsSecret:
+        name: opensearch-credentials
+      replicas: 1
+      resources:
+        limits:
+          memory: 1Gi
+        requests:
+          cpu: 3m
+      tls:
+        caSecret: {}
+        enable: true
+        generate: true
+        secret: {}
+      version: 2.4.0
+    nodePools:
+      - component: data
+        diskSize: 35Gi
+        env:
+          - name: DISABLE_INSTALL_DEMO_CONFIG
+            value: "true"
+        jvm: -Xmx1073741824 -Xms1073741824
+        labels:
+          opni.io/node-group: data
+        persistence:
+          emptyDir: {}
+        replicas: 1
+        resources:
+          limits:
+            memory: 2Gi
+          requests:
+            memory: 2Gi
+        roles:
+          - data
+          - ingest
+          - master
+      - component: quorum
+        diskSize: 5Gi
+        env:
+          - name: DISABLE_INSTALL_DEMO_CONFIG
+            value: "true"
+          - name: DISABLE_PERFORMANCE_ANALYZER_AGENT_CLI
+            value: "true"
+        jvm: -Xmx268435456 -Xms268435456
+        labels:
+          opni.io/node-group: data
+        replicas: 2
+        resources:
+          limits:
+            memory: 640Mi
+          requests:
+            cpu: 100m
+            memory: 640Mi
+        roles:
+          - master
+    security:
+      tls:
+        http:
+          caSecret: {}
+          generate: true
+          secret: {}
+        transport:
+          caSecret: {}
+          generate: true
+          perNode: true
+          secret: {}
+  opensearchVersion: 2.4.0
+  version: 0.8.3

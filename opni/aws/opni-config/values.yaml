@@ -1,0 +1,4 @@
+opensearchHostname: ""
+grafanaHostname: ""
+opensearchUsername: "admin"
+opensearchPassword: ""
