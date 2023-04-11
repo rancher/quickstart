@@ -35,7 +35,7 @@ gateway:
     noauth:
       grafanaHostname: ${ local.grafana_hostname }
   alerting:
-    enabled: false
+    enabled: true
   s3:
     internal: {}
 opni-prometheus-crd:

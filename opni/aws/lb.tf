@@ -7,7 +7,7 @@ resource "aws_elb" "opni-lb" {
     healthy_threshold   = 2
     unhealthy_threshold = 2
     timeout             = 3
-    target              = "TCP:9090"
+    target              = "TCP:32000"
     interval            = 30
   }
 
