@@ -63,7 +63,7 @@ variable "instance_type" {
 variable "kubernetes_version" {
   type        = string
   description = "Kubernetes version to use"
-  default     = "v1.23.14+rke2r1"
+  default     = "v1.24.13+rke2r1"
 }
 
 variable "neuvector_chart_version" {
@@ -81,7 +81,7 @@ variable "cert_manager_version" {
 variable "rancher_version" {
   type        = string
   description = "Rancher version"
-  default     = "2.7.1"
+  default     = "2.7.3"
 }
 
 variable "rancher_helm_repository" {
