@@ -63,25 +63,25 @@ variable "instance_type" {
 variable "kubernetes_version" {
   type        = string
   description = "Kubernetes version to use"
-  default     = "v1.24.13+rke2r1"
+  default     = "v1.24.14+rke2r1"
 }
 
 variable "neuvector_chart_version" {
   type        = string
   description = "NeuVector helm chart version"
-  default     = "2.4.0"
+  default     = "2.4.5"
 }
 
 variable "cert_manager_version" {
   type        = string
   description = "Version of cert-manager to install alongside NeuVector (format: 0.0.0)"
-  default     = "1.10.0"
+  default     = "1.11.0"
 }
 
 variable "rancher_version" {
   type        = string
   description = "Rancher version"
-  default     = "2.7.3"
+  default     = "2.7.4"
 }
 
 variable "rancher_helm_repository" {
