@@ -18,8 +18,8 @@ Both instances will be accessible over SSH using the auto-generated SSH keys `id
 | Name | Version |
 |------|---------|
 | <a name="provider_hcloud"></a> [hcloud](#provider\_hcloud) | 1.33.2 |
-| <a name="provider_local"></a> [local](#provider\_local) | 2.2.3 |
-| <a name="provider_tls"></a> [tls](#provider\_tls) | 3.4.0 |
+| <a name="provider_local"></a> [local](#provider\_local) | 2.4.0 |
+| <a name="provider_tls"></a> [tls](#provider\_tls) | 4.0.4 |
 
 ## Modules
 
