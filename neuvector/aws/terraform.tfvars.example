@@ -42,4 +42,4 @@ rancher_helm_repository = "https://releases.rancher.com/server-charts/latest"
 rancher_server_admin_password = "adminadminadmin"
 
 # Rancher version
-rancher_version = "2.7.4"
+rancher_version = "2.7.5"
