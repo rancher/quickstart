@@ -1,0 +1,34 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: opni-admin
+  namespace: opni
+  annotations:
+    cert-manager.io/cluster-issuer: selfsigned-cluster-issuer
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: opni-admin-http-auth
+spec:
+  tls:
+    - hosts:
+        - {{ .Values.opniAdminHostname }}
+      secretName: opni-admin-tls-secret
+  rules:
+  - host: {{ .Values.opniAdminHostname }}
+    http:
+      paths:
+      - backend:
+          service:
+            name: opni-admin-dashboard
+            port:
+              number: 12080
+        path: /
+        pathType: Prefix
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: opni-admin-http-auth
+  namespace: opni
+stringData:
+  # admin / ooPhe4oh
+  auth: "admin:$apr1$qgGLG/b9$513sqc4ke.IVzBcesFjCX/"

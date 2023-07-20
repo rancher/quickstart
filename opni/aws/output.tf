@@ -14,6 +14,10 @@ output "opensearch_url" {
   value = local.opensearch_hostname
 }
 
+output "opniadmin_url" {
+  value = local.opniadmin_hostname
+}
+
 output "node_ips" {
   value = aws_instance.opni_server[*].public_ip
 }

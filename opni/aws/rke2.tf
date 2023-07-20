@@ -1,7 +1,7 @@
 # RKE2 cluster for Rancher and Opni
 resource "ssh_resource" "rke2_config_dir" {
   count = var.opni_cluster_node_count
-  host = aws_instance.opni_server[count.index].public_ip
+  host  = aws_instance.opni_server[count.index].public_ip
   commands = [
     "sudo mkdir -p /etc/rancher/rke2",
     "sudo chmod 777 /etc/rancher/rke2"
@@ -31,7 +31,7 @@ EOT
 }
 
 resource "ssh_resource" "rke2_config_others" {
-  count = var.opni_cluster_node_count - 1
+  count      = var.opni_cluster_node_count - 1
   depends_on = [ssh_resource.rke2_config_dir]
 
   host        = aws_instance.opni_server[count.index + 1].public_ip

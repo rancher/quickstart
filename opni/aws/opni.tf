@@ -29,11 +29,11 @@ disableUsage: false
 gateway:
   enabled: true
   serviceType: ClusterIP
-  hostname: ${ local.opni_hostname }
+  hostname: ${local.opni_hostname}
   auth:
     provider: noauth
     noauth:
-      grafanaHostname: ${ local.grafana_hostname }
+      grafanaHostname: ${local.grafana_hostname}
   alerting:
     enabled: true
   s3:
@@ -64,7 +64,8 @@ kube-prometheus-stack:
 }
 
 locals {
-  opni_hostname = aws_elb.opni-lb.dns_name
-  grafana_hostname = join(".", ["grafana", aws_instance.opni_server[0].public_ip, "sslip.io"])
+  opni_hostname       = aws_elb.opni-lb.dns_name
+  grafana_hostname    = join(".", ["grafana", aws_instance.opni_server[0].public_ip, "sslip.io"])
   opensearch_hostname = join(".", ["opensearch", aws_instance.opni_server[0].public_ip, "sslip.io"])
+  opniadmin_hostname  = join(".", ["opniadmin", aws_instance.opni_server[0].public_ip, "sslip.io"])
 }

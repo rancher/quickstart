@@ -47,39 +47,39 @@ variable "instance_type" {
 }
 
 variable "opni_cluster_node_count" {
-  type = number
+  type        = number
   description = "Amount of nodes in the Opni cluster"
-  default = 3
+  default     = 3
 }
 
 variable "kubernetes_version" {
   type        = string
   description = "Kubernetes version to use"
-  default     = "v1.23.14+rke2r1"
+  default     = "v1.25.11+rke2r1"
 }
 
 variable "opni_version" {
   type        = string
   description = "Opni version"
-  default     = "0.9.1"
+  default     = "0.10.0"
 }
 
 variable "cert_manager_version" {
   type        = string
   description = "Version of cert-manager to install alongside Rancher and Opni (format: 0.0.0)"
-  default     = "1.10.0"
+  default     = "1.12.0"
 }
 
 variable "rancher_version" {
   type        = string
   description = "Rancher version"
-  default     = "2.7.1"
+  default     = "2.7.5"
 }
 
 variable "longhorn_version" {
-  type = string
+  type        = string
   description = "Longhorn version"
-  default = "1.4.1"
+  default     = "1.5.1"
 }
 
 variable "rancher_helm_repository" {
@@ -89,7 +89,7 @@ variable "rancher_helm_repository" {
 }
 
 variable "rke2_token" {
-  type = string
+  type        = string
   description = "RKE2 token for joining the cluster"
 }
 

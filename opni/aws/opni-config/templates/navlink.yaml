@@ -6,11 +6,7 @@ spec:
   group: Opni
   label: Opni Dashboard
   target: _blank
-  toService:
-    name: opni-admin-dashboard
-    namespace: opni
-    port: '12080'
-    scheme: http
+  toURL: https://{{ .Values.opniHostname }}
 ---
 apiVersion: ui.cattle.io/v1
 kind: NavLink

@@ -1,4 +1,3 @@
 opensearchHostname: ""
 grafanaHostname: ""
-opensearchUsername: "admin"
-opensearchPassword: ""
+opniAdminHostname: ""
