@@ -69,7 +69,7 @@ variable "kubernetes_version" {
 variable "neuvector_chart_version" {
   type        = string
   description = "NeuVector helm chart version"
-  default     = "2.4.5"
+  default     = "2.6.1"
 }
 
 variable "cert_manager_version" {

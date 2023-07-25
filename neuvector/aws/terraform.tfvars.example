@@ -30,7 +30,7 @@ kubernetes_version = "v1.24.14+rke2r1"
 neuvector_admin_password = "AI2zSYMFuCZ3HUeyNNMj1urUpCSEfgE0"
 
 # NeuVector helm chart version
-neuvector_chart_version = "2.4.5"
+neuvector_chart_version = "2.6.1"
 
 # Prefix added to names of all resources
 prefix = "neuvector-quickstart"
