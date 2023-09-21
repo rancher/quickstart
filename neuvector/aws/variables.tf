@@ -81,7 +81,7 @@ variable "cert_manager_version" {
 variable "rancher_version" {
   type        = string
   description = "Rancher version"
-  default     = "2.7.5"
+  default     = "2.7.6"
 }
 
 variable "rancher_helm_repository" {
