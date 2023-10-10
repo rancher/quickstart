@@ -4,7 +4,7 @@ require_relative 'vagrant_rancheros_guest_plugin.rb'
 require 'ipaddr'
 require 'yaml'
 
-if File.exists?(File.join(File.dirname(__FILE__), "local_config.yaml")) then
+if File.exist?(File.join(File.dirname(__FILE__), "local_config.yaml")) then
     puts "Using local configuration file"
     x = YAML.load_file(File.join(File.dirname(__FILE__), "local_config.yaml"))
 else
