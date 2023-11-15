@@ -27,7 +27,7 @@ rancher_helm_repository = "https://releases.rancher.com/server-charts/latest"
 rancher_kubernetes_version = "v1.24.14+k3s1"
 
 # Rancher server version (format: 0.0.0)
-rancher_version = "2.7.6"
+rancher_version = "2.7.9"
 
 # Outscale region
 region = "eu-west-2"
