@@ -1,6 +1,6 @@
-# Quickstart examples for the SUSE Rancher product portfolio
+# Quickstart examples for the Rancher by SUSE product portfolio
 
-Quickly stand up an HA-style installation of SUSE Rancher products on your infrastructure provider of choice.
+Quickly stand up an HA-style installation of Rancher by SUSE products on your infrastructure provider of choice.
 
 Intended for experimentation/evaluation ONLY.
 
