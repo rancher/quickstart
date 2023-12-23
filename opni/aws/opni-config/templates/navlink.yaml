@@ -1,0 +1,29 @@
+apiVersion: ui.cattle.io/v1
+kind: NavLink
+metadata:
+  name: opni
+spec:
+  group: Opni
+  label: Opni Dashboard
+  target: _blank
+  toURL: https://{{ .Values.opniHostname }}
+---
+apiVersion: ui.cattle.io/v1
+kind: NavLink
+metadata:
+  name: grafana
+spec:
+  group: Opni
+  label: Grafana
+  target: _blank
+  toURL: https://{{ .Values.grafanaHostname }}
+---
+apiVersion: ui.cattle.io/v1
+kind: NavLink
+metadata:
+  name: opensearch
+spec:
+  group: Opni
+  label: OpenSearch
+  target: _blank
+  toURL: https://{{ .Values.opensearchHostname }}

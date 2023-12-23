@@ -1,5 +1,5 @@
-PROVIDERS = rancher/rancher-common rancher/aws rancher/azure rancher/do rancher/gcp rancher/hcloud rancher/linode rancher/scw rancher/outscale neuvector/aws rancher/harvester
-CLOUD_PROVIDERS = rancher/aws rancher/azure rancher/do rancher/gcp rancher/hcloud rancher/linode rancher/scw rancher/outscale neuvector/aws rancher/harvester
+PROVIDERS = rancher/rancher-common rancher/aws rancher/azure rancher/do rancher/gcp rancher/hcloud rancher/linode rancher/scw rancher/outscale neuvector/aws rancher/harvester opni/aws
+CLOUD_PROVIDERS = rancher/aws rancher/azure rancher/do rancher/gcp rancher/hcloud rancher/linode rancher/scw rancher/outscale neuvector/aws rancher/harvester opni/aws
 
 upgrade-targets = $(addprefix upgrade-, $(PROVIDERS))
 docs-targets = $(addprefix docs-, $(PROVIDERS))

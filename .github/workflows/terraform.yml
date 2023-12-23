@@ -13,7 +13,7 @@ jobs:
     
     strategy:
       matrix:
-       provider: ['rancher/aws', 'rancher/azure', 'rancher/do', 'rancher/gcp', 'rancher/hcloud', 'rancher/linode', 'rancher/scw', 'rancher/outscale', 'neuvector/aws']
+       provider: ['rancher/aws', 'rancher/azure', 'rancher/do', 'rancher/gcp', 'rancher/hcloud', 'rancher/linode', 'rancher/scw', 'rancher/outscale', 'neuvector/aws', 'opni/aws']
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
