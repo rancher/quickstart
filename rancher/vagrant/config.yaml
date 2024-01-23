@@ -1,8 +1,8 @@
 admin_password: adminPassword
-rancher_version: v2.6.8
+rancher_version: v2.7.9
 ROS_version: 1.5.1
 # Empty defaults to latest non-experimental available
-k8s_version: "v1.22.9-rancher1-1"
+k8s_version: "v1.24.17-rancher1-1"
 server:
   cpus: 2
   memory: 4000
